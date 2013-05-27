@@ -40,6 +40,7 @@ The `:000` segment following `TimeMS` is a standard .NET format string that affe
 * [[Provided Sinks|Provided-Sinks]]
 * [[Provided Enrichers|Provided-Enrichers]]
 * [[Provided Filters|Provided-Filters]]
+* [[Debugging and Diagnostics|Debugging-and-Diagnostics]]
 
 ## Resources
 
