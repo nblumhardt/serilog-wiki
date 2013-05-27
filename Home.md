@@ -4,12 +4,12 @@ Maintaining good quality documentation is a priority for Serilog. If you find mi
 
 ## Documentation
 
-* [[Getting Started|GettingStarted]]
-* [[Configuration Basics|ConfigurationBasics]]
-* [[Writing Log Events|WritingLogEvents]]
-* [[Provided Sinks|ProvidedSinks]]
-* [[Provided Enrichers|ProvidedEnrichers]]
-* [[Provided Filters|ProvidedFilters]]
+* [[Getting Started|Getting-Started]]
+* [[Configuration Basics|Configuration-Basics]]
+* [[Writing Log Events|Writing-Log-Events]]
+* [[Provided Sinks|Provided-Sinks]]
+* [[Provided Enrichers|Provided-Enrichers]]
+* [[Provided Filters|Provided-Filters]]
 
 ## Resources
 
