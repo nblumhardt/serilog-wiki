@@ -29,7 +29,7 @@ The `@` operator in front of `SensorInput` instructs Serilog to preserve the str
 The `:000` segment following `TimeMS` is a standard .NET format string that affects how the property is rendered (not how it is captured). The standard console sink included with Serilog will render the above message as:
 
 ```
-... [Information] Processed { Latitude: 25, Longitude: 134 } in 034 ms. 
+09:14:22 [Information] Processed { Latitude: 25, Longitude: 134 } in 034 ms. 
 ```
 
 ## Documentation
