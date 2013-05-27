@@ -2,7 +2,7 @@
 
 ## Why Serilog?
 
-Like many other .NET libraries, Serilog provides basic diagnostic logging to files, the console, and so-on.
+Like many other .NET libraries, Serilog provides basic diagnostic logging to files, the console, and so-on. It is easy to set up, has a clean API, and is portable between recent .NET platforms.
 
 Unlike other logging libraries for .NET, parameters passed along with log messages are not destructively rendered into a text format. Instead, they're preserved as structured data, that can be written in document form to a NoSQL data store.
 
