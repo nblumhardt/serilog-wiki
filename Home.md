@@ -47,4 +47,4 @@ The `:000` segment following `TimeMS` is a standard .NET format string that affe
 * [[Discussion forum|https://groups.google.com/group/serilog]]
 * [[Blog posts at nblumhardt.com|http://nblumhardt.com]]
 * [[Project homepage|http://serilog.net]]
-* [[Packages on NuGet|https://nuget.org/packages?q=Tags%3A%22serilog%22%22]]
+* [[Packages on NuGet|https://nuget.org/packages?q=Tags%3A%22serilog%22]]
