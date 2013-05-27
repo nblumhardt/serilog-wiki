@@ -1,6 +1,4 @@
-## About this wiki
-
-Maintaining good quality documentation is a priority for Serilog. If you find missing or inaccurate content, please let us know via the issue tracker. If you'd like to extend the wiki with a topic or tutorial please email the discussion forum linked in the Resources section below. Thanks!
+> Maintaining good quality documentation is a priority for Serilog. If you find missing or inaccurate content, please let us know via the issue tracker. If you'd like to extend the wiki with a topic or tutorial please email the discussion forum linked in the Resources section below. Thanks!
 
 ## Why Serilog?
 
