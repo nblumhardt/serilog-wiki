@@ -17,7 +17,7 @@ Log.Warning("Disk quota {Quota} exceeded by {User}", quota, user);
 Log.Information("The time is " + DateTime.Now);
 ```
 
-Instead, always use template properties to include variables in messages:
+Instead, _always_ use template properties to include variables in messages:
 
 ```
 // Do:
@@ -25,6 +25,8 @@ Log.Information("The time is {Now}", DateTime.Now);
 ```
 
 ## Log Event Levels
+
+Serilog uses levels as the primary means for assigning importance to log events.
 
 ## Level Detection
 
