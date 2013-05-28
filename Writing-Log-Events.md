@@ -66,6 +66,6 @@ var myLog = Log.ForContext<MyClass>();
 myLog.Information("Hello!");
 ```
 
-The event written will include a property "SourceContext" that can later be used to filter out noisy events, or selectively write them to particular sinks. For more on filters and logger topology see [[Configuration Basics|Configuration-Basics]].
+The event written will include a property `"SourceContext"` with value `"MyNamespace.MyClass"` that can later be used to filter out noisy events, or selectively write them to particular sinks. For more on filters and logger topology see [[Configuration Basics|Configuration-Basics]].
 
 ## Correlation
