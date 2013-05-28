@@ -80,4 +80,4 @@ job.Run();
 jobLog.Information("Finished");
 ```
 
-Here both of the log events will carry the `JobId` property carrying the job identifier.
+Here both of the log events will carry the `JobId` property including the job identifier.
