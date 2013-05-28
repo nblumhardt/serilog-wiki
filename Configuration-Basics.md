@@ -17,7 +17,7 @@ The example above will create a logger that does not record events anywhere. To 
 
 Log event sinks generally record log events to some external representation, typically the console, a file or data store.
 
-Sinks are configured using the `WriteTo` configuration object:
+Sinks are configured using the `WriteTo` configuration object.
 
 ```
 Log.Logger = new LoggerConfiguration()
@@ -27,7 +27,18 @@ Log.Logger = new LoggerConfiguration()
 Log.Information("Ah, there you are!");
 ```
 
+Multiple sinks can be active at the same time. Adding additional sinks is a simple as chaining `WriteTo` blocks:
+
+```
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.ColoredConsole()
+    .WriteTo.RollingFile(@"C:\Log.txt")
+    .CreateLogger();
+```
+
 ### Output Templates
+
+Each sink is provided with an output template that controls how the sink renders events. This template uses the same format as the message templates that go with log events themselves, and can be specified during configuration.
 
 ### Minimum Level
 
