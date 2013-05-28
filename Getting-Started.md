@@ -8,7 +8,7 @@ PM> Install-Package Serilog
 
 Browse the [[serilog|http://nuget.org/packages?q=Tags%3A%22serilog%22%22]] tag on NuGet to see the available sinks, extensions and related third-party packages.
 
-## Configuration
+## Setup
 
 Types are in the Serilog namespace.
 
