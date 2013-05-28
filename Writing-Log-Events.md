@@ -66,6 +66,18 @@ var myLog = Log.ForContext<MyClass>();
 myLog.Information("Hello!");
 ```
 
-The event written will include a property `"SourceContext"` with value `"MyNamespace.MyClass"` that can later be used to filter out noisy events, or selectively write them to particular sinks. For more on filters and logger topology see [[Configuration Basics|Configuration-Basics]].
+The event written will include a property `SourceContext` with value `"MyNamespace.MyClass"` that can later be used to filter out noisy events, or selectively write them to particular sinks. For more on filters and logger topology see [[Configuration Basics|Configuration-Basics]].
 
 ## Correlation
+
+Just as `ForContext<T>()` tags log events with the class that wrote them, other overloads of `ForContext()` enable log events to be tagged with identifiers that later support correlation of the events written with that identifier.
+
+```
+var job = GetNextJob();
+var jobLog = Log.ForContext("JobId", job.Id);
+jobLog.Information("Running a new job");
+job.Run();
+jobLog.Information("Finished");
+```
+
+Here both of the log events will carry the `JobId` property carrying the job identifier.
