@@ -26,7 +26,20 @@ Log.Information("The time is {Now}", DateTime.Now);
 
 ## Log Event Levels
 
-Serilog uses levels as the primary means for assigning importance to log events.
+Serilog uses levels as the primary means for assigning importance to log events. The levels in increasing order of importance are:
+
+1. **Verbose** - tracing information and debugging minutiae; generally only switched on in unusual situations
+2. **Debug** - internal control flow and diagnostic state dumps to facilitate pinpointing of recognised problems
+3. **Information** - events of interest or that have relevance to outside observers; the default enabled minimum logging level
+4. **Warning** - indicators of possible issues or service/functionality degradation
+5. **Error** - indicating a failure within the application or connected system
+6. **Fatal** - critical errors causing complete failure of the application
+
+### The role of the Information level
+
+The _Information_ level is unlike the other specified levels - it has no specified semantics and in many ways expresses the absence of other levels.
+
+Because Serilog allows the event stream from the application to be processed or analysed, the _Information_ level can be thought of as a synonym for _event_. That is, most interesting application event data should be logged at this level.
 
 ## Level Detection
 
