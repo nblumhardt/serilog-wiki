@@ -41,7 +41,21 @@ The _Information_ level is unlike the other specified levels - it has no specifi
 
 Because Serilog allows the event stream from the application to be processed or analysed, the _Information_ level can be thought of as a synonym for _event_. That is, most interesting application event data should be logged at this level.
 
-## Level Detection
+### Level Detection
+
+In most cases, applications should write events without checking the active logging level. Level checking is extremely cheap and the overhead of calling disabled logger methods very low.
+
+In _rare, performance-sensitive_ cases, the recommended pattern for level detection is to store the results of level detection in a field, for example:
+
+```
+readonly bool _isDebug = Log.IsLevelEnabled(LogEventLevel.Debug);
+```
+
+The `_isDebug` field can be checked efficiently before writing log events:
+
+```
+if (_isDebug) Log.Write("Someone is stuck debugging...");
+```
 
 ## Source Contexts
 
