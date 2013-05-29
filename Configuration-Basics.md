@@ -113,3 +113,16 @@ Enrichers and the properties they attach are generally more useful with sinks th
 ## Filters
 
 ## Sub-loggers
+
+Sometimes a finer level of control over what is seen by a sink is necessary. For this, Serilog allows a full logging pipeline to act as a sink.
+
+```
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.ColoredConsole()
+    .WriteTo.Logger(lc => lc
+        .Filter.ByIncludingOnly(...)
+        .WriteTo.CouchDB("http://mycouch/logs"))
+    .CreateLogger();
+```
+
+Sub-loggers incur some performance cost; if this is problematic, creating multiple top-level loggers is the recommended alternative.
