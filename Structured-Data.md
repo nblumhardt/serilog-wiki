@@ -72,4 +72,4 @@ Formatters that support dictionaries can record the property as such.
 { "Fruit": { "Apple": 1, "Pear": 5 }}
 ```
 
-**IDictionary<TKey,TValue>** - objects implementing dictionary interfaces are not serialised as dictionaries. Firstly because it is less efficient in .NET to check for generic interface compatibility, and second because a single object may implement more than one generic dictionary interface, creating an ambiguity.
+**`IDictionary<TKey,TValue>`** - objects implementing dictionary interfaces are not serialised as dictionaries. Firstly because it is less efficient in .NET to check for generic interface compatibility, and second because a single object may implement more than one generic dictionary interface, creating an ambiguity.
