@@ -74,6 +74,42 @@ All provided sinks support the `minimumLevel` configuration parameter.
 
 ## Enrichers
 
+Enrichers are simple components that add, remove or modify the properties attached to a log event. This can be used for the purpose of attaching a thread id to each event, for example.
+
+```
+class ThreadIdEnricher : ILogEventEnricher
+{
+    public void Enrich(LogEvent logEvent, ILogEventPropertyFactory propertyFactory)
+    {
+        logEvent.AddPropertyIfAbsent(
+            propertyFactory.CreateProperty("ThreadId", Thread.CurrentThread.ManagedThreadId));
+    }
+}
+```
+
+Enrichers are added using the `Enrich` configuration object.
+
+```
+Log.Logger = new LoggerConfiguration()
+    .Enrich.With(new ThreadIdEnricher())
+    .WriteTo.ColoredConsole(
+        outputTemplate: "{Timestamp:HH:mm} [{Level}] ({ThreadId}) {Message:l}{Newline:l}{Exception:l}")
+    .CreateLogger();
+```
+
+The configuration above shows how a property added by an enricher can be used in output formatting.
+
+If the enriched property value is constant throughout the application run, the shortcut `WithProperty` method can be used to simplify configuration.
+
+```
+Log.Logger = new LoggerConfiguration()
+    .Enrich.WithProperty("Version", "1.0.0")
+    .WriteTo.ColoredConsole()
+    .CreateLogger();
+```
+
+Enrichers and the properties they attach are generally more useful with sinks that use structured storage, where the property values can be viewed and filtered.
+
 ## Filters
 
 ## Sub-loggers
