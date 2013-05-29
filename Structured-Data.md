@@ -76,4 +76,13 @@ Formatters that support dictionaries can record the property as such.
 
 ### Objects
 
-Apart from the types above, which are specially handled by Serilog, it is difficult to make intelligent choices about how data should be rendered and persisted. Objects not explicitly intended for serialisation tend to serialise very poorly. When Serilog doesn't recognise the type, and no operator is specified (see below) then 
+Apart from the types above, which are specially handled by Serilog, it is difficult to make intelligent choices about how data should be rendered and persisted. Objects not explicitly intended for serialisation tend to serialise very poorly.
+
+```
+SqlConnection conn = ...;
+Log.Information("Connected to {Connection}", conn);
+```
+
+(Yikes! How does one serialise an `SqlConnection`?)
+
+When Serilog doesn't recognise the type, and no operator is specified (see below) then objects are treated as scalar internally, and rendered by sinks using `ToString()`.
