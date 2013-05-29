@@ -73,3 +73,7 @@ Formatters that support dictionaries can record the property as such.
 ```
 
 **`IDictionary<TKey,TValue>`** - objects implementing dictionary interfaces are not serialised as dictionaries. Firstly because it is less efficient in .NET to check for generic interface compatibility, and second because a single object may implement more than one generic dictionary interface, creating an ambiguity.
+
+### Objects
+
+Apart from the types above, which are specially handled by Serilog, it is difficult to make intelligent choices about how data should be rendered and persisted. Objects not explicitly intended for serialisation tend to serialise very poorly.
