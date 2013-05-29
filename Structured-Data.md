@@ -14,9 +14,11 @@ The storage representation for a log event property makes a big difference to it
 
 With this in mind, let’s take a look at how Serilog is configured to work in the simple cases.
 
-## Defaults
+## Default Behaviour
 
 When properties are specified in log events, Serilog does its best to determine the correct representation.
+
+### Simple, Scalar Values
 
 ```
 var count = 456;
@@ -38,5 +40,36 @@ Out of the box, Serilog recognises the following list as basic _scalar_ types, r
 * _Strings_ - `string`, `byte[]`
 * _Temporals_ - `DateTime`, `DateTimeOffset`, `TimeSpan`
 * _Others_ - `Guid`, `Uri`
+* _Nullables_ - nullable versions of any of the types above
 
+### Collections
 
+If the object passed as a property is `IEnumerable`, Serilog will treat that property as a collection.
+
+```
+var fruit = new[] { "Apple", "Pear", "Orange" };
+Log.Information("In my bowl I have {Fruit}", fruit);
+```
+
+The equivalent JSON includes an array.
+
+```
+{ "Fruit": ["Apple", "Pear", "Orange"] }
+```
+
+Serilog makes this choice because most enumerable types are of interest for their elements, and represent poorly as structures or strings.
+
+Serilog also recognises `Dictionary<TKey,TValue>`, as long as the key type is one of the scalar types listed above.
+
+```
+var fruit = new Dictionary<string,int> {{ "Apple", 1}, { "Pear", 5 }};
+Log.Information("In my bowl I have {Fruit}", fruit);
+```
+
+Formatters that support dictionaries can record the property as such.
+
+```
+{ "Fruit": { "Apple": 1, "Pear": 5 }}
+```
+
+**IDictionary<TKey,TValue>** - objects implementing dictionary interfaces are not serialised as dictionaries. Firstly because it is less efficient in .NET to check for generic interface compatibility, and second because a single object may implement more than one generic dictionary interface, creating an ambiguity.
