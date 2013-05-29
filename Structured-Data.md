@@ -29,8 +29,14 @@ There's little ambiguity as to how the `Count` property should be stored in this
 { "Count": 456 }
 ```
 
-These examples use JSON, but the same basic principles apply to other formats as well.
+These examples use JSON, but the same principles apply to other formats as well.
 
+Out of the box, Serilog recognises the following list as basic _scalar_ types, regardless of any other policies applied:
 
+* _Booleans_ - `bool`
+* _Numerics_ - `byte`, `short`, `ushort`, `int`, `uint`, `long`, `ulong`, `float`, `double`, `decimal`
+* _Strings_ - `string`, `byte[]`
+* _Temporals_ - `DateTime`, `DateTimeOffset`, `TimeSpan`
+* _Others_ - `Guid`, `Uri`
 
 
