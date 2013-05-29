@@ -76,4 +76,4 @@ Formatters that support dictionaries can record the property as such.
 
 ### Objects
 
-Apart from the types above, which are specially handled by Serilog, it is difficult to make intelligent choices about how data should be rendered and persisted. Objects not explicitly intended for serialisation tend to serialise very poorly.
+Apart from the types above, which are specially handled by Serilog, it is difficult to make intelligent choices about how data should be rendered and persisted. Objects not explicitly intended for serialisation tend to serialise very poorly. When Serilog doesn't recognise the type, and no operator is specified (see below) then 
