@@ -8,4 +8,6 @@ There are a few unusual terms that Serilog uses to refer to how .NET objects map
 
 ## Why Control Representation?
 
-There are 
+There are potentially many ways to record an object to the log. Most types can be nicely represented as strings or simple values, but some make more sense to record as collections, and others as structures with named properties.
+
+The storage representation for a log event property makes a big difference to its size in the log, and the memory and processing overhead involved in getting it there.
