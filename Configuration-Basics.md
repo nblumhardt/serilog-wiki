@@ -40,7 +40,37 @@ Log.Logger = new LoggerConfiguration()
 
 Each sink is provided with an output template that controls how the sink renders events. This template uses the same format as the message templates that go with log events themselves, and can be specified during configuration.
 
-### Minimum Level
+## Minimum Level
+
+Serilog implements the common concept of a 'minimum level' for log event processing.
+
+```
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Debug()
+    .WriteTo.ColoredConsole()
+    .CreateLogger();
+```
+
+The `MinimumLevel` configuration object provides for one of the log event levels to be specified as the minimum. In the example above, log events with level `Debug` and higher will be processed and ultimately written to the console.
+
+**Default Level** - if no `MinimumLevel` is specified, then `Information` level events and higher will be processed.
+
+### Overriding per Sink
+
+Sometimes it is desirable to write detailed logs to one medium, but less detailed logs to another.
+
+```
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.ColoredConsole()
+    .WriteTo.MongoDB("mongo://myserver/logs", minimumLevel: LogEventLevel.Warning)
+    .CreateLogger();
+```
+
+In this example informational logs will be written to the console (the default) while only `Warning` level logs and higher will be written to MongoDB.
+
+All provided sinks support the `minimumLevel` configuration parameter.
+
+**Logger vs. Sink Minimums** - it is important to realise that the logging level can only be raised for sinks, not lowered. So, if the logger's `MinimumLevel` is set to `Information` then a sink with `Debug` as its specified level will still only see `Information` level events. This is because the logger-level configuration controls which logging statements will result in the creation of events, while the sink-level configuration only filters these. To create a single logger with a more verbose level, use a separate `LoggerConfiguration`.
 
 ## Enrichers
 
