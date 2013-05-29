@@ -11,3 +11,26 @@ There are a few unusual terms that Serilog uses to refer to how .NET objects map
 There are potentially many ways to record an object to the log. Most types can be nicely represented as strings or simple values, but some make more sense to record as collections, and others as structures with named properties.
 
 The storage representation for a log event property makes a big difference to its size in the log, and the memory and processing overhead involved in getting it there.
+
+With this in mind, let’s take a look at how Serilog is configured to work in the simple cases.
+
+## Defaults
+
+When properties are specified in log events, Serilog does its best to determine the correct representation.
+
+```
+var count = 456;
+Log.Information("Retrieved {Count} records", count);
+```
+
+There's little ambiguity as to how the `Count` property should be stored in this case. Being a simple integer value, Serilog will choose that as its representation.
+
+```
+{ "Count": 456 }
+```
+
+These examples use JSON, but the same basic principles apply to other formats as well.
+
+
+
+
