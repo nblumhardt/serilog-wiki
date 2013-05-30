@@ -89,9 +89,36 @@ When Serilog doesn't recognise the type, and no operator is specified (see below
 
 ## Preserving Object Structure
 
+There are many places where, given the capability, it makes sense to serialise a log event property as a structured object. DTOs (data transfer objects), messages, events and models are often best logged by breaking them down into properties with values.
+
+For this task, Serilog provides the `@` _destructuring_ operator.
+
+```
+var sensorInput = new { Latitude = 25, Longitude = 134 };
+Log.Information("Processing {@SensorInput}");
+```
+
+('Destructuring' is a term borrowed from functional programming; it is a style of pattern matching used to pull values out from structured data. The usage is Serilog is only notionally related at the moment, but possible future extensions to this operator could match the FP definition more closely.) 
+
 ### Operators vs. Formats
+
+While both operators and formats affect the representation of a property, it is important to realise their distinct roles. Operators are applied at the point the property is captured, to preserve or structure the data in some way. Formats are used only when displaying properties as text, and don't impact the serialised representation at all.
+
+### Formatting Collections and Structures
+
+When format strings are specified for complex properties, they are generally ignored. Only enumerables take format string strings into account, passing them to their elements when rendering for display.
 
 ## Forcing Stringification
 
+Sometimes, the type of an object being logged may not be exactly known, or may vary in a way that is undesirable to preserve in the log events. In these cases the `$` stringification operator will convert the property value to a string before any other processing takes place, regardless of its type or implemented interfaces.
 
+```
+var unknown = new[] { 1, 2, 3 }
+Log.Information("Received {$Data}");
+```
 
+Despite being an enumerable type, the `unknown` variable is captured and rendered as a string.
+
+```
+Received "System.Int32[]"
+```
