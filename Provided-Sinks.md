@@ -1,20 +1,8 @@
 Serilog provides sinks for writing log events in various formats.
 
-_Portable_
+**Portable** - TextWriter
 
-* TextWriter
-
-_Full .NET Framework_
-* Azure Table Storage
-* Colored Console
-* Console
-* CouchDB
-* Dump File
-* File
-* MongoDB
-* RavenDB
-* Rolling File
-* Trace
+**Full .NET Framework** - Azure Table Storage, Colored Console, Console, CouchDB, Dump File, File, MongoDB, RavenDB, Rolling File, Trace
 
 ## Portable
 
