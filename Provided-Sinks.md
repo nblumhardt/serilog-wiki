@@ -1,19 +1,20 @@
 Serilog provides sinks for writing log events in various formats.
 
-* Portable
-** TextWriter
+_Portable_
 
-* Full .NET Framework
-** Azure Table Storage
-** Colored Console
-** Console
-** CouchDB
-** Dump File
-** File
-** MongoDB
-** RavenDB
-** Rolling File
-** Trace
+* TextWriter
+
+_Full .NET Framework_
+* Azure Table Storage
+* Colored Console
+* Console
+* CouchDB
+* Dump File
+* File
+* MongoDB
+* RavenDB
+* Rolling File
+* Trace
 
 ## Portable
 
@@ -22,7 +23,7 @@ Serilog provides sinks for writing log events in various formats.
 Writes to a specified `System.IO.TextWriter` and can thus be attached to practically any text-based .NET output and the in-memory `System.IO.StringWriter` class.
 
 **Package** - [[Serilog|http://nuget.org/packages/serilog]]
-| **Platforms** - .NET 4.5, Windows 8, Windows Phone 8
+ **Platforms** - .NET 4.5, Windows 8, Windows Phone 8
 
 ```
 var messages = new StringWriter();
