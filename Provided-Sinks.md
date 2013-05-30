@@ -12,7 +12,7 @@ var messages = new StringWriter();
 
 var log = new LoggerConfiguration()
     .WriteTo.TextWriter(messages)
-	.CreateLogger();
+    .CreateLogger();
 ```
 
 ## Full .NET Framework
@@ -29,7 +29,7 @@ var storage = CloudStorageAccount.FromConfigurationSetting("MyStorage");
 
 var log = new LoggerConfiguration()
     .WriteTo.AzureTableStorage(storage)
-	.CreateLogger();
+    .CreateLogger();
 ```
 
 ### Colored Console
@@ -42,7 +42,7 @@ Writes to the system console, using colour to emphasise levels and to highlight 
 ```
 var log = new LoggerConfiguration()
     .WriteTo.ColoredConsole()
-	.CreateLogger();
+    .CreateLogger();
 ```
 
 ### Console
@@ -55,7 +55,7 @@ Writes to the system console. The colored console sink's boring cousin.
 ```
 var log = new LoggerConfiguration()
     .WriteTo.Console()
-	.CreateLogger();
+    .CreateLogger();
 ```
 
 ### CouchDB
@@ -70,7 +70,7 @@ You'll need to create a database on your CouchDB server. In the example shown, i
 ```
 var log = new LoggerConfiguration()
     .WriteTo.CouchDB("http://mycouchdb/log")
-	.CreateLogger();
+    .CreateLogger();
 ```
 
 ### Dump File
@@ -83,7 +83,7 @@ Writes log events to a file, printing all properties with their values. A develo
 ```
 var log = new LoggerConfiguration()
     .WriteTo.DumpFile("dump.txt")
-	.CreateLogger();
+    .CreateLogger();
 ```
 
 ### File
@@ -96,7 +96,7 @@ Writes log events to a text file.
 ```
 var log = new LoggerConfiguration()
     .WriteTo.File("log.txt")
-	.CreateLogger();
+    .CreateLogger();
 ```
 
 ### MongoDB
@@ -111,7 +111,7 @@ You'll need to create a collection on your MongoDB server. In the example shown,
 ```
 var log = new LoggerConfiguration()
     .WriteTo.MongoDB("mongo://mymongodb/log")
-	.CreateLogger();
+    .CreateLogger();
 ```
 
 ### RavenDB
@@ -126,7 +126,7 @@ var logs = new DocumentStore { ConnectionStringName = "Logs" }.Initialize();
 
 var log = new LoggerConfiguration()
     .WriteTo.RavenDB(logs)
-	.CreateLogger();
+    .CreateLogger();
 ```
 
 **Important Note** - RavenDB is commercial software, you may need a license in order to run a RavenDB server. 
@@ -143,7 +143,7 @@ The filename must include the `{0}` placeholder, which will be replaced with the
 ```
 var log = new LoggerConfiguration()
     .WriteTo.RollingFile("log-{0}.txt")
-	.CreateLogger();
+    .CreateLogger();
 ```
 
 ### Trace
@@ -156,5 +156,5 @@ Writes log events to the `System.Diagnostics.Trace`.
 ```
 var log = new LoggerConfiguration()
     .WriteTo.DiagnosticTrace()
-	.CreateLogger();
+    .CreateLogger();
 ```
