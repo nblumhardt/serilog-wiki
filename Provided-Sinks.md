@@ -135,6 +135,8 @@ var log = new LoggerConfiguration()
     .CreateLogger();
 ```
 
+You'll need to create a database on the server for logs, and specify this as your default database in the connection string or `DocumentStore.DefaultDatabase`.
+
 **Important Note** - RavenDB is commercial software, you may need a license in order to run a RavenDB server. 
 
 ### Rolling File
