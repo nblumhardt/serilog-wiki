@@ -2,7 +2,7 @@ Serilog provides sinks for writing log events in various formats.
 
 **Portable** - TextWriter
 
-**Full .NET Framework** - Azure Table Storage, Colored Console, Console, CouchDB, Dump File, File, MongoDB, RavenDB, Rolling File, Trace
+**Full .NET Framework** - Azure Table Storage, Colored Console, Console, CouchDB, Dump File, File, log4net, MongoDB, RavenDB, Rolling File, Trace
 
 ## Portable
 
@@ -102,6 +102,19 @@ Writes log events to a text file.
 ```
 var log = new LoggerConfiguration()
     .WriteTo.File("log.txt")
+    .CreateLogger();
+```
+
+### log4net
+
+Duplicates Serilog events through the log4net pipeline to allow integration with existing code and libraries.
+
+**Package** - [[Serilog.Sinks.Log4Net|http://nuget.org/packages/serilog.sinks.log4net]]
+| **Platforms** - .NET 4.5
+
+```
+var log = new LoggerConfiguration()
+    .WriteTo.Log4Net()
     .CreateLogger();
 ```
 
