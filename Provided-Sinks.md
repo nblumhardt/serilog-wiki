@@ -105,6 +105,12 @@ var log = new LoggerConfiguration()
     .CreateLogger();
 ```
 
+To avoid sinking apps with runaway disk usage the file sink **limits file size to 1GB by default**. The limit can be increased or removed using the `fileSizeLimitBytes` parameter.
+
+```
+    .WriteTo.File("log.txt", fileSizeLimitBytes: null)
+```
+
 ### log4net
 
 Duplicates Serilog events through the log4net pipeline to allow integration with existing code and libraries.
