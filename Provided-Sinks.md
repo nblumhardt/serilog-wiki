@@ -1,16 +1,32 @@
 Serilog provides sinks for writing log events in various formats.
 
-**Portable** - TextWriter
+**Portable** - Observers, TextWriter
 
 **Full .NET Framework** - Azure Table Storage, Colored Console, Console, CouchDB, Dump File, File, log4net, MongoDB, RavenDB, Rolling File, Trace
 
 ## Portable
 
+### Observers (Rx)
+
+Provides a hot `IObservable<LogEvent>` that can be subscribed to using the 
+[[Reactive Extensions for .NET|http://msdn.microsoft.com/en-us/data/gg577609]].
+
+**Package** - [[Serilog|http://nuget.org/packages/serilog]] |
+ **Platforms** - .NET 4.5, Windows 8, Windows Phone 8
+
+```
+var log = new LoggerConfiguration()
+    .WriteTo.Observers(logEvents => logEvents
+        .Do(le => { Console.WriteLine(le); })
+        .Subscribe())
+    .CreateLogger();
+```
+
 ### TextWriter
 
 Writes to a specified `System.IO.TextWriter` and can thus be attached to practically any text-based .NET output and the in-memory `System.IO.StringWriter` class.
 
-**Package** - [[Serilog|http://nuget.org/packages/serilog]]
+**Package** - [[Serilog|http://nuget.org/packages/serilog]] |
  **Platforms** - .NET 4.5, Windows 8, Windows Phone 8
 
 ```
