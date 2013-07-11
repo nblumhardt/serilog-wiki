@@ -165,12 +165,18 @@ Writes log events to a set of text files, one per day.
 **Package** - [[Serilog|http://nuget.org/packages/serilog]]
 | **Platforms** - .NET 4.5
 
-The filename must include the `{0}` placeholder, which will be replaced with the date of the events contained in the file.
+The filename must include the `{Date}` placeholder, which will be replaced with the date of the events contained in the file.
 
 ```
 var log = new LoggerConfiguration()
-    .WriteTo.RollingFile("log-{0}.txt")
+    .WriteTo.RollingFile("log-{Date}.txt")
     .CreateLogger();
+```
+
+To avoid sinking apps with runaway disk usage the rolling file sink **limits file size to 1GB by default**. The limit can be increased or removed using the `fileSizeLimitBytes` parameter.
+
+```
+    .WriteTo.RollingFile("log-{Date}.txt", fileSizeLimitBytes: null)
 ```
 
 ### Trace
