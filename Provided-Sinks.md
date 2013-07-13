@@ -107,6 +107,8 @@ var log = new LoggerConfiguration()
     .CreateLogger();
 ```
 
+[[(More information.)|http://nblumhardt.com/2013/06/serilog-sinks-log4net/]]
+
 ### MongoDB
 
 Writes events as documents to [[MongoDB|http://mongodb.org]].
@@ -155,7 +157,9 @@ var log = new LoggerConfiguration()
 
 You'll need to create a database on the server for logs, and specify this as your default database in the connection string or `DocumentStore.DefaultDatabase`.
 
-**Important Note** - RavenDB is commercial software, you may need a license in order to run a RavenDB server. 
+[[(More information.)|http://nblumhardt.com/2013/06/serilog-and-ravendb/]]
+
+**Important Note** - RavenDB is commercial software, you may need a license in order to run a RavenDB server.
 
 ### Rolling File
 
