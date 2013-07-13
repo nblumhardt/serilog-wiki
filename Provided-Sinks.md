@@ -1,43 +1,10 @@
-Serilog provides sinks for writing log events in various formats.
+Serilog provides _sinks_ for writing log events to storage in various formats.
 
 **Portable** - Observers, TextWriter
 
 **Full .NET Framework** - Azure Table Storage, Colored Console, Console, CouchDB, Dump File, File, log4net, MongoDB, RavenDB, Rolling File, Trace
 
-## Portable
-
-### Observers (Rx)
-
-Provides a hot `IObservable<LogEvent>` that can be subscribed to using the 
-[[Reactive Extensions for .NET|http://msdn.microsoft.com/en-us/data/gg577609]].
-
-**Package** - [[Serilog|http://nuget.org/packages/serilog]] |
- **Platforms** - .NET 4.5, Windows 8, Windows Phone 8
-
-```
-var log = new LoggerConfiguration()
-    .WriteTo.Observers(logEvents => logEvents
-        .Do(le => { Console.WriteLine(le); })
-        .Subscribe())
-    .CreateLogger();
-```
-
-### TextWriter
-
-Writes to a specified `System.IO.TextWriter` and can thus be attached to practically any text-based .NET output and the in-memory `System.IO.StringWriter` class.
-
-**Package** - [[Serilog|http://nuget.org/packages/serilog]] |
- **Platforms** - .NET 4.5, Windows 8, Windows Phone 8
-
-```
-var messages = new StringWriter();
-
-var log = new LoggerConfiguration()
-    .WriteTo.TextWriter(messages)
-    .CreateLogger();
-```
-
-## Full .NET Framework
+## Alphabetical listing
 
 ### Azure Table Storage
 
@@ -155,6 +122,22 @@ var log = new LoggerConfiguration()
     .CreateLogger();
 ```
 
+### Observers (Rx)
+
+Provides a hot `IObservable<LogEvent>` that can be subscribed to using the 
+[[Reactive Extensions for .NET|http://msdn.microsoft.com/en-us/data/gg577609]].
+
+**Package** - [[Serilog|http://nuget.org/packages/serilog]] |
+ **Platforms** - .NET 4.5, Windows 8, Windows Phone 8
+
+```
+var log = new LoggerConfiguration()
+    .WriteTo.Observers(logEvents => logEvents
+        .Do(le => { Console.WriteLine(le); })
+        .Subscribe())
+    .CreateLogger();
+```
+
 ### RavenDB
 
 Writes events as documents to [[RavenDB|http://ravendb.net]].
@@ -189,10 +172,31 @@ var log = new LoggerConfiguration()
     .CreateLogger();
 ```
 
-To avoid sinking apps with runaway disk usage the rolling file sink **limits file size to 1GB by default**. The limit can be increased or removed using the `fileSizeLimitBytes` parameter.
+To avoid sinking apps with runaway disk usage the rolling file sink **limits file size to 1GB by default**. The limit can be changed or removed using the `fileSizeLimitBytes` parameter.
 
 ```
     .WriteTo.RollingFile("log-{Date}.txt", fileSizeLimitBytes: null)
+```
+
+For the same reason, only **the most recent 31 files** are retained by default (i.e. one long month). To change or remove this limit, pass the `retainedFileCountLimit` parameter.
+
+```
+    .WriteTo.RollingFile("log-{Date}.txt", retainedFileCountLimit: null)
+```
+
+### TextWriter
+
+Writes to a specified `System.IO.TextWriter` and can thus be attached to practically any text-based .NET output and the in-memory `System.IO.StringWriter` class.
+
+**Package** - [[Serilog|http://nuget.org/packages/serilog]] |
+ **Platforms** - .NET 4.5, Windows 8, Windows Phone 8
+
+```
+var messages = new StringWriter();
+
+var log = new LoggerConfiguration()
+    .WriteTo.TextWriter(messages)
+    .CreateLogger();
 ```
 
 ### Trace
