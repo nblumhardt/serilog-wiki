@@ -2,7 +2,7 @@ Serilog provides _sinks_ for writing log events to storage in various formats.
 
 **Portable** - Observers (Rx), TextWriter
 
-**Full .NET Framework** - Azure Table Storage, Colored Console, Console, CouchDB, Dump File, File, log4net, MongoDB, RavenDB, Rolling File, Trace
+**Full .NET Framework** - Azure Table Storage, Colored Console, Console, CouchDB, Dump File, File, Glimpse, log4net, MongoDB, RavenDB, Rolling File, Trace
 
 ## Alphabetical listing
 
@@ -93,6 +93,21 @@ To avoid sinking apps with runaway disk usage the file sink **limits file size t
 ```
     .WriteTo.File("log.txt", fileSizeLimitBytes: null)
 ```
+
+### Glimpse
+
+Writes log events to [[Glimpse|http://getglimpse.com]].
+
+**Package** - [[Serilog.Sinks.Glimpse|http://nuget.org/packages/serilog.sinks.glimpse]]
+| **Platforms** - .NET 4.5
+
+```
+var log = new LoggerConfiguration()
+    .WriteTo.Glimpse()
+    .CreateLogger();
+```
+
+Log events will appear in a Serilog tab under the Glimpse UI.
 
 ### log4net
 
