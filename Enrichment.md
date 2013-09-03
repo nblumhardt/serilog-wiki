@@ -11,3 +11,32 @@ All events written through `log` will carry a property `ThreadId` with the id of
 
 ## The `LogContext`
 
+`Serilog.Context.LogContext` can be used to dynamically add and remove properties from the ambient "execution context"; for example, all messages written during a transaction might carry the id of that transaction, and so-on.
+
+This feature must be added to the logger at configuration-time using `.FromLogContext()`:
+
+```
+var log = new LoggerConfiguration()
+    .Enrich.FromLogContext()
+```
+
+Then, properties can be added and removed from the context using `LogContext.PushProperty()`:
+
+```
+log.Information("No contextual properties");
+
+using (LogContext.PushProperty("A", 1))
+{
+    log.Information("Carries property A = 1");
+
+    using (LogContext.PushProperty("A", 2))
+    using (LogContext.PushProperty("B", 1))
+    {
+        log.Information("Carries A = 2 and B = 1");
+    }
+
+    log.Information("Carries property A = 1, again");
+}
+```
+
+Pushing property onto the context will override any existing properties with the same name, until the object returned from `PushProperty()` is disposed, as the property `A` in the example demonstrates.
