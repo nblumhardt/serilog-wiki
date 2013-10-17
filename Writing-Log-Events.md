@@ -87,7 +87,7 @@ myLog.Information("Hello!");
 
 The event written will include a property `SourceContext` with value `"MyNamespace.MyClass"` that can later be used to filter out noisy events, or selectively write them to particular sinks.
 
-Not all properties attached to an event need to be output in via the message template or output format; all properties are carried in a dictionary on the underlying `LogEvent` object.
+Not all properties attached to an event need to be represented in the message template or output format; all properties are carried in a dictionary on the underlying `LogEvent` object.
 
 For more on filters and logger topology see [[Configuration Basics|Configuration-Basics]].
 
