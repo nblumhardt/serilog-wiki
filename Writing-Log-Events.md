@@ -67,13 +67,13 @@ In most cases, applications should write events without checking the active logg
 In _rare, performance-sensitive_ cases, the recommended pattern for level detection is to store the results of level detection in a field, for example:
 
 ```
-readonly bool _isDebug = Log.IsLevelEnabled(LogEventLevel.Debug);
+readonly bool _isDebug = Log.IsEnabled(LogEventLevel.Debug);
 ```
 
 The `_isDebug` field can be checked efficiently before writing log events:
 
 ```
-if (_isDebug) Log.Write("Someone is stuck debugging...");
+if (_isDebug) Log.Debug("Someone is stuck debugging...");
 ```
 
 ## Source Contexts
