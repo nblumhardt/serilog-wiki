@@ -93,7 +93,7 @@ Enrichers are added using the `Enrich` configuration object.
 Log.Logger = new LoggerConfiguration()
     .Enrich.With(new ThreadIdEnricher())
     .WriteTo.ColoredConsole(
-        outputTemplate: "{Timestamp:HH:mm} [{Level}] ({ThreadId}) {Message:l}{Newline:l}{Exception:l}")
+        outputTemplate: "{Timestamp:HH:mm} [{Level}] ({ThreadId}) {Message:l}{NewLine:l}{Exception:l}")
     .CreateLogger();
 ```
 
