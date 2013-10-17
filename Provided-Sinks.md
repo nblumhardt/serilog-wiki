@@ -58,7 +58,7 @@ You'll need to create a database on your CouchDB server. In the example shown, i
 
 ```
 var log = new LoggerConfiguration()
-    .WriteTo.CouchDB("http://mycouchdb/log")
+    .WriteTo.CouchDB("http://mycouchdb/log/")
     .CreateLogger();
 ```
 
