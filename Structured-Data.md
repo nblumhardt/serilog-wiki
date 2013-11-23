@@ -100,6 +100,18 @@ Log.Information("Processing {@SensorInput}");
 
 ('Destructuring' is a term borrowed from functional programming; it is a style of pattern matching used to pull values out from structured data. The usage is Serilog is only notionally related at the moment, but possible future extensions to this operator could match the FP definition more closely.) 
 
+### Customizing the stored data
+
+Often only a selection of properties on a complex object are of interest. To customise how Serilog persists a destructured complex type, use the `Destructure` configuration object on `LoggerConfiguration`:
+
+```
+Log.Logger = new LoggerConfiguration()
+    .Destructure.ByTransforming<HttpRequest>(r => new { RawUrl = r.RawUrl, Method = r.Method })
+    .WriteTo...
+```
+
+This example transforms objects of type `HttpRequest` to preserve only the `RawUrl` and `Method` properties. A number of different strategies for destructuring are available, and custom ones can be created by implementing `IDestructuringPolicy`.
+
 ### Operators vs. Formats
 
 While both operators and formats affect the representation of a property, it is important to realise their distinct roles. Operators are applied at the point the property is captured, to preserve or structure the data in some way. Formats are used only when displaying properties as text, and don't impact the serialised representation at all.
