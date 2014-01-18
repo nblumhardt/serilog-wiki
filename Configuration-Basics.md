@@ -112,6 +112,15 @@ Enrichers and the properties they attach are generally more useful with sinks th
 
 ## Filters
 
+Events can be selectively logged by filtering. Filters are just predicates over `LogEvent`, with some common scenarios handled by the `Matching` class.
+
+```
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.ColoredConsole()
+    .Filter.ByExcluding(Matching.WithProperty<int>("Count", p => p < 10))
+    .CreateLogger();
+```
+
 ## Sub-loggers
 
 Sometimes a finer level of control over what is seen by a sink is necessary. For this, Serilog allows a full logging pipeline to act as a sink.
