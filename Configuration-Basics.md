@@ -32,7 +32,7 @@ Multiple sinks can be active at the same time. Adding additional sinks is a simp
 ```
 Log.Logger = new LoggerConfiguration()
     .WriteTo.ColoredConsole()
-    .WriteTo.RollingFile(@"C:\Log.txt")
+    .WriteTo.RollingFile(@"C:\Log-{Date}.txt")
     .CreateLogger();
 ```
 
