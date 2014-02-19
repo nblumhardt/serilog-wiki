@@ -2,7 +2,7 @@ Serilog provides _sinks_ for writing log events to storage in various formats.
 
 **Portable** - Observers (Rx), TextWriter
 
-**Full .NET Framework** - Azure Table Storage, Colored Console, Console, CouchDB, Dump File, File, Glimpse, log4net, MongoDB, RavenDB, Rolling File, Trace
+**Full .NET Framework** - Azure Table Storage, Colored Console, Console, CouchDB, Dump File, File, Glimpse, log4net, MongoDB, RavenDB, Rolling File, Trace, Windows Event Log
 
 ## Alphabetical listing
 
@@ -228,5 +228,18 @@ Writes log events to the `System.Diagnostics.Trace`.
 ```
 var log = new LoggerConfiguration()
     .WriteTo.DiagnosticTrace()
+    .CreateLogger();
+```
+
+### Windows Event Log
+
+Writes log events to the Windows Event Log
+
+**Package** - [[Serilog.Sinks.EventLog|http://nuget.org/packages/serilog.sinks.eventlog]]
+| **Platforms** - .NET 4.5
+
+```
+var log = new LoggerConfiguration()
+    .WriteTo.EventLog("My App")
     .CreateLogger();
 ```
