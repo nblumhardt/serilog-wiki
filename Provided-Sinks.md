@@ -90,6 +90,21 @@ var log = new LoggerConfiguration()
     .CreateLogger();
 ```
 
+### ElmahIO
+
+[[Elmah IO|http://www.elmah.io]] is a cloud hosted solution to capture errors. Register for an account at their website and use the provided GUID in the configuration for serilog.
+
+**Package** - [[Serilog.Sinks.ElmahIO|http://nuget.org/packages/serilog.sinks.ElmahIO]]
+| **Platforms** - .NET 4.5
+
+```
+var log = new LoggerConfiguration()
+    .WriteTo.ElmahIO(new Guid("{your guid}"))
+    .CreateLogger();
+```
+
+As elmah is primarily used for error tracking, the default LogEventLevel is set to Error. You can override this, but not all the data on the site is filled in as not all the serilog properties can be matched. 
+
 ### File
 
 Writes log events to a text file.
