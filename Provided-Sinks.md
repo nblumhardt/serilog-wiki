@@ -2,7 +2,7 @@ Serilog provides _sinks_ for writing log events to storage in various formats.
 
 **Portable** - Observers (Rx), TextWriter
 
-**Full .NET Framework** - Azure Table Storage, Colored Console, Console, CouchDB, Dump File, File, Glimpse, log4net, MongoDB, RavenDB, Rolling File, Trace, Windows Event Log
+**Full .NET Framework** - Azure Table Storage, Colored Console, Console, CouchDB, Dump File, ElasticSearch, ElmahIO, File, Glimpse, log4net, Loggr, MongoDB, RavenDB, Rolling File, Trace, Windows Event Log
 
 ## Alphabetical listing
 
@@ -72,6 +72,21 @@ Writes log events to a file, printing all properties with their values. A develo
 ```
 var log = new LoggerConfiguration()
     .WriteTo.DumpFile("dump.txt")
+    .CreateLogger();
+```
+
+### ElasticSearch
+
+Send your log events directly into ElasticSearch. By default it will connect to an ElasticSearch node running on your localhost and port 9200. Indexes are created automatically and are based on the indexFormat which is standard logstash-{yyyy.MM.dd} matching the logstash format also used by Kibana. ElasticSearch and Kibana can be downloaded from [[elasticsearch.net|http://www.elasticsearch.org/overview/elkdownloads/]]. You can override those defaults.
+
+It is recommended to use a template so ElasticSearch knows how to efficiently handle the events. The sink will not force any and will create standard indexes. A default logstash format will already help the indexing process. You can find one [[here|https://github.com/elasticsearch/logstash/blob/v1.3.1/lib/logstash/outputs/elasticsearch/elasticsearch-template.json]]. Add it to ElasticSearch by placing it under the config/templates folder or by sending it to the node using [[PUT|http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/indices-templates.html#indices-templates]].
+
+**Package** - [[Serilog.Sinks.ElasticSearch|http://nuget.org/packages/serilog.sinks.elasticsearch]]
+| **Platforms** - .NET 4.5
+
+```
+var log = new LoggerConfiguration()
+    .WriteTo.ElasticSearch()
     .CreateLogger();
 ```
 
