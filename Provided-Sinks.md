@@ -2,7 +2,7 @@ Serilog provides _sinks_ for writing log events to storage in various formats.
 
 **Portable** - Observers (Rx), TextWriter
 
-**Full .NET Framework** - Azure Table Storage, Colored Console, Console, CouchDB, Dump File, ElasticSearch, ElmahIO, File, Glimpse, log4net, Loggr, MongoDB, RavenDB, Rolling File, Trace, Windows Event Log
+**Full .NET Framework** - Azure Table Storage, Colored Console, Console, CouchDB, Dump File, ElasticSearch, ElmahIO, File, Glimpse, log4net, Loggr, MongoDB, RavenDB, Rolling File, Seq*, Trace, Windows Event Log
 
 ## Alphabetical listing
 
@@ -169,7 +169,7 @@ var log = new LoggerConfiguration()
     .CreateLogger();
 ```
 
-As Loggr can track users, the sink will try to find a property called UserName and pass that to Loggr as a dedicated property. You can change the name of the property in one of the settings of the extension of the sink. The rest of the properties are being send as data elements to Loggr.
+As Loggr can track users, the sink will try to find a property called `UserName` and pass that to Loggr as a dedicated property. You can change the name of the property in one of the settings of the extension of the sink. The rest of the properties are being send as data elements to Loggr.
 
 _Keep in mind that Loggr is a commercial service._
 
@@ -251,6 +251,23 @@ For the same reason, only **the most recent 31 files** are retained by default (
 ```
     .WriteTo.RollingFile("log-{Date}.txt", retainedFileCountLimit: null)
 ```
+
+### Seq*
+
+[[Seq|http://getseq.net]] is an on-premises log server that's built specifically for storing structured log events. The Seq web UI provides [[queries|https://getseq.atlassian.net/wiki/display/SEQ10/Querying+log+events]] over text and structured data, and the server itself can be extended with [[C# handlers|https://getseq.atlassian.net/wiki/display/SEQ10/Writing+Seq+apps]].
+
+**Package** - [[Seq.Client.Serilog|http://nuget.org/packages/seq.client.serilog]]
+| **Platforms** - .NET 4.0, 4.5+
+
+```
+var log = new LoggerConfiguration()
+    .WriteTo.Seq("http://my-seq-server")
+    .CreateLogger();
+```
+
+The sink supports durable (disk-buffered) log shipping, and can take advantage of Seq's API keys to authenticate clients and dynamically attach properties to events at the server-side. Visit the [[full documentation|https://getseq.atlassian.net/wiki/display/SEQ10/Logging+to+Seq+with+Serilog]] for examples.
+
+_* Seq is a separate commercial project developed by the creators of Serilog._
 
 ### TextWriter
 
