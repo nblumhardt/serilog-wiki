@@ -79,7 +79,7 @@ var log = new LoggerConfiguration()
 
 Send your log events directly into ElasticSearch. By default it will connect to an ElasticSearch node running on your localhost and port 9200. Indexes are created automatically and are based on the indexFormat which is standard logstash-{yyyy.MM.dd} matching the logstash format also used by Kibana. ElasticSearch and Kibana can be downloaded from [[elasticsearch.net|http://www.elasticsearch.org/overview/elkdownloads/]]. You can override those defaults.
 
-It is recommended to use a template so ElasticSearch knows how to efficiently handle the events. The sink will not force any and will create standard indexes. A default logstash format will already help the indexing process. You can find one [[here|https://github.com/elasticsearch/logstash/blob/v1.3.1/lib/logstash/outputs/elasticsearch/elasticsearch-template.json]]. Add it to ElasticSearch by placing it under the config/templates folder or by sending it to the node using [[PUT|http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/indices-templates.html#indices-templates]].
+It is recommended to use a template so ElasticSearch knows how to efficiently handle the events. The sink will not force any and will create standard indexes. A default logstash format will already help the indexing process. You can find one [[here|https://gist.github.com/mivano/9688328]]. Add it to ElasticSearch by placing it under the config/templates folder or by sending it to the node using [[PUT|http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/indices-templates.html#indices-templates]].
 
 **Package** - [[Serilog.Sinks.ElasticSearch|http://nuget.org/packages/serilog.sinks.elasticsearch]]
 | **Platforms** - .NET 4.5
