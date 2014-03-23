@@ -2,7 +2,7 @@ Serilog provides _sinks_ for writing log events to storage in various formats.
 
 **Portable** - Observers (Rx), TextWriter
 
-**Full .NET Framework** - Azure Table Storage, Colored Console, Console, CouchDB, Dump File, ElasticSearch, ElmahIO, File, Glimpse, log4net, Loggr, MongoDB, RavenDB, Rolling File, Seq*, Trace, Windows Event Log
+**Full .NET Framework** - Azure Table Storage, Colored Console, Console, CouchDB, Dump File, ElasticSearch, ElmahIO, File, Glimpse, log4net, Loggly, Loggr, MongoDB, RavenDB, Rolling File, Seq*, Trace, Windows Event Log
 
 ## Alphabetical listing
 
@@ -155,6 +155,23 @@ var log = new LoggerConfiguration()
 ```
 
 [[(More information.)|http://nblumhardt.com/2013/06/serilog-sinks-log4net/]]
+
+### Loggly
+
+[[Loggly|http://www.loggly.com]] is a cloud based log management service. Create a new input and specify that you want to use a http input with JSON enabled. The input key is what you need to add to the extension when initializing the sink.
+
+**Package** - [[Serilog.Sinks.Loggly|http://nuget.org/packages/serilog.sinks.loggly]]
+| **Platforms** - .NET 4.5
+
+```
+var log = new LoggerConfiguration()
+    .WriteTo.Loggly("<input key>")
+    .CreateLogger();
+```
+
+Properties will be send along to Loggly. The level is send as category.
+
+_Keep in mind that Loggly is a commercial service._
 
 ### Loggr
 
