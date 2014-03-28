@@ -102,6 +102,8 @@ Example output:
 
 As a property, the **TimedOperationId**, **TimedOperationDescription** and **TimedOperationElapsed** are available for the log events created by the timed operation.
 
+Keep in mind that the TimedOperation will internally use a Stopwatch. So be aware of the frequency and what a Stopwatch will actually time. There are other alternatives, but not implemented here.
+
 ### Serilog.Extras.Topshelf
 
 Implements a logging interface for [[Topshelf|http://docs.topshelf-project.com/en/latest/index.html]], a framework for hosting NT Services. 
