@@ -70,7 +70,7 @@ In XML:
 ```xml
     <add key="serilog:write-to:RollingFile.pathFormat" value="C:\Logs\myapp-{Date}.txt" />
     <add key="serilog:write-to:RollingFile.retainedFileCountLimit" value="10" />
-...
+```
 
 ### Using extensions from additional assemblies
 
