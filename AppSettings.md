@@ -14,7 +14,7 @@ PM> Install-Package Serilog.Extras.AppSettings
 
 To read configuration from AppSettings use the `ReadAppSettings()` extension method on your `LoggerConfiguration`:
 
-```
+```csharp
 Log.Logger = new LoggerConfiguration()
   .ReadAppSettings()
   ... // Other configuration here, then
