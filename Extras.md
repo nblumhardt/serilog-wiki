@@ -1,4 +1,12 @@
-There are a couple of extra packages for Serilog which you can get from NuGet. They extend Serilog for a certain use case or application type.
+There are a couple of extra packages for Serilog which you can get from NuGet. They extend Serilog for a certain use case or application type. Add a package by installing it using the NuGet package manager, like this:
+
+```
+PM> Install-Package Serilog.Extras.AppSettings
+```
+
+### Serilog.Extras.AppSettings
+
+For more information about the AppSettings package, see the [[dedicated page|AppSettings]].
 
 ### Serilog.Extras.Web
 
