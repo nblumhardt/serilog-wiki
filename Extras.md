@@ -21,7 +21,7 @@ When you work with an ASP.NET webapplication, this package adds additional Enric
 **Package** - [[Serilog.Extras.Web|http://nuget.org/packages/serilog.extras.web]]
 | **Platforms** - .NET 4.5
 
-```
+```csharp
 var log = new LoggerConfiguration()
     .WriteTo.ColoredConsole()
     .Enrich.With<HttpRequestIdEnricher>()
@@ -31,7 +31,7 @@ var log = new LoggerConfiguration()
 
 To override the username enricher behaviour:
 
-```
+```csharp
 var log = new LoggerConfiguration()
     .WriteTo.ColoredConsole()
     .Enrich.With(new UserNameEnricher("not known yet", System.Environment.UserName))
@@ -60,7 +60,7 @@ To simplify the ability to time operations, you can use the timing package. Code
 **Package** - [[Serilog.Extras.Timing|http://nuget.org/packages/serilog.extras.timing]]
 | **Platforms** - .NET 4.5
 
-```
+```csharp
 var logger = new LoggerConfiguration()
                 .MinimumLevel.Debug()
                 .WriteTo.Trace()
@@ -74,7 +74,7 @@ using (logger.BeginTimedOperation("Time a thread sleep for 2 seconds."))
 
 By default the log level is Information and a GUID will be generated to uniquely identify this operation. You can also override those defaults.
 
-```
+```csharp
 using (logger.BeginTimedOperation("Using a passed in identifier", "test-loop"))
 {
    var a = "";
@@ -94,7 +94,7 @@ The output will be something like this:
 
 As an option it is possible to specify a maximum time. When the operation takes more time than the maximum time, a warning will be generated.
 
-```
+```csharp
 using (logger.BeginTimedOperation("This should execute within 1 second.",null, LogEventLevel.Debug, TimeSpan.FromSeconds(1)))
 {
    Thread.Sleep(1100);
@@ -121,7 +121,7 @@ Implements a logging interface for [[Topshelf|http://docs.topshelf-project.com/e
 
 You can pass in an existing ILogger instance or keep it null so it will use the default static version.
 
-```
+```csharp
 HostFactory.New(x =>
 {
     x.UseSerilog();
