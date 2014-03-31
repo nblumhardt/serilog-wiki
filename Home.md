@@ -6,7 +6,7 @@ Like many other .NET libraries, Serilog provides basic diagnostic logging to fil
 
 Unlike other logging libraries for .NET, parameters passed along with log messages are not destructively rendered into a text format. Instead, they're preserved as structured data, that can be written in document form to a NoSQL data store.
 
-```
+```csharp
 var sensorInput = new { Latitude = 25, Longitude = 134 };
 var processingTimeMs = 34;
 
@@ -19,7 +19,7 @@ This example records two properties, `SensorInput` and `TimeMS` along with the l
 
 The properties captured in the example, in JSON format, would appear like:
 
-```
+```json
 { "SensorInput": { "Latitude": 25, "Longitude": 134 },
   "TimeMS": 34 }
 ```
@@ -41,6 +41,7 @@ The `:000` segment following `TimeMS` is a standard .NET format string that affe
 * [[Provided Sinks|Provided-Sinks]]
 * [[Enrichment and Contextual Properties|Enrichment]]
 * [[Debugging and Diagnostics|Debugging-and-Diagnostics]]
+* [[Extras|Extras]]
 
 ## Resources
 
