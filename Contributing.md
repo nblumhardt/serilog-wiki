@@ -10,3 +10,4 @@ Adding an assembly/project:
 - Does the Release configuration build, as well as Debug?
 - Does each file include the license header?
 - If all dependencies are signed, is the assembly signed?
+- Bonus points :) - is the code "green" using the default ReSharper analyses?
