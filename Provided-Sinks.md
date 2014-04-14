@@ -2,7 +2,7 @@ Serilog provides _sinks_ for writing log events to storage in various formats.
 
 **Portable** - Observers (Rx), TextWriter
 
-**Full .NET Framework** - Azure Table Storage, Colored Console, Console, CouchDB, Dump File, ElasticSearch, ElmahIO, File, Glimpse, log4net, Logentries, Loggly, Loggr, MongoDB, RavenDB, Rolling File, Seq*, Trace, Windows Event Log
+**Full .NET Framework** - Azure Table Storage, Colored Console, Console, CouchDB, Dump File, ElasticSearch, ElmahIO, File, Glimpse, log4net, Logentries, Loggly, Loggr, MongoDB, MS SQL Server, RavenDB, Rolling File, Seq*, Trace, Windows Event Log
 
 ## Alphabetical listing
 
@@ -13,7 +13,7 @@ Writes to a table in [[Windows Azure Table Storage|http://www.windowsazure.com/e
 **Package** - [[Serilog.AzureTableStorage|http://nuget.org/packages/serilog.sinks.azuretablestorage]]
 | **Platforms** - .NET 4.5
 
-```
+```csharp
 var storage = CloudStorageAccount.FromConfigurationSetting("MyStorage");
 
 var log = new LoggerConfiguration()
@@ -28,7 +28,7 @@ Writes to the system console, using colour to emphasise levels and to highlight 
 **Package** - [[Serilog|http://nuget.org/packages/serilog]]
 | **Platforms** - .NET 4.5
 
-```
+```csharp
 var log = new LoggerConfiguration()
     .WriteTo.ColoredConsole()
     .CreateLogger();
@@ -41,7 +41,7 @@ Writes to the system console. The colored console sink's boring cousin.
 **Package** - [[Serilog|http://nuget.org/packages/serilog]]
 | **Platforms** - .NET 4.5
 
-```
+```csharp
 var log = new LoggerConfiguration()
     .WriteTo.Console()
     .CreateLogger();
@@ -56,7 +56,7 @@ Writes events as documents to [[CouchDB|http://couchdb.org]].
 
 You'll need to create a database on your CouchDB server. In the example shown, it is called `log`.
 
-```
+```csharp
 var log = new LoggerConfiguration()
     .WriteTo.CouchDB("http://mycouchdb/log/")
     .CreateLogger();
@@ -69,7 +69,7 @@ Writes log events to a file, printing all properties with their values. A develo
 **Package** - [[Serilog|http://nuget.org/packages/serilog]]
 | **Platforms** - .NET 4.5
 
-```
+```csharp
 var log = new LoggerConfiguration()
     .WriteTo.DumpFile("dump.txt")
     .CreateLogger();
@@ -84,7 +84,7 @@ It is recommended to use a template so ElasticSearch knows how to efficiently ha
 **Package** - [[Serilog.Sinks.ElasticSearch|http://nuget.org/packages/serilog.sinks.elasticsearch]]
 | **Platforms** - .NET 4.5
 
-```
+```csharp
 var log = new LoggerConfiguration()
     .WriteTo.ElasticSearch()
     .CreateLogger();
@@ -97,7 +97,7 @@ var log = new LoggerConfiguration()
 **Package** - [[Serilog.Sinks.ElmahIO|http://nuget.org/packages/serilog.sinks.ElmahIO]]
 | **Platforms** - .NET 4.5
 
-```
+```csharp
 var log = new LoggerConfiguration()
     .WriteTo.ElmahIO(new Guid("{your guid}"))
     .CreateLogger();
@@ -114,7 +114,7 @@ Writes log events to a text file.
 **Package** - [[Serilog|http://nuget.org/packages/serilog]]
 | **Platforms** - .NET 4.5
 
-```
+```csharp
 var log = new LoggerConfiguration()
     .WriteTo.File("log.txt")
     .CreateLogger();
@@ -122,7 +122,7 @@ var log = new LoggerConfiguration()
 
 To avoid sinking apps with runaway disk usage the file sink **limits file size to 1GB by default**. The limit can be increased or removed using the `fileSizeLimitBytes` parameter.
 
-```
+```csharp
     .WriteTo.File("log.txt", fileSizeLimitBytes: null)
 ```
 
@@ -133,7 +133,7 @@ Writes log events to [[Glimpse|http://getglimpse.com]].
 **Package** - [[Serilog.Sinks.Glimpse|http://nuget.org/packages/serilog.sinks.glimpse]]
 | **Platforms** - .NET 4.5
 
-```
+```csharp
 var log = new LoggerConfiguration()
     .WriteTo.Glimpse()
     .CreateLogger();
@@ -148,7 +148,7 @@ Duplicates Serilog events through the log4net pipeline to allow integration with
 **Package** - [[Serilog.Sinks.Log4Net|http://nuget.org/packages/serilog.sinks.log4net]]
 | **Platforms** - .NET 4.5
 
-```
+```csharp
 var log = new LoggerConfiguration()
     .WriteTo.Log4Net()
     .CreateLogger();
@@ -164,7 +164,7 @@ In your Logentries dashboard, select the option to create a new log and pick the
 **Package** - [[Serilog.Sinks.Logentries|http://nuget.org/packages/serilog.sinks.logentries]]
 | **Platforms** - .NET 4.5
 
-```
+```csharp
 var log = new LoggerConfiguration()
     .WriteTo.Logentries("token")
     .CreateLogger();
@@ -181,7 +181,7 @@ _Keep in mind that Logentries is a commercial service._
 **Package** - [[Serilog.Sinks.Loggly|http://nuget.org/packages/serilog.sinks.loggly]]
 | **Platforms** - .NET 4.5
 
-```
+```csharp
 var log = new LoggerConfiguration()
     .WriteTo.Loggly("<input key>")
     .CreateLogger();
@@ -198,7 +198,7 @@ _Keep in mind that Loggly is a commercial service._
 **Package** - [[Serilog.Sinks.Loggr|http://nuget.org/packages/serilog.sinks.loggr]]
 | **Platforms** - .NET 4.5
 
-```
+```csharp
 var log = new LoggerConfiguration()
     .WriteTo.Loggr("<log key>", "<api key>")
     .CreateLogger();
@@ -217,11 +217,28 @@ Writes events as documents to [[MongoDB|http://mongodb.org]].
 
 You'll need to create a collection on your MongoDB server. In the example shown, it is called `log`.
 
-```
+```csharp
 var log = new LoggerConfiguration()
     .WriteTo.MongoDB("mongo://mymongodb/log")
     .CreateLogger();
 ```
+
+### MS SQL Server
+
+Use a Microsoft SQL Server as the data store for the events. While a NoSql store allows for more flexibility to store the different kinds of properties, it sometimes is easier to use an already existing MS SQL server. This sink will write the logevent data to a table and can optionally also store the properties inside an Xml column so they can be queried.
+
+**Package** - [[Serilog.Sinks.MSSqlServer|http://nuget.org/packages/serilog.sinks.mssqlserver]]
+| **Platforms** - .NET 4.5
+
+You'll need to create a database and add a table like the one you can find in this [[Gist|https://gist.github.com/mivano/10429656]]. 
+
+```csharp
+var log = new LoggerConfiguration()
+    .WriteTo.MSSqlServer(@"Server=.\SQLEXPRESS;Database=LogEvents;Trusted_Connection=True;", "Logs")
+    .CreateLogger();
+```
+
+Make sure to set up security in such a way that the sink can write to the log table. If you don't plan on using the properties, then you can disable the storage of them. 
 
 ### Observers (Rx)
 
@@ -231,7 +248,7 @@ Provides a hot `IObservable<LogEvent>` that can be subscribed to using the
 **Package** - [[Serilog|http://nuget.org/packages/serilog]] |
  **Platforms** - .NET 4.5, Windows 8, Windows Phone 8
 
-```
+```csharp
 var log = new LoggerConfiguration()
     .WriteTo.Observers(logEvents => logEvents
         .Do(le => { Console.WriteLine(le); })
@@ -246,7 +263,7 @@ Writes events as documents to [[RavenDB|http://ravendb.net]].
 **Package** - [[Serilog.Sinks.RavenDB|http://nuget.org/packages/serilog.sinks.ravendb]]
 | **Platforms** - .NET 4.5
 
-```
+```csharp
 var logs = new DocumentStore { ConnectionStringName = "Logs" }.Initialize();
 
 var log = new LoggerConfiguration()
@@ -269,7 +286,7 @@ Writes log events to a set of text files, one per day.
 
 The filename must include the `{Date}` placeholder, which will be replaced with the date of the events contained in the file.
 
-```
+```csharp
 var log = new LoggerConfiguration()
     .WriteTo.RollingFile("log-{Date}.txt")
     .CreateLogger();
@@ -277,13 +294,13 @@ var log = new LoggerConfiguration()
 
 To avoid sinking apps with runaway disk usage the rolling file sink **limits file size to 1GB by default**. The limit can be changed or removed using the `fileSizeLimitBytes` parameter.
 
-```
+```csharp
     .WriteTo.RollingFile("log-{Date}.txt", fileSizeLimitBytes: null)
 ```
 
 For the same reason, only **the most recent 31 files** are retained by default (i.e. one long month). To change or remove this limit, pass the `retainedFileCountLimit` parameter.
 
-```
+```csharp
     .WriteTo.RollingFile("log-{Date}.txt", retainedFileCountLimit: null)
 ```
 
@@ -294,7 +311,7 @@ For the same reason, only **the most recent 31 files** are retained by default (
 **Package** - [[Seq.Client.Serilog|http://nuget.org/packages/seq.client.serilog]]
 | **Platforms** - .NET 4.0, 4.5+
 
-```
+```csharp
 var log = new LoggerConfiguration()
     .WriteTo.Seq("http://my-seq-server")
     .CreateLogger();
@@ -311,7 +328,7 @@ Writes to a specified `System.IO.TextWriter` and can thus be attached to practic
 **Package** - [[Serilog|http://nuget.org/packages/serilog]] |
  **Platforms** - .NET 4.5, Windows 8, Windows Phone 8
 
-```
+```csharp
 var messages = new StringWriter();
 
 var log = new LoggerConfiguration()
@@ -326,7 +343,7 @@ Writes log events to the `System.Diagnostics.Trace`.
 **Package** - [[Serilog|http://nuget.org/packages/serilog]]
 | **Platforms** - .NET 4.5
 
-```
+```csharp
 var log = new LoggerConfiguration()
     .WriteTo.DiagnosticTrace()
     .CreateLogger();
@@ -339,7 +356,7 @@ Writes log events to the Windows Event Log
 **Package** - [[Serilog.Sinks.EventLog|http://nuget.org/packages/serilog.sinks.eventlog]]
 | **Platforms** - .NET 4.5
 
-```
+```csharp
 var log = new LoggerConfiguration()
     .WriteTo.EventLog("My App")
     .CreateLogger();
