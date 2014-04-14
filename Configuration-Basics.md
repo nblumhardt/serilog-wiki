@@ -6,7 +6,7 @@ Serilog uses a simple C# API to configure logging.
 
 Loggers are created using a `LoggerConfiguration` object:
 
-```
+```csharp
 Log.Logger = new LoggerConfiguration().CreateLogger();
 Log.Information("No one listens to me!");
 ```
@@ -19,7 +19,7 @@ Log event sinks generally record log events to some external representation, typ
 
 Sinks are configured using the `WriteTo` configuration object.
 
-```
+```csharp
 Log.Logger = new LoggerConfiguration()
     .WriteTo.ColoredConsole()
     .CreateLogger();
@@ -29,7 +29,7 @@ Log.Information("Ah, there you are!");
 
 Multiple sinks can be active at the same time. Adding additional sinks is a simple as chaining `WriteTo` blocks:
 
-```
+```csharp
 Log.Logger = new LoggerConfiguration()
     .WriteTo.ColoredConsole()
     .WriteTo.RollingFile(@"C:\Log-{Date}.txt")
@@ -44,7 +44,7 @@ Each sink is provided with an output template that controls how the sink renders
 
 Serilog implements the common concept of a 'minimum level' for log event processing.
 
-```
+```csharp
 Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Debug()
     .WriteTo.ColoredConsole()
@@ -59,7 +59,7 @@ The `MinimumLevel` configuration object provides for one of the log event levels
 
 Sometimes it is desirable to write detailed logs to one medium, but less detailed logs to another.
 
-```
+```csharp
 Log.Logger = new LoggerConfiguration()
     .WriteTo.ColoredConsole()
     .WriteTo.MongoDB("mongo://myserver/logs", minimumLevel: LogEventLevel.Warning)
@@ -76,7 +76,7 @@ All provided sinks support the `minimumLevel` configuration parameter.
 
 Enrichers are simple components that add, remove or modify the properties attached to a log event. This can be used for the purpose of attaching a thread id to each event, for example.
 
-```
+```csharp
 class ThreadIdEnricher : ILogEventEnricher
 {
     public void Enrich(LogEvent logEvent, ILogEventPropertyFactory propertyFactory)
@@ -89,7 +89,7 @@ class ThreadIdEnricher : ILogEventEnricher
 
 Enrichers are added using the `Enrich` configuration object.
 
-```
+```csharp
 Log.Logger = new LoggerConfiguration()
     .Enrich.With(new ThreadIdEnricher())
     .WriteTo.ColoredConsole(
@@ -101,7 +101,7 @@ The configuration above shows how a property added by an enricher can be used in
 
 If the enriched property value is constant throughout the application run, the shortcut `WithProperty` method can be used to simplify configuration.
 
-```
+```csharp
 Log.Logger = new LoggerConfiguration()
     .Enrich.WithProperty("Version", "1.0.0")
     .WriteTo.ColoredConsole()
@@ -114,7 +114,7 @@ Enrichers and the properties they attach are generally more useful with sinks th
 
 Events can be selectively logged by filtering. Filters are just predicates over `LogEvent`, with some common scenarios handled by the `Matching` class.
 
-```
+```csharp
 Log.Logger = new LoggerConfiguration()
     .WriteTo.ColoredConsole()
     .Filter.ByExcluding(Matching.WithProperty<int>("Count", p => p < 10))
@@ -125,7 +125,7 @@ Log.Logger = new LoggerConfiguration()
 
 Sometimes a finer level of control over what is seen by a sink is necessary. For this, Serilog allows a full logging pipeline to act as a sink.
 
-```
+```csharp
 Log.Logger = new LoggerConfiguration()
     .WriteTo.ColoredConsole()
     .WriteTo.Logger(lc => lc
