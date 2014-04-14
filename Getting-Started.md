@@ -12,13 +12,13 @@ Browse the [[serilog|http://nuget.org/packages?q=Tags%3A%22serilog%22%22]] tag o
 
 Types are in the Serilog namespace.
 
-```
+```csharp
 using Serilog;
 ```
 
 An `ILogger` is created using `LoggerConfiguration`.
 
-```
+```csharp
 var log = new LoggerConfiguration()
     .WriteTo.ColoredConsole()
     .CreateLogger();
@@ -26,13 +26,13 @@ var log = new LoggerConfiguration()
 
 This is typically done once at application start-up, and the logger saved for later use by application classes. Multiple loggers can be created and used independently if required.
 
-```
+```csharp
 log.Information("Hello, Serilog!");
 ```
 
 Serilog's global, statically accessible logger, is set via `Log.Logger` and can be invoked using the static methods on the `Log` class.
 
-```
+```csharp
 Log.Logger = log;
 Log.Information("The global logger has been configured");
 ```
