@@ -345,7 +345,7 @@ Writes log events to the `System.Diagnostics.Trace`.
 
 ```csharp
 var log = new LoggerConfiguration()
-    .WriteTo.DiagnosticTrace()
+    .WriteTo.Trace()
     .CreateLogger();
 ```
 
