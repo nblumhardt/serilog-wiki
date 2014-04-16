@@ -20,14 +20,14 @@ When properties are specified in log events, Serilog does its best to determine 
 
 ### Simple, Scalar Values
 
-```
+```csharp
 var count = 456;
 Log.Information("Retrieved {Count} records", count);
 ```
 
 There's little ambiguity as to how the `Count` property should be stored in this case. Being a simple integer value, Serilog will choose that as its representation.
 
-```
+```csharp
 { "Count": 456 }
 ```
 
@@ -46,14 +46,14 @@ Out of the box, Serilog recognises the following list as basic _scalar_ types, r
 
 If the object passed as a property is `IEnumerable`, Serilog will treat that property as a collection.
 
-```
+```csharp
 var fruit = new[] { "Apple", "Pear", "Orange" };
 Log.Information("In my bowl I have {Fruit}", fruit);
 ```
 
 The equivalent JSON includes an array.
 
-```
+```csharp
 { "Fruit": ["Apple", "Pear", "Orange"] }
 ```
 
@@ -61,14 +61,14 @@ Serilog makes this choice because most enumerable types are of interest for thei
 
 Serilog also recognises `Dictionary<TKey,TValue>`, as long as the key type is one of the scalar types listed above.
 
-```
+```csharp
 var fruit = new Dictionary<string,int> {{ "Apple", 1}, { "Pear", 5 }};
 Log.Information("In my bowl I have {Fruit}", fruit);
 ```
 
 Formatters that support dictionaries can record the property as such.
 
-```
+```csharp
 { "Fruit": { "Apple": 1, "Pear": 5 }}
 ```
 
@@ -78,7 +78,7 @@ Formatters that support dictionaries can record the property as such.
 
 Apart from the types above, which are specially handled by Serilog, it is difficult to make intelligent choices about how data should be rendered and persisted. Objects not explicitly intended for serialisation tend to serialise very poorly.
 
-```
+```csharp
 SqlConnection conn = ...;
 Log.Information("Connected to {Connection}", conn);
 ```
@@ -93,9 +93,9 @@ There are many places where, given the capability, it makes sense to serialise a
 
 For this task, Serilog provides the `@` _destructuring_ operator.
 
-```
+```csharp
 var sensorInput = new { Latitude = 25, Longitude = 134 };
-Log.Information("Processing {@SensorInput}");
+Log.Information("Processing {@SensorInput}", sensorInput);
 ```
 
 ('Destructuring' is a term borrowed from functional programming; it is a style of pattern matching used to pull values out from structured data. The usage is Serilog is only notionally related at the moment, but possible future extensions to this operator could match the FP definition more closely.) 
@@ -104,7 +104,7 @@ Log.Information("Processing {@SensorInput}");
 
 Often only a selection of properties on a complex object are of interest. To customise how Serilog persists a destructured complex type, use the `Destructure` configuration object on `LoggerConfiguration`:
 
-```
+```csharp
 Log.Logger = new LoggerConfiguration()
     .Destructure.ByTransforming<HttpRequest>(r => new { RawUrl = r.RawUrl, Method = r.Method })
     .WriteTo...
@@ -124,9 +124,9 @@ When format strings are specified for complex properties, they are generally ign
 
 Sometimes, the type of an object being logged may not be exactly known, or may vary in a way that is undesirable to preserve in the log events. In these cases the `$` stringification operator will convert the property value to a string before any other processing takes place, regardless of its type or implemented interfaces.
 
-```
+```csharp
 var unknown = new[] { 1, 2, 3 }
-Log.Information("Received {$Data}");
+Log.Information("Received {$Data}", unknown);
 ```
 
 Despite being an enumerable type, the `unknown` variable is captured and rendered as a string.
