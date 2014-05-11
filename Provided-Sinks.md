@@ -284,7 +284,7 @@ Writes log events to a set of text files, one per day.
 **Package** - [[Serilog|http://nuget.org/packages/serilog]]
 | **Platforms** - .NET 4.5
 
-The filename must include the `{Date}` placeholder, which will be replaced with the date of the events contained in the file.
+The filename can include the `{Date}` placeholder, which will be replaced with the date of the events contained in the file.
 
 ```csharp
 var log = new LoggerConfiguration()
