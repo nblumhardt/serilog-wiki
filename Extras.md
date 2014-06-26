@@ -60,6 +60,8 @@ To simplify the ability to time operations, you can use the timing package. Code
 **Package** - [[Serilog.Extras.Timing|http://nuget.org/packages/serilog.extras.timing]]
 | **Platforms** - .NET 4.5
 
+**Timer**
+
 ```csharp
 var logger = new LoggerConfiguration()
                 .MinimumLevel.Debug()
@@ -111,6 +113,37 @@ Example output:
 As a property, the **TimedOperationId**, **TimedOperationDescription** and **TimedOperationElapsed** are available for the log events created by the timed operation.
 
 Keep in mind that the TimedOperation will internally use a Stopwatch. So be aware of the frequency and what a Stopwatch will actually time. There are other alternatives, but not implemented here.
+
+**Gauge**
+
+The gauge allows you to perform a measurement of a value. For example to get the current items in a queue. Although you can read the value and write it to the log, this gauge operation will do that in a consistent way. You need to invoke the Write() method to perform the gauge and write to log.
+
+```csharp
+  var queue = new Queue<int>();
+  var gauge = logger.GaugeOperation("queue", "item(s)", () => queue.Count());
+
+  gauge.Write();
+
+  queue.Enqueue(20);
+
+  gauge.Write();
+
+  queue.Dequeue();
+
+  gauge.Write();
+```
+
+**Counter**
+
+The counter is a special type of gauge to write the value of an atomic long variable. By calling the Increment, Decrement or Reset methods, you can change the value in a thread safe way and optionally write the value directly to the event log. If you pass false as argument in the constructor, you need to explicitly call the Write() method to output the current value to the log. 
+
+```csharp
+var counter = logger.CountOperation("counter", "operation(s)", true, LogEventLevel.Debug);
+counter.Increment();
+counter.Increment();
+counter.Increment();
+counter.Decrement();
+```
 
 ### Serilog.Extras.Topshelf
 
