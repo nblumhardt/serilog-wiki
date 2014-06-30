@@ -2,7 +2,7 @@ Serilog provides _sinks_ for writing log events to storage in various formats.
 
 **Portable** - Observers (Rx), TextWriter
 
-**Full .NET Framework** - Azure Table Storage, Colored Console, Console, CouchDB, Dump File, ElasticSearch, ElmahIO, File, Glimpse, log4net, Logentries, Loggly, Loggr, MongoDB, MS SQL Server, RavenDB, Rolling File, Seq*, Trace, Windows Event Log
+**Full .NET Framework** - Azure Table Storage, Colored Console, Console, CouchDB, Dump File, ElasticSearch, elmah.io, File, Glimpse, log4net, Logentries, Loggly, Loggr, MongoDB, MS SQL Server, NLog, RavenDB, Rolling File, Seq*, Splunk, Trace, Windows Event Log
 
 > You can find samples demonstrating the use of most sinks in the [[samples repository|https://github.com/serilog/serilog-samples]]
 
@@ -92,9 +92,9 @@ var log = new LoggerConfiguration()
     .CreateLogger();
 ```
 
-### ElmahIO
+### Elmah
 
-[[Elmah IO|http://www.elmah.io]] is a cloud hosted solution to capture errors. Register for an account at their website and use the provided GUID in the configuration for serilog.
+[[Elmah.io|http://www.elmah.io]] is a cloud hosted solution to capture errors. Register for an account at their website and use the provided GUID in the configuration for serilog.
 
 **Package** - [[Serilog.Sinks.ElmahIO|http://nuget.org/packages/serilog.sinks.ElmahIO]]
 | **Platforms** - .NET 4.5
@@ -105,7 +105,7 @@ var log = new LoggerConfiguration()
     .CreateLogger();
 ```
 
-As elmah is primarily used for error tracking, the default LogEventLevel is set to Error. You can override this, but not all the data on the site is filled in as not all the serilog properties can be matched. 
+As elmah.io is primarily used for error tracking, the default level is set to `Error`. You can override this, but not all the data on the site is filled in as not all the Serilog properties can be matched. 
 
 _Keep in mind that Elmah.io is a commercial service._
 
@@ -242,6 +242,21 @@ var log = new LoggerConfiguration()
 
 Make sure to set up security in such a way that the sink can write to the log table. If you don't plan on using the properties, then you can disable the storage of them. 
 
+### NLog
+
+Adapts Serilog to write events through existing NLog infrastructure.
+
+**Package** - [[Serilog.Sinks.NLog|http://nuget.org/packages/serilog.sinks.nlog]]
+| **Platforms** - .NET 4.5
+
+You'll need to configure NLog, too. 
+
+```csharp
+var log = new LoggerConfiguration()
+    .WriteTo.NLog()
+    .CreateLogger();
+```
+
 ### Observers (Rx)
 
 Provides a hot `IObservable<LogEvent>` that can be subscribed to using the 
@@ -321,7 +336,29 @@ var log = new LoggerConfiguration()
 
 The sink supports durable (disk-buffered) log shipping, and can take advantage of Seq's API keys to authenticate clients and dynamically attach properties to events at the server-side. Visit the [[full documentation|https://getseq.atlassian.net/wiki/display/SEQ10/Logging+to+Seq+with+Serilog]] for examples.
 
-_* Seq is a separate commercial project developed by the creators of Serilog._
+_* Seq is a separate commercial product developed by the creators of Serilog._
+
+### Splunk
+
+Writes events to [[Splunk|http://splunk.com]].
+
+**Package** - [[Serilog.Sink.Splunk|http://nuget.org/packages/serilog.sink.splunk]]
+| **Platforms** - .NET 4.5+
+
+```csharp
+var log = new LoggerConfiguration()
+   .WriteTo.Splunk(new SplunkConnectionInfo
+        {
+            ServiceArgs = new ServiceArgs { Host = "192.168.93.128" },
+            Username = "username",
+            Password = "Pa$sw0rd",
+            SplunkEventType = "Serilog",
+            SplunkSource = "Serilog.SplunkSample"
+        })
+    .CreateLogger();
+```
+
+_Splunk is a commercial product._
 
 ### TextWriter
 
