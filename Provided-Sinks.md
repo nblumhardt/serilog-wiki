@@ -4,7 +4,7 @@ Serilog provides _sinks_ for writing log events to storage in various formats.
 
 **Full .NET Framework** - Azure Table Storage, Colored Console, Console, CouchDB, Dump File, ElasticSearch, ElmahIO, File, Glimpse, log4net, Logentries, Loggly, Loggr, MongoDB, MS SQL Server, RavenDB, Rolling File, Seq*, Trace, Windows Event Log
 
-> You can find samples demonstrating the use of most sinks in the [[Samples repository|https://github.com/serilog/serilog-samples]]
+> You can find samples demonstrating the use of most sinks in the [[samples repository|https://github.com/serilog/serilog-samples]]
 
 ## Alphabetical listing
 
