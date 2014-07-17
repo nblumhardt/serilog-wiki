@@ -6,11 +6,53 @@ PM> Install-Package Serilog.Extras.AppSettings
 
 ### Serilog.Extras.AppSettings
 
+Provides a simple XML configuration syntax.
+
 For more information about the AppSettings package, see the [[dedicated page|AppSettings]].
+
+### Serilog.Extras.Attributed
+
+Makes it possible to manipulate how objects are logged using attributes.
+
+**Package** - [[Serilog.Extras.Attributed|http://nuget.org/packages/serilog.extras.attributed]]
+| **Platforms** - .NET 4.5, Windows 8, Windows Phone 8
+
+Enabling the module:
+
+```csharp
+var log = new LoggerConfiguration()
+  .Destructure.UsingAttributes()
+  ...
+```
+
+#### Ignoring a property
+
+Apply the `NotLogged` attribute:
+
+```csharp
+public class LoginCommand
+{
+  public string Username { get; set; }
+
+  [NotLogged]
+  public string Password { get; set; }
+}
+```
+
+When the object is passed using `{@...}` syntax the attributes will be consulted.
+
+```
+var command = new LoginCommand { Username = "logged", Password = "not logged" };
+log.Information("Logging in {@Command}", command);
+```
+
+#### Treating types and properties as scalars
+
+To prevent destructuring of a type or property at all, apply the `[LoggedAsScalar]` attribute.
 
 ### Serilog.Extras.Web
 
-When you work with an ASP.NET webapplication, this package adds additional Enrichers and a HttpModule to enhance the logging output. The following Enrichers are available:
+When you work with an ASP.NET web application, this package adds additional enrichers and an `HttpModule` to enhance the logging output. The following enrichers are available:
 
 *  **HttpRequestId** A GUID used to identify requests.
 *  **HttpRequestNumber** an incrementing number per request.
