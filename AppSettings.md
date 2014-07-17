@@ -87,7 +87,7 @@ For example, to use configuration from the `Serilog.Sinks.EventLog` assembly:
 
 To attach additional properties to log events, specify them with the `serilog:enrich:with-property` directive.
 
-For example, to add the property `Release` with the value `1.2-develop` to all events:
+For example, to add the property `Release` with the value `"1.2-develop"` to all events:
 
 ```xml 
     <add key="serilog:enrich:with-property:Release" value="1.2-develop" />
