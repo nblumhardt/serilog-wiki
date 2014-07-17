@@ -1,6 +1,6 @@
 The _Serilog.Extras.AppSettings_ integrates Serilog configuration with `App.config` and `Web.config` files to set the minimum level and control log output.
 
-Serilog is primarily configured using code, but while the AppSettings package doesn't provide a comprehensive XML-based configuration system, most common logger configuration tasks can be achieved with it.
+Serilog is primarily configured using code, but while the AppSettings package doesn't provide a comprehensive XML configuration system, most common logger configuration tasks can be achieved with it.
 
 ## Installing the package
 
@@ -72,7 +72,7 @@ In XML:
     <add key="serilog:write-to:RollingFile.retainedFileCountLimit" value="10" />
 ```
 
-### Using extensions from additional assemblies
+### Using sink extensions from additional assemblies
 
 To use sinks from additional assemblies, specify them with the `serilog:using` key.
 
@@ -82,3 +82,14 @@ For example, to use configuration from the `Serilog.Sinks.EventLog` assembly:
     <add key="serilog:using" value="Serilog.Sinks.EventLog" />
     <add key="serilog:write-to:EventLog.source" value="Serilog Demo" />
 ```
+
+### Enriching with properties
+
+To attach additional properties to log events, specify them with the `serilog:enrich:with-property` directive.
+
+For example, to add the property `Release` with the value `1.2-develop` to all events:
+
+```xml 
+    <add key="serilog:enrich:with-property:Release" value="1.2-develop" />
+```
+
