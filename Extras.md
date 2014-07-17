@@ -41,7 +41,7 @@ public class LoginCommand
 
 When the object is passed using `{@...}` syntax the attributes will be consulted.
 
-```
+```csharp
 var command = new LoginCommand { Username = "logged", Password = "not logged" };
 log.Information("Logging in {@Command}", command);
 ```
