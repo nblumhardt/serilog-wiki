@@ -1,6 +1,4 @@
-Serilog uses a simple C# API to configure logging.
-
-**App.config Support** - in the future, an external configuration provider may be built, but if you require XML configuration today the best option is to retrieve logger settings by hand from `ConfigurationManager`.
+Serilog uses a simple **C# API** to configure logging. When XML configuration is unavoidable it can be mixed in sparingly using the [[AppSettings]] extension.
 
 ## Creating a Logger
 
