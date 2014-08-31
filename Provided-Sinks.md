@@ -2,7 +2,7 @@ Serilog provides _sinks_ for writing log events to storage in various formats.
 
 **Portable** - Observers (Rx), TextWriter
 
-**Full .NET Framework** - Azure Table Storage, Colored Console, Console, CouchDB, Dump File, ElasticSearch, elmah.io, File, Glimpse, log4net, Logentries, Loggly, Loggr, MongoDB, MS SQL Server, NLog, RavenDB, Rolling File, Seq*, Splunk, Trace, Windows Event Log
+**Full .NET Framework** - Azure Table Storage, Colored Console, Console, CouchDB, Dump File, ElasticSearch, elmah.io, File, Glimpse, log4net, Logentries, Loggly, Loggr, MongoDB, MS SQL Server, NLog, RavenDB, Rolling File, Seq, Splunk, Trace, Windows Event Log
 
 > You can find samples demonstrating the use of most sinks in the [[samples repository|https://github.com/serilog/serilog-samples]]
 
@@ -325,7 +325,7 @@ For the same reason, only **the most recent 31 files** are retained by default (
 
 [[Seq|http://getseq.net]] is an on-premises log server that's built specifically for storing structured log events. The Seq web UI provides [[queries|https://getseq.atlassian.net/wiki/display/SEQ10/Querying+log+events]] over text and structured data, and the server itself can be extended with [[C# handlers|https://getseq.atlassian.net/wiki/display/SEQ10/Writing+Seq+apps]].
 
-**Package** - [[Seq.Client.Serilog|http://nuget.org/packages/seq.client.serilog]]
+**Package** - [[Serilog.Sinks.Seq|http://nuget.org/packages/serilog.sinks.seq]]
 | **Platforms** - .NET 4.0, 4.5+
 
 ```csharp
@@ -336,7 +336,7 @@ var log = new LoggerConfiguration()
 
 The sink supports durable (disk-buffered) log shipping, and can take advantage of Seq's API keys to authenticate clients and dynamically attach properties to events at the server-side. Visit the [[full documentation|https://getseq.atlassian.net/wiki/display/SEQ10/Logging+to+Seq+with+Serilog]] for examples.
 
-_* Seq is a separate commercial product developed by the creators of Serilog._
+_Seq is a separate commercial product developed by the creators of Serilog._
 
 ### Splunk
 
