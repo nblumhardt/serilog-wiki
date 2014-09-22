@@ -2,7 +2,7 @@ Serilog provides _sinks_ for writing log events to storage in various formats.
 
 **Portable** - Observers (Rx), TextWriter
 
-**Full .NET Framework** - Azure Table Storage, Colored Console, Console, CouchDB, Dump File, ElasticSearch, elmah.io, File, Glimpse, log4net, Logentries, Loggly, Loggr, MongoDB, MS SQL Server, NLog, RavenDB, Rolling File, Seq, Splunk, Trace, Windows Event Log
+**Full .NET Framework** - Azure Table Storage, Colored Console, Console, CouchDB, Dump File, ElasticSearch, elmah.io, Email, File, Glimpse, log4net, Logentries, Loggly, Loggr, MongoDB, MS SQL Server, NLog, RavenDB, Rolling File, Seq, Splunk, Trace, Windows Event Log
 
 > You can find samples demonstrating the use of most sinks in the [[samples repository|https://github.com/serilog/serilog-samples]]
 
@@ -108,6 +108,24 @@ var log = new LoggerConfiguration()
 As elmah.io is primarily used for error tracking, the default level is set to `Error`. You can override this, but not all the data on the site is filled in as not all the Serilog properties can be matched. 
 
 _Keep in mind that Elmah.io is a commercial service._
+
+### Email
+
+Sends log events by email.
+
+**Package** - [[Serilog.Sinks.Email|http://nuget.org/packages/serilog.sinks.email]]
+| **Platforms** - .NET 4.5
+
+```csharp
+var log = new LoggerConfiguration()
+    .WriteTo.Email(
+        from: "app@example.com",
+        to: "support@example.com",
+        mailServer: "smtp.example.com")
+    .CreateLogger();
+```
+
+An overload accepting `EmailConnectionInfo` can be used to specify advanced options.
 
 ### File
 
