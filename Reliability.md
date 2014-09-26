@@ -14,7 +14,7 @@ If the sink cannot be configured because of runtime state on the host machine, S
 // X: does not exist, but this is a runtime condition
 // so Serilog will not fail here.
 Log.Logger = new LoggerConfiguration()
-    .WriteTo.File("X:\log.txt")
+    .WriteTo.File("X:\\log.txt")
     .CreateLogger();
 ```
 
@@ -99,3 +99,22 @@ It's important to note, there are still a class of uncatchable exceptions that S
 
 ## Asynchronous/batched network operations
 
+Many Serilog sinks use the same underlying `PeriodicBatchingSink` infrastructure. These sinks (including for example the batching Azure Table Storage sink, CouchDB sink, RavenDB sink and Seq sink (in non-durable mode) buffer log events to reduce the number of network round-trips that must be made to carry log data to a remote host.
+
+```csharp
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.CouchDB("http://example.com/missing")
+    .CreateLogger()
+```
+
+These sinks never fail when events are written, but may fail to asynchronously send a batch in the background. When a batch fails, details are written to `SelfLog`.
+
+The batch being sent will be held in memory, and will be re-tried at an increasing interval that steps up from 5 seconds to 10 minutes. The increasing interval protects the receiver from a flood of connections when it comes back online after a period of downtime.
+
+If the batch cannot be sent after 4 such attempts, it will be dropped and a new batch attempted. This protects against a "bad" event rejected by the receiver from clogging the logger. A subsequent success will allow other batches to continue transmission normally.
+
+If two more attempts fail (totalling 6 failed attempts, generally around the 10 minute mark) the entire buffer of waiting log events will be dropped. This protects against out-of-memory errors when log events cannot be delivered for a long time.
+
+If the connection remains broken, the buffer will be flushed at 10 minute intervals until the connection is re-established.
+
+**Sink authors:** by deriving from `PeriodicBatchingSink` this behavior is provided by default. Implementing a custom `ILogEventSink` is necessary if different behavior is required.
