@@ -76,6 +76,40 @@ The `_isDebug` field can be checked efficiently before writing log events:
 if (_isDebug) Log.Debug("Someone is stuck debugging...");
 ```
 
+### Dynamic levels
+
+Many larger/distributed apps need to run at a fairly restricted level of logging, say, Information (my preference) or Warning, and only turn up the instrumentation to Debug or Verbose when a problem has been detected and the overhead of collecting a bit more data is justified.
+
+If an app needs dynamic level switching, the first step is to create an instance of `LoggingLevelSwitch` when the logger is being configured:
+
+```csharp
+var levelSwitch = new LoggingLevelSwitch();
+```
+
+This object defaults the current minimum level to `Information`, so to make logging more restricted, set its minimum level up-front:
+
+```
+levelSwitch.MinimumLevel = LogEventLevel.Warning;
+```
+
+When configuring the logger, provide the switch using `MinimumLevel.ControlledBy()`:
+
+```csharp
+var log = new LoggerConfiguration()
+  .MinimumLevel.ControlledBy(levelSwitch)
+  .WriteTo.ColoredConsole()
+  .CreateLogger();
+```
+
+Now, events written to the logger will be filtered according to the switch’s `MinimumLevel` property.
+
+To turn the level up or down at runtime, perhaps in response to a command sent over the network, change the property:
+
+```csharp
+levelSwitch.MinimumLevel = LogEventLevel.Verbose;
+log.Verbose("This will now be logged");
+```
+
 ## Source Contexts
 
 Serilog, like most .NET logging frameworks, allows events to be tagged with their source, generally speaking the name of the class writing them:
