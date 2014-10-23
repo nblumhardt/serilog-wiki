@@ -364,10 +364,10 @@ Writes events to [[Splunk|http://splunk.com]].
 | **Platforms** - .NET 4.5+
 
 ```csharp
-    var log = new LoggerConfiguration()
-        .WriteTo.SplunkViaUdp("127.0.0.1", 10000)
-        .WriteTo.SplunkViaTcp("127.0.0.1", 10001)
-        .CreateLogger();
+var log = new LoggerConfiguration()
+    .WriteTo.SplunkViaUdp("127.0.0.1", 10000)
+    .WriteTo.SplunkViaTcp("127.0.0.1", 10001)
+    .CreateLogger();
 ```
 
 _Splunk is a commercial product._
