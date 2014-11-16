@@ -1,5 +1,7 @@
 Use this checklist to make sure your pull request is easy to integrate.
 
+**Please note:** ensure your PR targets the `dev` branch.
+
 Adding an assembly/project:
 
 - Is the assembly correctly named?
