@@ -8,7 +8,7 @@ At configuration time, i.e. when calling methods on `LoggerConfiguration`, error
 
 ### Runtime configuration errors
 
-If the sink cannot be configured because of runtime state on the host machine, Serilog will catch any resulting exceptions and write them to `SelfLog` (see [Debugging and Diagnostics]).
+If the sink cannot be configured because of runtime state on the host machine, Serilog will catch any resulting exceptions and write them to `SelfLog` (see [[Debugging and Diagnostics]]).
 
 ```csharp
 // X: does not exist, but this is a runtime condition
