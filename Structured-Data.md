@@ -85,7 +85,7 @@ Log.Information("Connected to {Connection}", conn);
 
 (Yikes! How does one serialise an `SqlConnection`?)
 
-When Serilog doesn't recognise the type, and no operator is specified (see below) then objects are treated as scalar internally, and rendered by sinks using `ToString()`.
+When Serilog doesn't recognise the type, and no operator is specified (see below) then the object will be rendered using `ToString()`.
 
 ## Preserving Object Structure
 
