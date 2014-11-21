@@ -196,14 +196,14 @@ _Keep in mind that Logentries is a commercial service._
 
 ### Loggly
 
-[[Loggly|http://www.loggly.com]] is a cloud based log management service. Create a new input and specify that you want to use a http input with JSON enabled. The input key is what you need to add to the extension when initializing the sink.
+[[Loggly|http://www.loggly.com]] is a cloud based log management service. Create a new input and specify that you want to use a http input with JSON enabled. Use the [[loggly-csharp-configuration|https://github.com/neutmute/loggly-csharp]] XML configuration syntax to configure the sink.
 
 **Package** - [[Serilog.Sinks.Loggly|http://nuget.org/packages/serilog.sinks.loggly]]
 | **Platforms** - .NET 4.5
 
 ```csharp
 var log = new LoggerConfiguration()
-    .WriteTo.Loggly("<input key>")
+    .WriteTo.Loggly()
     .CreateLogger();
 ```
 
