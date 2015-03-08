@@ -6,9 +6,6 @@ Use this checklist to make sure your pull request is easy to integrate. **Please
 
 > Discussion around this approach can be found at #344.
 
-
-**
-
 Creating a sink:
 
 - Is the assembly correctly named?
