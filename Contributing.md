@@ -3,7 +3,9 @@ Use this checklist to make sure your pull request is easy to integrate.
 **Please note:** ensure your PR targets the `dev` branch.
 
 > **Important:** sinks are no longer accepted via pull requests, as each sink is now maintained in a separate repository. You may contribute a sink by creating a repository with the appropriate name yourself, then raising an issue to transfer ownership of it to the Serilog organisation. As an example, see [Serilog.Sinks.MongoDB](https://github.com/serilog/serilog-sinks-mongodb).
+
 > "Extras" projects are no longer being accepted directly at all; instead we'd rather help you establish an independent org or repository for your project. Please raise an issue for help with this, too. As an example, see [SerilogMetrics](https://github.com/serilog-metrics/serilog-metrics).
+
 > Discussion around this approach can be found at #344.
 
 Creating a sink:
