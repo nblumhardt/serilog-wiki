@@ -1,11 +1,14 @@
 ## What are community projects ?
 
-Community projects are third party projects related to Serilog and are extending Serilog in an area other than what Serilog offers. They are not part of the core functionality of Serilog and can explore another facets of logging. The sinks, although driven by the community, are still part of the Serilog core. 
+Community projects extend Serilog with new features and integrate it with other libraries and frameworks.
 
 ## Available projects
 
-| Name | Description  |   
-|---|---|
-| [SerilogMetrics](https://github.com/serilog-metrics/serilog-metrics)  | Serilog.Metrics extends the logging framework with measure capabilities like counters, timers, meters and gauges.  | 
+| Logo | Name | Description  |   
+|---|---|---|
+| ![SerilogMetrics](https://raw.githubusercontent.com/serilog-metrics/serilog-metrics/master/assets/serilog-metrics-128.png) | [SerilogMetrics](https://github.com/serilog-metrics/serilog-metrics)  | _SerilogMetrics_ extends the logging framework with measure capabilities like counters, timers, meters and gauges. | 
 
+## Can I list my project?
+
+Yes! Please drop us a line via the Serilog issue tracker and we'll add it here. If you're building a _sink_, it'll probably belong on the [[Provided Sinks page|Provided-Sinks]] instead.
   
