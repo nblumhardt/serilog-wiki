@@ -6,6 +6,37 @@ Serilog provides _sinks_ for writing log events to storage in various formats.
 
 > You can find samples demonstrating the use of most sinks in the [[samples repository|https://github.com/serilog/serilog-samples]]
 
+## Overview
+
+| Name | Description | NuGet | Owner |
+|--------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------|---------|
+| [Elasticsearch](https://github.com/serilog/serilog-sinks-elasticsearch) | Stores your events inside the Elasticsearch NoSQL search engine. | [[Serilog.Sinks.ElasticSearch|http://nuget.org/packages/serilog.sinks.elasticsearch]] | @mivano |
+| [ElmahIO](https://github.com/serilog/serilog-sinks-elmahio) | Hosted solution that stores events | [[Serilog.Sinks.ElmahIO|http://nuget.org/packages/serilog.sinks.ElmahIO]] | @mivano |
+| [XSockets](https://github.com/serilog/serilog-sinks-xsockets) |  |  |  |
+| [Splunk](https://github.com/serilog/serilog-sinks-splunk) | Sends events to the Splunk service. |  |  |
+| [SignalR](https://github.com/serilog/serilog-sinks-signalr) |  |  |  |
+| [Raygun](https://github.com/serilog/serilog-sinks-raygun) | Stores your events in the Raygun service. |  | @mivano |
+| [RavenDB](https://github.com/serilog/serilog-sinks-ravendb) | Use the RavenDB NoSQL database as storage. |  |  |
+| [NLog](https://github.com/serilog/serilog-sinks-nlog) | Adapts Serilog to write events through existing NLog infrastructure. |  |  |
+| [MSSQLServer](https://github.com/serilog/serilog-sinks-mssqlserver) | Use a Microsoft SQL Server as the data store for the events. |  | @mivano |
+| [Loggr](https://github.com/serilog/serilog-sinks-loggr) | [[Loggr|http://www.loggr.net]] is a cloud hosted solution to track users, events and other kinds of items. It provides analytics and notifications and more. |  | @mivano |
+| [LogEntries](https://github.com/serilog/serilog-sinks-logentries) | [[Logentries|http://www.logentries.com]] allows you to collect machine statistics and log files. |  | @mivano |
+| [Log4Net](https://github.com/serilog/serilog-sinks-log4net) | Duplicates Serilog events through the log4net pipeline to allow integration with existing code and libraries. |  |  |
+| [Glimpse](https://github.com/serilog/serilog-sinks-glimpse) | Writes log events to [[Glimpse|http://getglimpse.com]]. |  |  |
+| [EventLog](https://github.com/serilog/serilog-sinks-eventlog) |  |  |  |
+| [Email](https://github.com/serilog/serilog-sinks-email) | Sends log events by email. |  |  |
+| [CouchDB](https://github.com/serilog/serilog-sinks-couchdb) | Writes events as documents to [[CouchDB|http://couchdb.org]]. | [[Serilog.Sinks.CouchDB|http://nuget.org/packages/serilog.sinks.couchdb]] |  |
+| [CouchBase](https://github.com/serilog/serilog-sinks-couchbase) |  |  |  |
+| [AzureTableStorage](https://github.com/serilog/serilog-sinks-azuretablestorage) | Writes to a table in [[Windows Azure Table Storage|http://www.windowsazure.com/en-us/develop/net/how-to-guides/table-services/]]. | [[Serilog.AzureTableStorage|http://nuget.org/packages/serilog.sinks.azuretablestorage]] |  |
+| [AzureEventHub](https://github.com/serilog/serilog-sinks-azureeventhub) |  |  |  |
+| [AzureDocumentDB](https://github.com/serilog/serilog-sinks-azuredocumentdb) |  |  |  |
+| [Seq](https://github.com/serilog/serilog-sinks-seq) | [[Seq|http://getseq.net]] is an on-premises log server that's built specifically for storing structured log events. |  |  |
+| [ExceptionLess](https://github.com/serilog/serilog-sinks-exceptionless) |  |  |  |
+| [Application insights](https://github.com/serilog/serilog-sinks-applicationinsights) |  |  |  |
+| [Xamarin](https://github.com/serilog/serilog-sinks-xamarin) | Writes events to Xamarin mobile targets |  |  |
+| [MongoDB](https://github.com/serilog/serilog-sinks-mongodb) | Stores your events in the MongoDB NoSQL database. |  |  |
+| [Loggly](https://github.com/serilog/serilog-sinks-loggly) | [[Loggly|http://www.loggly.com]] is a cloud based log management service. |  | @mivano |
+
 ## Alphabetical listing
 
 ### Azure Table Storage
