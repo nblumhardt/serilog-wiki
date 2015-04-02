@@ -4,14 +4,11 @@ Serilog provides _sinks_ for writing log events to storage in various formats.
 
 ## Built-in
 
-These sinks come with the _Serilog_ package.
+These sinks come with the [[Serilog|http://nuget.org/packages/serilog]] package.
 
 ### Colored Console
 
 Writes to the system console, using colour to emphasise levels and to highlight structured data within log messages. Makes the ordinary console sink look ordinary!
-
-**Package** - [[Serilog|http://nuget.org/packages/serilog]]
-| **Platforms** - .NET 4.5
 
 ```csharp
 var log = new LoggerConfiguration()
@@ -23,9 +20,6 @@ var log = new LoggerConfiguration()
 
 Writes to the system console. The colored console sink's boring cousin.
 
-**Package** - [[Serilog|http://nuget.org/packages/serilog]]
-| **Platforms** - .NET 4.5
-
 ```csharp
 var log = new LoggerConfiguration()
     .WriteTo.Console()
@@ -35,9 +29,6 @@ var log = new LoggerConfiguration()
 ### File
 
 Writes log events to a text file.
-
-**Package** - [[Serilog|http://nuget.org/packages/serilog]]
-| **Platforms** - .NET 4.5
 
 ```csharp
 var log = new LoggerConfiguration()
@@ -56,9 +47,6 @@ To avoid sinking apps with runaway disk usage the file sink **limits file size t
 Provides a hot `IObservable<LogEvent>` that can be subscribed to using the 
 [[Reactive Extensions for .NET|http://msdn.microsoft.com/en-us/data/gg577609]].
 
-**Package** - [[Serilog|http://nuget.org/packages/serilog]] |
- **Platforms** - .NET 4.5, Windows 8, Windows Phone 8
-
 ```csharp
 var log = new LoggerConfiguration()
     .WriteTo.Observers(logEvents => logEvents
@@ -70,9 +58,6 @@ var log = new LoggerConfiguration()
 ### Rolling File
 
 Writes log events to a set of text files, one per day.
-
-**Package** - [[Serilog|http://nuget.org/packages/serilog]]
-| **Platforms** - .NET 4.5
 
 The filename can include the `{Date}` placeholder, which will be replaced with the date of the events contained in the file.
 
@@ -98,9 +83,6 @@ For the same reason, only **the most recent 31 files** are retained by default (
 
 Writes to a specified `System.IO.TextWriter` and can thus be attached to practically any text-based .NET output and the in-memory `System.IO.StringWriter` class.
 
-**Package** - [[Serilog|http://nuget.org/packages/serilog]] |
- **Platforms** - .NET 4.5, Windows 8, Windows Phone 8
-
 ```csharp
 var messages = new StringWriter();
 
@@ -112,9 +94,6 @@ var log = new LoggerConfiguration()
 ### Trace
 
 Writes log events to the `System.Diagnostics.Trace`.
-
-**Package** - [[Serilog|http://nuget.org/packages/serilog]]
-| **Platforms** - .NET 4.5
 
 ```csharp
 var log = new LoggerConfiguration()
@@ -153,6 +132,6 @@ The sinks below are maintained under the Serilog project.
  * [Xamarin](https://github.com/serilog/serilog-sinks-xamarin)
  * [XSockets.NET](https://github.com/serilog/serilog-sinks-xsockets)
 
-## Maintained by third parties
+## Third-Party
 
 _Coming soon! Let us know if you'd like your sink listed here._
