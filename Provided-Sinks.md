@@ -1,6 +1,126 @@
 Serilog provides _sinks_ for writing log events to storage in various formats.
 
-You can find samples demonstrating the use of most sinks in the [[samples repository|https://github.com/serilog/serilog-samples]].
+> You can find samples demonstrating the use of most sinks in the [[samples repository|https://github.com/serilog/serilog-samples]].
+
+## Built-in
+
+These sinks come with the _Serilog_ package.
+
+### Colored Console
+
+Writes to the system console, using colour to emphasise levels and to highlight structured data within log messages. Makes the ordinary console sink look ordinary!
+
+**Package** - [[Serilog|http://nuget.org/packages/serilog]]
+| **Platforms** - .NET 4.5
+
+```csharp
+var log = new LoggerConfiguration()
+    .WriteTo.ColoredConsole()
+    .CreateLogger();
+```
+
+### Console
+
+Writes to the system console. The colored console sink's boring cousin.
+
+**Package** - [[Serilog|http://nuget.org/packages/serilog]]
+| **Platforms** - .NET 4.5
+
+```csharp
+var log = new LoggerConfiguration()
+    .WriteTo.Console()
+    .CreateLogger();
+```
+
+### File
+
+Writes log events to a text file.
+
+**Package** - [[Serilog|http://nuget.org/packages/serilog]]
+| **Platforms** - .NET 4.5
+
+```csharp
+var log = new LoggerConfiguration()
+    .WriteTo.File("log.txt")
+    .CreateLogger();
+```
+
+To avoid sinking apps with runaway disk usage the file sink **limits file size to 1GB by default**. The limit can be increased or removed using the `fileSizeLimitBytes` parameter.
+
+```csharp
+    .WriteTo.File("log.txt", fileSizeLimitBytes: null)
+```
+
+### Observers (Rx)
+
+Provides a hot `IObservable<LogEvent>` that can be subscribed to using the 
+[[Reactive Extensions for .NET|http://msdn.microsoft.com/en-us/data/gg577609]].
+
+**Package** - [[Serilog|http://nuget.org/packages/serilog]] |
+ **Platforms** - .NET 4.5, Windows 8, Windows Phone 8
+
+```csharp
+var log = new LoggerConfiguration()
+    .WriteTo.Observers(logEvents => logEvents
+        .Do(le => { Console.WriteLine(le); })
+        .Subscribe())
+    .CreateLogger();
+```
+
+### Rolling File
+
+Writes log events to a set of text files, one per day.
+
+**Package** - [[Serilog|http://nuget.org/packages/serilog]]
+| **Platforms** - .NET 4.5
+
+The filename can include the `{Date}` placeholder, which will be replaced with the date of the events contained in the file.
+
+```csharp
+var log = new LoggerConfiguration()
+    .WriteTo.RollingFile("log-{Date}.txt")
+    .CreateLogger();
+```
+
+To avoid sinking apps with runaway disk usage the rolling file sink **limits file size to 1GB by default**. The limit can be changed or removed using the `fileSizeLimitBytes` parameter.
+
+```csharp
+    .WriteTo.RollingFile("log-{Date}.txt", fileSizeLimitBytes: null)
+```
+
+For the same reason, only **the most recent 31 files** are retained by default (i.e. one long month). To change or remove this limit, pass the `retainedFileCountLimit` parameter.
+
+```csharp
+    .WriteTo.RollingFile("log-{Date}.txt", retainedFileCountLimit: null)
+```
+
+### TextWriter
+
+Writes to a specified `System.IO.TextWriter` and can thus be attached to practically any text-based .NET output and the in-memory `System.IO.StringWriter` class.
+
+**Package** - [[Serilog|http://nuget.org/packages/serilog]] |
+ **Platforms** - .NET 4.5, Windows 8, Windows Phone 8
+
+```csharp
+var messages = new StringWriter();
+
+var log = new LoggerConfiguration()
+    .WriteTo.TextWriter(messages)
+    .CreateLogger();
+```
+
+### Trace
+
+Writes log events to the `System.Diagnostics.Trace`.
+
+**Package** - [[Serilog|http://nuget.org/packages/serilog]]
+| **Platforms** - .NET 4.5
+
+```csharp
+var log = new LoggerConfiguration()
+    .WriteTo.Trace()
+    .CreateLogger();
+```
 
 ## From the Serilog Project
 
