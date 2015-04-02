@@ -6,7 +6,7 @@ Serilog provides _sinks_ for writing log events to storage in various formats.
 
 These sinks come with the [[Serilog|http://nuget.org/packages/serilog]] package.
 
-### Colored Console
+#### Colored Console
 
 Writes to the system console, using colour to emphasise levels and to highlight structured data within log messages. Makes the ordinary console sink look ordinary!
 
@@ -16,7 +16,7 @@ var log = new LoggerConfiguration()
     .CreateLogger();
 ```
 
-### Console
+#### Console
 
 Writes to the system console. The colored console sink's boring cousin.
 
@@ -26,7 +26,7 @@ var log = new LoggerConfiguration()
     .CreateLogger();
 ```
 
-### File
+#### File
 
 Writes log events to a text file.
 
@@ -42,7 +42,7 @@ To avoid sinking apps with runaway disk usage the file sink **limits file size t
     .WriteTo.File("log.txt", fileSizeLimitBytes: null)
 ```
 
-### Observers (Rx)
+#### Observers (Rx)
 
 Provides a hot `IObservable<LogEvent>` that can be subscribed to using the 
 [[Reactive Extensions for .NET|http://msdn.microsoft.com/en-us/data/gg577609]].
@@ -55,7 +55,7 @@ var log = new LoggerConfiguration()
     .CreateLogger();
 ```
 
-### Rolling File
+#### Rolling File
 
 Writes log events to a set of text files, one per day.
 
@@ -79,7 +79,7 @@ For the same reason, only **the most recent 31 files** are retained by default (
     .WriteTo.RollingFile("log-{Date}.txt", retainedFileCountLimit: null)
 ```
 
-### TextWriter
+#### TextWriter
 
 Writes to a specified `System.IO.TextWriter` and can thus be attached to practically any text-based .NET output and the in-memory `System.IO.StringWriter` class.
 
@@ -91,7 +91,7 @@ var log = new LoggerConfiguration()
     .CreateLogger();
 ```
 
-### Trace
+#### Trace
 
 Writes log events to the `System.Diagnostics.Trace`.
 
