@@ -111,6 +111,7 @@ The sinks below are maintained under the Serilog project.
  * [Azure Table Storage](https://github.com/serilog/serilog-sinks-azuretablestorage) 
  * [CouchDB](https://github.com/serilog/serilog-sinks-couchdb) 
  * [CouchBase](https://github.com/serilog/serilog-sinks-couchbase)
+ * [DataDog](https://github.com/serilog/serilog-sinks-datadog)
  * [Elasticsearch](https://github.com/serilog/serilog-sinks-elasticsearch) 
  * [elmah.io](https://github.com/serilog/serilog-sinks-elmahio) 
  * [Email](https://github.com/serilog/serilog-sinks-email)
