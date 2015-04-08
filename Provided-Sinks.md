@@ -8,7 +8,7 @@ These sinks come with the [[Serilog|http://nuget.org/packages/serilog]] package.
 
 #### Colored Console
 
-Writes to the system console, using colour to emphasise levels and to highlight structured data within log messages. Makes the ordinary console sink look ordinary!
+Writes to the system console, using colour to emphasise levels and to highlight structured data within log messages. Makes the ordinary console sink look ordinary! (_See also: [Literate Console](https://github.com/serilog/serilog-sinks-literate)_)
 
 ```csharp
 var log = new LoggerConfiguration()
