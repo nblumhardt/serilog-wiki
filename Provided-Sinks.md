@@ -117,6 +117,7 @@ The sinks below are maintained under the Serilog project.
  * [Email](https://github.com/serilog/serilog-sinks-email)
  * [Exceptionless](https://github.com/serilog/serilog-sinks-exceptionless) 
  * [Glimpse](https://github.com/serilog/serilog-sinks-glimpse)
+ * [Literate Console](https://github.com/serilog/serilog-sinks-literate)
  * [log4net](https://github.com/serilog/serilog-sinks-log4net) 
  * [Logentries](https://github.com/serilog/serilog-sinks-logentries) 
  * [Loggly](https://github.com/serilog/serilog-sinks-loggly)
