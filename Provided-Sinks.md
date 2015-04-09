@@ -15,7 +15,13 @@ var log = new LoggerConfiguration()
     .WriteTo.ColoredConsole()
     .CreateLogger();
 ```
+Or in XML [app-settings format](https://github.com/serilog/serilog/wiki/AppSettings), making sure the assembly is deployed alongside your app:
 
+```xml
+<appSettings> 
+  <add key="serilog:write-to:ColoredConsole" />
+</appSettings>
+```
 #### Console
 
 Writes to the system console. The colored console sink's boring cousin.
@@ -24,6 +30,14 @@ Writes to the system console. The colored console sink's boring cousin.
 var log = new LoggerConfiguration()
     .WriteTo.Console()
     .CreateLogger();
+```
+
+Or in XML [app-settings format](https://github.com/serilog/serilog/wiki/AppSettings), making sure the assembly is deployed alongside your app:
+
+```xml
+<appSettings> 
+  <add key="serilog:write-to:Console" />
+</appSettings>
 ```
 
 #### File
