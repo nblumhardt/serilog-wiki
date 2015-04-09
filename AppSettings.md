@@ -1,27 +1,19 @@
-The _Serilog.Extras.AppSettings_ integrates Serilog configuration with `App.config` and `Web.config` files to set the minimum level and control log output.
+Serilog supports a simple `<appSettings>`-based configuration syntax in `App.config` and `Web.config` files to set the minimum level, enrich events with additional properties, and control log output.
 
-Serilog is primarily configured using code, but while the AppSettings package doesn't provide a comprehensive XML configuration system, most common logger configuration tasks can be achieved with it.
+Serilog is primarily configured using code, with settings support intended as a supplementary feature. It is not comprehensive but most logger configuration tasks can be achieved using it.
 
-## Installing the package
+## Enabling App Settings configuration
 
-To include AppSettings support in a project, install the _Serilog.Extras.AppSettings_ package from NuGet.
-
-```
-PM> Install-Package Serilog.Extras.AppSettings
-```
-
-## Enabling AppSettings configuration
-
-To read configuration from AppSettings use the `ReadAppSettings()` extension method on your `LoggerConfiguration`:
+To read configuration from `<appSettings>` use the `ReadFrom.AppSettings()` extension method on your `LoggerConfiguration`:
 
 ```csharp
 Log.Logger = new LoggerConfiguration()
-  .ReadAppSettings()
+  .ReadFrom.AppSettings()
   ... // Other configuration here, then
   .CreateLogger()
 ```
 
-You can mix and match XML and code-based configuration, but each sink must be configured either using XML or in code - sinks added in code can't be modified via AppSettings.
+You can mix and match XML and code-based configuration, but each sink must be configured **either** using XML **or** in code - sinks added in code can't be modified via app settings.
 
 ## Configuring the logger
 
