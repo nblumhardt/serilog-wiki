@@ -1,4 +1,4 @@
-## What are community projects ?
+## What are community projects?
 
 Community projects extend Serilog with new features and integrate it with other libraries and frameworks.
 
