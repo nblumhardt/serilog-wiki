@@ -15,13 +15,12 @@ var log = new LoggerConfiguration()
     .WriteTo.ColoredConsole()
     .CreateLogger();
 ```
-Or in XML [app-settings format](https://github.com/serilog/serilog/wiki/AppSettings), making sure the assembly is deployed alongside your app:
+Or in XML [app-settings format](https://github.com/serilog/serilog/wiki/AppSettings):
 
 ```xml
-<appSettings> 
-  <add key="serilog:write-to:ColoredConsole" />
-</appSettings>
+<add key="serilog:write-to:ColoredConsole" />
 ```
+
 #### Console
 
 Writes to the system console. The colored console sink's boring cousin.
@@ -30,14 +29,6 @@ Writes to the system console. The colored console sink's boring cousin.
 var log = new LoggerConfiguration()
     .WriteTo.Console()
     .CreateLogger();
-```
-
-Or in XML [app-settings format](https://github.com/serilog/serilog/wiki/AppSettings), making sure the assembly is deployed alongside your app:
-
-```xml
-<appSettings> 
-  <add key="serilog:write-to:Console" />
-</appSettings>
 ```
 
 #### File
@@ -54,6 +45,12 @@ To avoid sinking apps with runaway disk usage the file sink **limits file size t
 
 ```csharp
     .WriteTo.File("log.txt", fileSizeLimitBytes: null)
+```
+
+Or in XML [app-settings format](https://github.com/serilog/serilog/wiki/AppSettings):
+
+```xml
+<add key="serilog:write-to:File.path" value="log.txt" />
 ```
 
 #### Observers (Rx)
