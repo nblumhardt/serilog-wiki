@@ -116,6 +116,7 @@ var log = new LoggerConfiguration()
 
 The sinks below are maintained under the Serilog project.
 
+ * [Amazon Kinesis](https://github.com/serilog/serilog-sinks-amazonkinesis)
  * [Application Insights](https://github.com/serilog/serilog-sinks-applicationinsights) 
  * [Azure DocumentDB](https://github.com/serilog/serilog-sinks-azuredocumentdb) 
  * [Azure Event Hubs](https://github.com/serilog/serilog-sinks-azureeventhub)
@@ -141,6 +142,7 @@ The sinks below are maintained under the Serilog project.
  * [SQL Server](https://github.com/serilog/serilog-sinks-mssqlserver)
  * [RavenDB](https://github.com/serilog/serilog-sinks-ravendb) 
  * [Raygun](https://github.com/serilog/serilog-sinks-raygun) 
+ * [RethinkDB](https://github.com/serilog/serilog-sinks-rethinkdb)
  * [Windows Event Log](https://github.com/serilog/serilog-sinks-eventlog) 
  * [Xamarin](https://github.com/serilog/serilog-sinks-xamarin)
  * [XSockets.NET](https://github.com/serilog/serilog-sinks-xsockets)
