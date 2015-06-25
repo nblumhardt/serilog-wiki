@@ -149,4 +149,4 @@ The sinks below are maintained under the Serilog project.
 
 ## Third-Party
 
-_Coming soon! Let us know if you'd like your sink listed here._
+ * [Alternate Rolling File](https://github.com/bedegaming/sinks-rollingfile)
