@@ -150,4 +150,4 @@ The sinks below are maintained under the Serilog project.
 ## Third-Party
 
  * [Alternate Rolling File](https://github.com/bedegaming/sinks-rollingfile)
- * [OrientDB](https://www.nuget.org/packages/Serilog.Sinks.OrientDB)
+ * [OrientDB](https://github.com/dev-informatics/Serilog.Sinks.OrientDB)
