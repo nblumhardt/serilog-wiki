@@ -7,11 +7,10 @@ Like many other .NET libraries, Serilog provides basic diagnostic logging to fil
 Unlike other logging libraries for .NET, parameters passed along with log messages are not destructively rendered into a text format. Instead, they're preserved as structured data, that can be written in document form to a NoSQL data store.
 
 ```csharp
-var sensorInput = new { Latitude = 25, Longitude = 134 };
-var processingTimeMs = 34;
+var input = new { Latitude = 25, Longitude = 134 };
+var time = 34;
 
-log.Information("Processed {@SensorInput} in {TimeMS:000} ms.",
-                sensorInput, processingTimeMs);
+log.Information("Processed {@SensorInput} in {TimeMS:000} ms.", input, time);
 ```
 
 Serilog message templates use a simple DSL that extends the regular .NET format strings. Properties are named within the message template, and matched positionally with the arguments provided to the log method.
