@@ -10,7 +10,8 @@ Unlike other logging libraries for .NET, parameters passed along with log messag
 var sensorInput = new { Latitude = 25, Longitude = 134 };
 var processingTimeMs = 34;
 
-log.Information("Processed {@SensorInput} in {TimeMS:000} ms.", sensorInput, processingTimeMs);
+log.Information("Processed {@SensorInput} in {TimeMS:000} ms.",
+                sensorInput, processingTimeMs);
 ```
 
 Serilog message templates use a simple DSL that extends the regular .NET format strings. Properties are named within the message template, and matched positionally with the arguments provided to the log method.
