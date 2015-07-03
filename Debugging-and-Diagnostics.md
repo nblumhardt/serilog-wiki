@@ -14,7 +14,7 @@ The system console, a file or an in-memory `StringWriter` can all be used to col
 
 ```csharp
 var file = File.CreateText(...);
-Serlog.Debugging.SelfLog.Out = TextWriter.Synchronized(file);
+Serilog.Debugging.SelfLog.Out = TextWriter.Synchronized(file);
 ```
 
 ## Debug Symbols
