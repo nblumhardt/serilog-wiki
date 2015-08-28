@@ -51,6 +51,12 @@ In XML:
     <add key="serilog:write-to:ColoredConsole" />
 ```
 
+**NOTE: Keys `serilog:using:*` need to be unique!**
+
+```csharp
+<add key="serilog:using:Literate" value="Serilog.Sinks.Literate" />
+<add key="serilog:using:Email" value="Serilog.Sinks.Email" />
+```
 If the sink accepts parameters, these are specified by appending the parameter name to the setting.
 
 ```csharp
