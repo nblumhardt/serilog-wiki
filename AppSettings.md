@@ -51,11 +51,13 @@ In XML:
     <add key="serilog:write-to:ColoredConsole" />
 ```
 
-**NOTE: Keys `serilog:using:*` need to be unique!**
-
+**NOTE: When using `serilog:*` keys need to be unique!**
+e.g.
 ```csharp
 <add key="serilog:using:Literate" value="Serilog.Sinks.Literate" />
 <add key="serilog:using:Email" value="Serilog.Sinks.Email" />
+<add key="serilog:write-to:LiterateConsole"/>
+<add key="serilog:write-to:Email"/>
 ```
 If the sink accepts parameters, these are specified by appending the parameter name to the setting.
 
@@ -90,4 +92,3 @@ For example, to add the property `Release` with the value `"1.2-develop"` to all
 ```xml 
     <add key="serilog:enrich:with-property:Release" value="1.2-develop" />
 ```
-
