@@ -52,7 +52,8 @@ In XML:
 ```
 
 **NOTE: When using `serilog:*` keys need to be unique!**
-e.g.
+
+**e.g.**
 ```csharp
 <add key="serilog:using:Literate" value="Serilog.Sinks.Literate" />
 <add key="serilog:using:Email" value="Serilog.Sinks.Email" />
