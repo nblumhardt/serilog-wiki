@@ -1,6 +1,6 @@
 Log events are written to sinks using the `Log` static class, or the methods on an `ILogger`. These examples will use `Log` for syntactic brevity, but the same methods shown below are available also on the interface.
 
-```
+```csharp
 Log.Warning("Disk quota {Quota} MB exceeded by {User}", quota, user);
 ```
 
@@ -31,14 +31,14 @@ The string above `"Disk quota {Quota} exceeded by {User}"` is a Serilog _message
 
 **Templates vs. Messages** - Serilog events have a message template associated, _not_ a message. Internally, Serilog parses and caches every template (up to a fixed size limit). Treating the string parameter to log methods as a message, as in the case below, will degrade performance and consume cache memory.
 
-```
+```csharp
 // Don't:
 Log.Information("The time is " + DateTime.Now);
 ```
 
 Instead, _always_ use template properties to include variables in messages:
 
-```
+```csharp
 // Do:
 Log.Information("The time is {Now}", DateTime.Now);
 ```
@@ -66,13 +66,13 @@ In most cases, applications should write events without checking the active logg
 
 In _rare, performance-sensitive_ cases, the recommended pattern for level detection is to store the results of level detection in a field, for example:
 
-```
+```csharp
 readonly bool _isDebug = Log.IsEnabled(LogEventLevel.Debug);
 ```
 
 The `_isDebug` field can be checked efficiently before writing log events:
 
-```
+```csharp
 if (_isDebug) Log.Debug("Someone is stuck debugging...");
 ```
 
@@ -114,7 +114,7 @@ log.Verbose("This will now be logged");
 
 Serilog, like most .NET logging frameworks, allows events to be tagged with their source, generally speaking the name of the class writing them:
 
-```
+```csharp
 var myLog = Log.ForContext<MyClass>();
 myLog.Information("Hello!");
 ```
@@ -129,7 +129,7 @@ For more on filters and logger topology see [[Configuration Basics|Configuration
 
 Just as `ForContext<T>()` tags log events with the class that wrote them, other overloads of `ForContext()` enable log events to be tagged with identifiers that later support correlation of the events written with that identifier.
 
-```
+```csharp
 var job = GetNextJob();
 var jobLog = Log.ForContext("JobId", job.Id);
 jobLog.Information("Running a new job");
