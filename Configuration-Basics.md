@@ -51,6 +51,15 @@ Log.Logger = new LoggerConfiguration()
 
 The `MinimumLevel` configuration object provides for one of the log event levels to be specified as the minimum. In the example above, log events with level `Debug` and higher will be processed and ultimately written to the console.
 
+| Level | Usage |
+| ------- | ------- |
+| `Verbose` |  Verbose is the noisiest level, rarely (if ever) enabled for a production app. |
+| `Debug` | Debug is used for internal system events that are not necessarily observable from the outside, but useful when determining how something happened. |
+| `Information` | Information events describe things happening in the system that correspond to its responsibilities and functions. Generally these are the observable actions the system can perform. |
+| `Warning` | When service is degraded, endangered, or may be behaving outside of its expected parameters, Warning level events are used. |
+| `Error` | When functionality is unavailable or expectations broken, an Error event is used. |
+| `Fatal` | The most critical level, Fatal events demand immediate attention. |
+
 **Default Level** - if no `MinimumLevel` is specified, then `Information` level events and higher will be processed.
 
 ### Overriding per Sink
