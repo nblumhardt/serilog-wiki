@@ -30,3 +30,5 @@ namespace A.Sample.Serilog.App.Using.The.ColoredConsole.Sink
 }
 ```
 - Run the app
+
+![](https://raw.githubusercontent.com/merbla/images/master/serilog/SerilogColoredConsoleExample.png)
