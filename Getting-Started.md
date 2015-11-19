@@ -38,3 +38,5 @@ Log.Information("The global logger has been configured");
 ```
 
 _Configuring and using the `Log` class is an optional convenience that makes it easier for libraries to adopt Serilog. Serilog does not and will never adopt any static/process-wide state within the logging pipeline itself._
+
+* [[An Example using the ColoredConsole Sink|An-Example-using-the-ColoredConsole-Sink]]
