@@ -1,7 +1,5 @@
 Serilog provides _sinks_ for writing log events to storage in various formats.
 
-> You can find samples demonstrating the use of most sinks in the [[samples repository|https://github.com/serilog/serilog-samples]].
-
 ## Built-in
 
 These sinks come with the [[Serilog|http://nuget.org/packages/serilog]] package.
