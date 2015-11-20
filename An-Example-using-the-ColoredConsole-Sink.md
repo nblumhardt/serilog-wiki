@@ -1,5 +1,3 @@
-##An Example (ColoredConsole Sink)
-
 - Create a new project
 - Install the Serilog Package (`Install-Package Serilog`)
 - Add the following code
