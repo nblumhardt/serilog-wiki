@@ -51,6 +51,26 @@ Or in XML [app-settings format](https://github.com/serilog/serilog/wiki/AppSetti
 <add key="serilog:write-to:File.path" value="log.txt" />
 ```
 
+#### Logger
+
+Allows events from one Serilog logger to be directed to another.
+
+```csharp
+var log1 = new LoggerConfiguration()
+    .WriteTo.Console()
+    .CreateLogger();
+
+var log2 = new LoggerConfiguration()
+    .WriteTo.Logger(log1)
+    .WriteTo.RollingFile(...)
+    .CreateLogger();
+
+log1.Information("This will be written to the console");
+log2.Information("This will go to both console and file");
+```
+
+Only events that pass through the first logger will reach the second, i.e. the pipelines are chained together. It's important to realise that each logger has its own, independent `MinimumLevel` setting, so this must be configured on both loggers if different from the default.
+
 #### Observers (Rx)
 
 Provides a hot `IObservable<LogEvent>` that can be subscribed to using the 
