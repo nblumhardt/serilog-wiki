@@ -168,6 +168,7 @@ The sinks below are maintained under the Serilog project.
 ## Third-Party
 
  * [Alternate Rolling File](https://github.com/bedegaming/sinks-rollingfile)
+ * [Loggly (Bulk API)](https://github.com/samirahmed/serilog.LogglyBulkSink)
  * [NewRelic](https://github.com/Applicita/serilog-sinks-newrelic)
  * [OrientDB](https://github.com/dev-informatics/Serilog.Sinks.OrientDB)
  * [RabbitMQ](https://github.com/sonicjolt/serilog-sinks-rabbitmq)
