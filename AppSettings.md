@@ -73,6 +73,8 @@ In XML:
     <add key="serilog:write-to:RollingFile.retainedFileCountLimit" value="10" />
 ```
 
+Any environment variables specified in a setting value (e.g. `%TEMP%`) will be expanded appropriately when read.
+
 ### Using sink extensions from additional assemblies
 
 To use sinks from additional assemblies, specify them with the `serilog:using` key.
