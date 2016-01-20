@@ -43,6 +43,10 @@ Instead, _always_ use template properties to include variables in messages:
 Log.Information("The time is {Now}", DateTime.Now);
 ```
 
+**Property Naming** - Property names should use `PascalCase` for consistency with other code and libraries from the Serilog ecosystem.
+
+While accepted by Serilog, `dashed-names` are not compatible with many back-end data stores and so are strongly discouraged.
+
 ## Log Event Levels
 
 Serilog uses levels as the primary means for assigning importance to log events. The levels in increasing order of importance are:
