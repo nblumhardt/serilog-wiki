@@ -51,6 +51,8 @@ Or in XML [app-settings format](https://github.com/serilog/serilog/wiki/AppSetti
 <add key="serilog:write-to:File.path" value="log.txt" />
 ```
 
+> **Important:** Only one process may write to a log file at a given time. For multi-process scenarios, either use separate files or one of the non-file-based sinks.
+
 #### Logger
 
 Allows events from one Serilog logger to be directed to another.
@@ -107,6 +109,8 @@ For the same reason, only **the most recent 31 files** are retained by default (
 ```csharp
     .WriteTo.RollingFile("log-{Date}.txt", retainedFileCountLimit: null)
 ```
+
+> **Important:** Only one process may write to a log file at a given time. For multi-process scenarios, either use separate files or one of the non-file-based sinks.
 
 #### TextWriter
 
