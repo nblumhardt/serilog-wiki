@@ -42,3 +42,8 @@ using (LogContext.PushProperty("A", 1))
 Pushing property onto the context will override any existing properties with the same name, until the object returned from `PushProperty()` is disposed, as the property `A` in the example demonstrates.
 
 **Important:** properties _must_ be popped from the context in the precise order in which they were added. Behavior otherwise is undefined.
+
+* Enrichment packages previously distributed as apart of the Serilog Package*
+- [Environment](https://github.com/serilog/serilog-enrichers-environment)
+- [Process](https://github.com/serilog/serilog-enrichers-process)
+- [Thread](https://github.com/serilog/serilog-enrichers-thread)
