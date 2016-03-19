@@ -43,7 +43,8 @@ Pushing property onto the context will override any existing properties with the
 
 **Important:** properties _must_ be popped from the context in the precise order in which they were added. Behavior otherwise is undefined.
 
-* Enrichment packages previously distributed as apart of the Serilog Package*
+*Packages previously distributed as apart of the Serilog Package*
+
 - [Environment](https://github.com/serilog/serilog-enrichers-environment)
 - [Process](https://github.com/serilog/serilog-enrichers-process)
 - [Thread](https://github.com/serilog/serilog-enrichers-thread)
