@@ -139,15 +139,14 @@ var log = new LoggerConfiguration()
 The sinks below are maintained under the Serilog project.
 
 **Previously distributed as apart of the Serilog Package**
-- [Console](https://github.com/serilog/serilog-sinks-console)
-- [Colored Console](https://github.com/serilog/serilog-sinks-coloredconsole)
-- [File](https://github.com/serilog/serilog-sinks-file)
-- [Rolling File](https://github.com/serilog/serilog-sinks-rollingfile)
-- [Trace](https://github.com/serilog/serilog-sinks-trace)
-- [Text Writer](https://github.com/serilog/serilog-sinks-textwriter)
-- [Period Batching](https://github.com/serilog/serilog-sinks-periodicbatching)
-- [Observable](https://github.com/serilog/serilog-sinks-observable)
-
+* [Console](https://github.com/serilog/serilog-sinks-console)
+* [Colored Console](https://github.com/serilog/serilog-sinks-coloredconsole)
+* [File](https://github.com/serilog/serilog-sinks-file)
+* [Rolling File](https://github.com/serilog/serilog-sinks-rollingfile)
+* [Trace](https://github.com/serilog/serilog-sinks-trace)
+* [Text Writer](https://github.com/serilog/serilog-sinks-textwriter)
+* [Period Batching](https://github.com/serilog/serilog-sinks-periodicbatching)
+* [Observable](https://github.com/serilog/serilog-sinks-observable)
 
  * [Amazon Kinesis](https://github.com/serilog/serilog-sinks-amazonkinesis)
  * [Application Insights](https://github.com/serilog/serilog-sinks-applicationinsights) 
