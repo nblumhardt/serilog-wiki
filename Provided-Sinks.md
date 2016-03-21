@@ -134,9 +134,9 @@ var log = new LoggerConfiguration()
     .CreateLogger();
 ```
 
-## From the Serilog Project
+## List of sinks
  
-*Previously distributed as apart of the Serilog Package*
+Distributed as part of the _Serilog_ package in Serilog 1.x, separate packages in Serilog 2.x:
 
  * [Console](https://github.com/serilog/serilog-sinks-console)
  * [Colored Console](https://github.com/serilog/serilog-sinks-coloredconsole)
@@ -147,7 +147,7 @@ var log = new LoggerConfiguration()
  * [Period Batching](https://github.com/serilog/serilog-sinks-periodicbatching)
  * [Observable](https://github.com/serilog/serilog-sinks-observable)
 
-The sinks below are maintained under the Serilog project.
+The sinks below are maintained under the Serilog project:
 
  * [Amazon Kinesis](https://github.com/serilog/serilog-sinks-amazonkinesis)
  * [Application Insights](https://github.com/serilog/serilog-sinks-applicationinsights) 
@@ -180,9 +180,10 @@ The sinks below are maintained under the Serilog project.
  * [Xamarin](https://github.com/serilog/serilog-sinks-xamarin)
  * [XSockets.NET](https://github.com/serilog/serilog-sinks-xsockets)
 
-## Third-Party
+Maintained by the wider Serilog community:
 
  * [Alternate Rolling File](https://github.com/bedegaming/sinks-rollingfile)
+ * [AWS CloudWatch](https://github.com/Cimpress-MCP/serilog-sinks-awscloudwatch)
  * [Loggly (Bulk API)](https://github.com/samirahmed/serilog.LogglyBulkSink)
  * [NewRelic](https://github.com/Applicita/serilog-sinks-newrelic)
  * [OrientDB](https://github.com/dev-informatics/Serilog.Sinks.OrientDB)
