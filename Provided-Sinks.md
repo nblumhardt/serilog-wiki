@@ -188,3 +188,4 @@ Maintained by the wider Serilog community:
  * [NewRelic](https://github.com/Applicita/serilog-sinks-newrelic)
  * [OrientDB](https://github.com/dev-informatics/Serilog.Sinks.OrientDB)
  * [RabbitMQ](https://github.com/sonicjolt/serilog-sinks-rabbitmq)
+ * [Slack](https://github.com/marcio-azevedo/serilog-sinks-slack/)
