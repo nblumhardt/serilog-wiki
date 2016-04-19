@@ -184,7 +184,7 @@ Maintained by the wider Serilog community:
 
  * [Alternate Rolling File](https://github.com/bedegaming/sinks-rollingfile)
  * [AWS CloudWatch](https://github.com/Cimpress-MCP/serilog-sinks-awscloudwatch)
- * [Loggly (Bulk API)](https://github.com/samirahmed/serilog.LogglyBulkSink)
+ * [Loggly (Bulk API)](https://github.com/jamesbascle/serilog.LogglyBulkSink)
  * [NewRelic](https://github.com/Applicita/serilog-sinks-newrelic)
  * [OrientDB](https://github.com/dev-informatics/Serilog.Sinks.OrientDB)
  * [RabbitMQ](https://github.com/sonicjolt/serilog-sinks-rabbitmq)
