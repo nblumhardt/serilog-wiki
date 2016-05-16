@@ -2,7 +2,9 @@ Serilog supports a simple `<appSettings>`-based configuration syntax in `App.con
 
 Serilog is primarily configured using code, with settings support intended as a supplementary feature. It is not comprehensive but most logger configuration tasks can be achieved using it.
 
-## Enabling app settings configuration (new in 1.5)
+**Note:** in Serilog 2.0 beta, you'll need to install the _Serilog.Settings.AppSettings_ package to use this feature.
+
+## Enabling app settings configuration
 
 To read configuration from `<appSettings>` use the `ReadFrom.AppSettings()` extension method on your `LoggerConfiguration`:
 
