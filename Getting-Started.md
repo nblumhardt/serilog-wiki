@@ -43,10 +43,20 @@ _Configuring and using the `Log` class is an optional convenience that makes it 
 
 The complete example below shows logging in a simple console application.
 
-##### 1. Create a new Console Application project
-##### 2. Install the core Serilog package and the [literate console sink](https://github.com/serilog/serilog-sinks-literate)
+** 1. Create a new Console Application project**
+** 2. Install the core Serilog package and the [literate console sink](https://github.com/serilog/serilog-sinks-literate)**
+
+In Visual Studio, open the _Package Manager Console_ and type:
 
 ```powershell
+Install-Package Serilog -Pre
+Install-Package Serilog.Sinks.Literate -Pre
+```
+
+_Serilog **v2.0** is currently a release candidate and is recommended for new projects. To install the older Serilog 1.5 release instead, leave out the `-Pre` flags from the commands above._
+
+** 3. Add the following code to `Program.cs`**
+
 using System;
 using Serilog;
 
@@ -81,6 +91,9 @@ namespace SerilogExample
 }
 ```
 
-##### 4. Run the program
+** 4. Run the program**
+
+![Serilog Getting Started Example](https://raw.githubusercontent.com/nblumhardt/images/master/serilog-getting-started-example.png)
+
 
 
