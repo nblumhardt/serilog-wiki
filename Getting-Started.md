@@ -39,4 +39,48 @@ Log.Information("The global logger has been configured");
 
 _Configuring and using the `Log` class is an optional convenience that makes it easier for libraries to adopt Serilog. Serilog does not and will never adopt any static/process-wide state within the logging pipeline itself._
 
-* [[An Example using the ColoredConsole Sink|An-Example-using-the-ColoredConsole-Sink]]
+## Example application
+
+The complete example below shows logging in a simple console application.
+
+##### 1. Create a new Console Application project
+##### 2. Install the core Serilog package and the [literate console sink](https://github.com/serilog/serilog-sinks-literate)
+
+```powershell
+using System;
+using Serilog;
+
+namespace SerilogExample
+{
+    class Program
+    {
+        static void Main()
+        {
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Debug()
+                .WriteTo.LiterateConsole()
+                .CreateLogger();
+
+            Log.Information("Hello, world!");
+
+            int a = 10, b = 0;
+            try
+            {
+                Log.Debug("Dividing {A} by {B}", a, b);
+                Console.WriteLine(a / b);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, "Something went wrong");
+            }
+
+            Log.CloseAndFlush();
+            Console.ReadKey();
+        }
+    }
+}
+```
+
+##### 4. Run the program
+
+
