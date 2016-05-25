@@ -57,6 +57,7 @@ _Serilog **v2.0** is currently a release candidate and is recommended for new pr
 
 ** 3. Add the following code to `Program.cs`**
 
+```csharp
 using System;
 using Serilog;
 
