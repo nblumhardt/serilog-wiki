@@ -1,54 +1,196 @@
+
+
+
+
+
 Serilog provides _sinks_ for writing log events to storage in various formats.
+
+## Built-in
+
+These sinks come with the [[Serilog|http://nuget.org/packages/serilog]] package.
+
+#### Colored Console
+
+Writes to the system console, using colour to emphasise levels and to highlight structured data within log messages. Makes the ordinary console sink look ordinary! (_See also: [Literate Console](https://github.com/serilog/serilog-sinks-literate)_)
+
+```csharp
+var log = new LoggerConfiguration()
+    .WriteTo.ColoredConsole()
+    .CreateLogger();
+```
+Or in XML [app-settings format](https://github.com/serilog/serilog/wiki/AppSettings):
+
+```xml
+<add key="serilog:write-to:ColoredConsole" />
+```
+
+#### Console
+
+Writes to the system console. The colored console sink's boring cousin.
+
+```csharp
+var log = new LoggerConfiguration()
+    .WriteTo.Console()
+    .CreateLogger();
+```
+
+#### File
+
+Writes log events to a text file.
+
+```csharp
+var log = new LoggerConfiguration()
+    .WriteTo.File("log.txt")
+    .CreateLogger();
+```
+
+To avoid sinking apps with runaway disk usage the file sink **limits file size to 1GB by default**. The limit can be increased or removed using the `fileSizeLimitBytes` parameter.
+
+```csharp
+    .WriteTo.File("log.txt", fileSizeLimitBytes: null)
+```
+
+Or in XML [app-settings format](https://github.com/serilog/serilog/wiki/AppSettings):
+
+```xml
+<add key="serilog:write-to:File.path" value="log.txt" />
+```
+
+> **Important:** Only one process may write to a log file at a given time. For multi-process scenarios, either use separate files or one of the non-file-based sinks.
+
+#### Logger
+
+Allows events from one Serilog logger to be directed to another.
+
+```csharp
+var log1 = new LoggerConfiguration()
+    .WriteTo.Console()
+    .CreateLogger();
+
+var log2 = new LoggerConfiguration()
+    .WriteTo.Logger(log1)
+    .WriteTo.RollingFile(...)
+    .CreateLogger();
+
+log1.Information("This will be written to the console");
+log2.Information("This will go to both console and file");
+```
+
+Only events that pass through the first logger will reach the second, i.e. the pipelines are chained together. It's important to realise that each logger has its own, independent `MinimumLevel` setting, so this must be configured on both loggers if different from the default.
+
+#### Observers (Rx)
+
+Provides a hot `IObservable<LogEvent>` that can be subscribed to using the 
+[[Reactive Extensions for .NET|http://msdn.microsoft.com/en-us/data/gg577609]].
+
+```csharp
+var log = new LoggerConfiguration()
+    .WriteTo.Observers(logEvents => logEvents
+        .Do(le => { Console.WriteLine(le); })
+        .Subscribe())
+    .CreateLogger();
+```
+
+#### Rolling File
+
+Writes log events to a set of text files, one per day.
+
+The filename can include the `{Date}` placeholder, which will be replaced with the date of the events contained in the file.
+
+```csharp
+var log = new LoggerConfiguration()
+    .WriteTo.RollingFile("log-{Date}.txt")
+    .CreateLogger();
+```
+
+To avoid sinking apps with runaway disk usage the rolling file sink **limits file size to 1GB by default**. The limit can be changed or removed using the `fileSizeLimitBytes` parameter.
+
+```csharp
+    .WriteTo.RollingFile("log-{Date}.txt", fileSizeLimitBytes: null)
+```
+
+For the same reason, only **the most recent 31 files** are retained by default (i.e. one long month). To change or remove this limit, pass the `retainedFileCountLimit` parameter.
+
+```csharp
+    .WriteTo.RollingFile("log-{Date}.txt", retainedFileCountLimit: null)
+```
+
+> **Important:** Only one process may write to a log file at a given time. For multi-process scenarios, either use separate files or one of the non-file-based sinks.
+
+#### TextWriter
+
+Writes to a specified `System.IO.TextWriter` and can thus be attached to practically any text-based .NET output and the in-memory `System.IO.StringWriter` class.
+
+```csharp
+var messages = new StringWriter();
+
+var log = new LoggerConfiguration()
+    .WriteTo.TextWriter(messages)
+    .CreateLogger();
+```
+
+#### Trace
+
+Writes log events to the `System.Diagnostics.Trace`.
+
+```csharp
+var log = new LoggerConfiguration()
+    .WriteTo.Trace()
+    .CreateLogger();
+```
+
+## List of sinks
  
-## List of available sinks 
+Distributed as part of the _Serilog_ package in Serilog 1.x, separate packages in Serilog 2.x:
 
-`*` Denotes sink is maintained by the wider Serilog community
+ * [Console](https://github.com/serilog/serilog-sinks-console)
+ * [Colored Console](https://github.com/serilog/serilog-sinks-coloredconsole)
+ * [File](https://github.com/serilog/serilog-sinks-file)
+ * [Rolling File](https://github.com/serilog/serilog-sinks-rollingfile)
+ * [Trace](https://github.com/serilog/serilog-sinks-trace)
+ * [Text Writer](https://github.com/serilog/serilog-sinks-textwriter)
+ * [Period Batching](https://github.com/serilog/serilog-sinks-periodicbatching)
+ * [Observable](https://github.com/serilog/serilog-sinks-observable)
 
-| Sink Name  | `WriteTo.*` | Package | NuGet  | DotNet Core | 
-| ------------- | ------------- | ------------- | ------------- | ------------- | 
-[Alternate Rolling File *](https://github.com/bedegaming/sinks-rollingfile) | `RollingFileAlternate` | [Serilog.Sinks.RollingFileAlternate.MultiPlatform](https://nuget.org/packages/Serilog.Sinks.RollingFileAlternate.MultiPlatform) | ![NuGet Version](http://img.shields.io/nuget/v/Serilog.Sinks.RollingFileAlternate.MultiPlatform.svg?style=flat)  |  |
-[Amazon CloudWatch *](https://github.com/Cimpress-MCP/serilog-sinks-awscloudwatch) | `AmazonCloudWatch` | [Serilog.Sinks.AwsCloudWatch](https://www.nuget.org/packages/Serilog.Sinks.AwsCloudWatch) | ![NuGet Version](http://img.shields.io/nuget/v/Serilog.Sinks.AwsCloudWatch.svg?style=flat)  |  |
-[Amazon DynamoDB](https://github.com/serilog/serilog-sinks-dynamodb) | `DynamoDB` | [Serilog.Sinks.DynamoDB](https://nuget.org/packages/serilog.sinks.dynamodb) | ![NuGet Version](http://img.shields.io/nuget/v/serilog.sinks.dynamodb.svg?style=flat)  |  | 
-[Amazon Kinesis](https://github.com/serilog/serilog-sinks-amazonkinesis) | `AmazonKinesis` | [Serilog.Sinks.AmazonKinesis](https://nuget.org/packages/serilog.sinks.amazonkinesis) | ![NuGet Version](http://img.shields.io/nuget/v/serilog.sinks.amazonkinesis.svg?style=flat)  |  | 
-[Application Insights](https://github.com/serilog/serilog-sinks-applicationinsights) | `ApplicationInsights` | [Serilog.Sinks.ApplicationinSights](https://nuget.org/packages/serilog.sinks.applicationinsights) | ![NuGet Version](http://img.shields.io/nuget/v/serilog.sinks.applicationinsights.svg?style=flat)  |  |
-[Azure DocumentDB](https://github.com/serilog/serilog-sinks-azuredocumentdb) | `AzureDocumentDB` | [Serilog.Sinks.AzureDocumentDB](https://nuget.org/packages/serilog.sinks.azuredocumentdb) | ![NuGet Version](http://img.shields.io/nuget/v/serilog.sinks.azuredocumentdb.svg?style=flat)  |  |
-[Azure Event Hubs](https://github.com/serilog/serilog-sinks-azureeventhub) | `AzureEventHub` | [Serilog.Sinks.AzureEventHub](https://nuget.org/packages/serilog.sinks.azureeventhub) | ![NuGet Version](http://img.shields.io/nuget/v/serilog.sinks.azureeventhub.svg?style=flat)  |  |
-[Azure Table Storage](https://github.com/serilog/serilog-sinks-azuretablestorage) | `AzureTableStorage` | [Serilog.Sinks.AzureTableStorage](https://nuget.org/packages/serilog.sinks.azuretablestorage) | ![NuGet Version](http://img.shields.io/nuget/v/serilog.sinks.azuretablestorage.svg?style=flat)  |  |
-[CouchBase](https://github.com/serilog/serilog-sinks-couchbase) | `Couchbase` | [Serilog.Sinks.Couchbase](https://nuget.org/packages/serilog.sinks.couchbase) | ![NuGet Version](http://img.shields.io/nuget/v/serilog.sinks.couchbase.svg?style=flat)  |  |
-[CouchDB](https://github.com/serilog/serilog-sinks-couchdb) | `CouchDB` | [Serilog.Sinks.CouchDB](https://nuget.org/packages/serilog.sinks.couchdb) | ![NuGet Version](http://img.shields.io/nuget/v/serilog.sinks.couchdb.svg?style=flat)  |  |  
-[Console](https://github.com/serilog/serilog-sinks-console) | `Console` | [Serilog.Sinks.Console](https://nuget.org/packages/serilog.sinks.console) |![NuGet Version](http://img.shields.io/nuget/v/serilog.sinks.console.svg?style=flat) | ✓ |
-[Colored Console](https://github.com/serilog/serilog-sinks-coloredconsole) | `ColoredConsole` | [Serilog.Sinks.ColoredConsole](https://nuget.org/packages/serilog.sinks.observable) | ![NuGet Version](http://img.shields.io/nuget/v/serilog.sinks.coloredconsole.svg?style=flat)  | ✓ |
-[DataDog](https://github.com/serilog/serilog-sinks-datadog) | `Datadog` | [Serilog.Sinks.DataDog](https://nuget.org/packages/serilog.sinks.datadog) | ![NuGet Version](http://img.shields.io/nuget/v/serilog.sinks.datadog.svg?style=flat)  |  | 
-[Elastic Search](https://github.com/serilog/serilog-sinks-elasticsearch) | `Elasticsearch` | [Serilog.Sinks.ElasticSearch](https://nuget.org/packages/serilog.sinks.elasticsearch) | ![NuGet Version](http://img.shields.io/nuget/v/serilog.sinks.elasticsearch.svg?style=flat)  |  |
-[Email](https://github.com/serilog/serilog-sinks-email) | `Email` | [Serilog.Sinks.Email](https://nuget.org/packages/serilog.sinks.Email) | ![NuGet Version](http://img.shields.io/nuget/v/serilog.sinks.Email.svg?style=flat)  |  |
-[Exceptionless](https://github.com/serilog/serilog-sinks-exceptionless) | `Exceptionless` | [Serilog.Sinks.SignalR](https://nuget.org/packages/serilog.sinks.exceptionless) | ![NuGet Version](http://img.shields.io/nuget/v/serilog.sinks.exceptionless.svg?style=flat)  |  | 
-[File](https://github.com/serilog/serilog-sinks-file) | `File` | [Serilog.Sinks.File](https://nuget.org/packages/serilog.sinks.file) |![NuGet Version](http://img.shields.io/nuget/v/serilog.sinks.file.svg?style=flat) | ✓ |
-[Glimpse](https://github.com/serilog/serilog-sinks-glimpse) | `Glimpse` | [Serilog.Sinks.Glimpse](https://nuget.org/packages/serilog.sinks.glimpse) | ![NuGet Version](http://img.shields.io/nuget/v/serilog.sinks.glimpse.svg?style=flat)  |  |
-[Literate Console](https://github.com/serilog/serilog-sinks-literate) | `LiterateConsole` | [Serilog.Sinks.Literate](https://nuget.org/packages/serilog.sinks.literate) | ![NuGet Version](http://img.shields.io/nuget/v/serilog.sinks.literate.svg?style=flat)  | ✓ | 
-[Loggly](https://github.com/serilog/serilog-sinks-loggly) | `Loggly` | [Serilog.Sinks.Loggly](https://nuget.org/packages/serilog.sinks.loggly) | ![NuGet Version](http://img.shields.io/nuget/v/serilog.sinks.loggly.svg?style=flat)  |  | 
-[Loggly (Bulk API) *](https://github.com/jamesbascle/serilog.LogglyBulkSink) | `Loggly` | [Serilog.LogglyBulk](https://www.nuget.org/packages/Serilog.LogglyBulk) | ![NuGet Version](http://img.shields.io/nuget/v/Serilog.LogglyBulk.svg?style=flat)  |  |
-[Log4Net](https://github.com/serilog/serilog-sinks-log4net) | `Log4Net` | [Serilog.Sinks.Log4Net](https://nuget.org/packages/serilog.sinks.log4net) | ![NuGet Version](http://img.shields.io/nuget/v/serilog.sinks.log4net.svg?style=flat)  |  |
-[LogEntries](https://github.com/serilog/serilog-sinks-logentries) | `LogEntries` | [Serilog.Sinks.LogEntries](https://nuget.org/packages/serilog.sinks.logentries) | ![NuGet Version](http://img.shields.io/nuget/v/serilog.sinks.logentries.svg?style=flat)  |  |
-[Loggr](https://github.com/serilog/serilog-sinks-loggr) | `Loggr` | [Serilog.Sinks.Loggr](https://nuget.org/packages/serilog.sinks.loggr) | ![NuGet Version](http://img.shields.io/nuget/v/serilog.sinks.loggr.svg?style=flat)  |  |
-[MongoDB](https://github.com/serilog/serilog-sinks-mongodb) | `MongoDB` | [Serilog.Sinks.MongoDB](https://nuget.org/packages/serilog.sinks.mongodb) | ![NuGet Version](http://img.shields.io/nuget/v/serilog.sinks.mongodb.svg?style=flat)  |  |
-[NewRelic *](https://github.com/Applicita/serilog-sinks-newrelic) | `NewRelic` | ?| ?  |  |
-[NLog](https://github.com/serilog/serilog-sinks-nlog) | `NLog` | [Serilog.Sinks.NLog](https://nuget.org/packages/serilog.sinks.nlog) | ![NuGet Version](http://img.shields.io/nuget/v/serilog.sinks.nlog.svg?style=flat)  |  |
-[Observable](https://github.com/serilog/serilog-sinks-observable)| `Observers` | [Serilog.Sinks.Observable](https://nuget.org/packages/serilog.sinks.observable) | ![NuGet Version](http://img.shields.io/nuget/v/serilog.sinks.observable.svg?style=flat)  | |
-[OrientDB *](https://github.com/dev-informatics/Serilog.Sinks.OrientDB) | `OrientDB` | [Serilog.Sinks.OrientDB](https://www.nuget.org/packages/Serilog.Sinks.OrientDB/) | ![NuGet Version](http://img.shields.io/nuget/v/Serilog.Sinks.OrientDB.svg?style=flat)  |  |
-[Period Batching](https://github.com/serilog/serilog-sinks-periodicbatching) | `` | [Serilog.Sinks.PeriodicBatching](https://nuget.org/packages/serilog.sinks.periodicbatching) | ![NuGet Version](http://img.shields.io/nuget/v/serilog.sinks.periodicbatching.svg?style=flat)  | |
-[RabbitMQ](https://github.com/sonicjolt/serilog-sinks-rabbitmq) | `RabbitMQ` | [Serilog.Sinks.RabbitMQ](https://www.nuget.org/packages/Serilog.Sinks.RabbitMQ/) | ![NuGet Version](http://img.shields.io/nuget/v/Serilog.Sinks.RabbitMQ.svg?style=flat)  |  |
-[RavenDB](https://github.com/serilog/serilog-sinks-ravendb) | `RavenDB` | [Serilog.Sinks.RavenDB](https://nuget.org/packages/serilog.sinks.ravendb) | ![NuGet Version](http://img.shields.io/nuget/v/serilog.sinks.ravendb.svg?style=flat)  |  |
-[RayGun](https://github.com/serilog/serilog-sinks-raygun) | `Raygun` | [Serilog.Sinks.Raygun](https://nuget.org/packages/serilog.sinks.raygun) | ![NuGet Version](http://img.shields.io/nuget/v/serilog.sinks.raygun.svg?style=flat)  |  |
-[RethinkDB](https://github.com/serilog/serilog-sinks-rethinkdb) | `RethinkDB` | [Serilog.Sinks.RethinkDB](https://nuget.org/packages/serilog.sinks.rethinkdb) | ![NuGet Version](http://img.shields.io/nuget/v/serilog.sinks.rethinkdb.svg?style=flat)  |  | 
-[Rolling File](https://github.com/serilog/serilog-sinks-rollingfile) | `RollingFile` | [Serilog.Sinks.RollingFile](https://nuget.org/packages/serilog.sinks.rollingfile) | ![NuGet Version](http://img.shields.io/nuget/v/serilog.sinks.rollingfile.svg?style=flat)  | ✓ |
-[Seq](https://github.com/serilog/serilog-sinks-seq) | `Seq` | [Serilog.Sinks.Seq](https://nuget.org/packages/serilog.sinks.seq) | ![NuGet Version](http://img.shields.io/nuget/v/serilog.sinks.seq.svg?style=flat)  | ✓ |
-[SignalR](https://github.com/serilog/serilog-sinks-signalr) | `SignalR` | [Serilog.Sinks.SignalR](https://nuget.org/packages/serilog.sinks.signalr) | ![NuGet Version](http://img.shields.io/nuget/v/serilog.sinks.signalr.svg?style=flat)  |  | 
-[Slack *](https://github.com/marcio-azevedo/serilog-sinks-slack/) | `Slack` | [Serilog.Sinks.SlackClient](https://www.nuget.org/packages/Serilog.Sinks.SlackClient) | ![NuGet Version](http://img.shields.io/nuget/v/Serilog.Sinks.SlackClient.svg?style=flat)  |  |
-[Splunk](https://github.com/serilog/serilog-sinks-splunk) | `EventCollector` | [Serilog.Sinks.Splunk](https://nuget.org/packages/serilog.sinks.splunk) | ![NuGet Version](http://img.shields.io/nuget/v/serilog.sinks.splunk.svg?style=flat)  | ✓ |
-[SQL Server](https://github.com/serilog/serilog-sinks-mssqlserver) | `MSSqlServer` | [Serilog.Sinks.MSSqlServer](https://nuget.org/packages/serilog.sinks.mssqlserver) | ![NuGet Version](http://img.shields.io/nuget/v/serilog.sinks.mssqlserver.svg?style=flat)  |  |
-[Text Writer](https://github.com/serilog/serilog-sinks-textwriter) | `TextWriter` | [Serilog.Sinks.TextWriter](https://nuget.org/packages/serilog-sinks.textwriter) | ![NuGet Version](http://img.shields.io/nuget/v/serilog.sinks.textwriter.svg?style=flat)  | ✓ |
-[Trace](https://github.com/serilog/serilog-sinks-trace) | `Trace` | [Serilog.Sinks.Trace](https://nuget.org/packages/serilog.sinks.trace) | ![NuGet Version](http://img.shields.io/nuget/v/serilog.sinks.trace.svg?style=flat)  | ✓ |
-[Windows Event Log](https://github.com/serilog/serilog-sinks-eventlog) | `EventLog` | [Serilog.Sinks.EventLog](https://nuget.org/packages/serilog.sinks.eventlog) | ![NuGet Version](http://img.shields.io/nuget/v/serilog.sinks.eventlog.svg?style=flat)  |  |
-[Xamarin](https://github.com/serilog/serilog-sinks-Xamarin) | `NSLog` `AndroidLog`| [Serilog.Sinks.Xamarin](https://nuget.org/packages/serilog.sinks.Xamarin) | ![NuGet Version](http://img.shields.io/nuget/v/serilog.sinks.Xamarin.svg?style=flat)  |  |
-[XSockets](https://github.com/serilog/serilog-sinks-xsockets) | `XSockets` | [Serilog.Sinks.XSockets](https://nuget.org/packages/serilog.sinks.xsockets) | ![NuGet Version](http://img.shields.io/nuget/v/serilog.sinks.xsockets.svg?style=flat)  |  |
+The sinks below are maintained under the Serilog project:
 
+ * [Amazon Kinesis](https://github.com/serilog/serilog-sinks-amazonkinesis)
+ * [Application Insights](https://github.com/serilog/serilog-sinks-applicationinsights) 
+ * [Azure DocumentDB](https://github.com/serilog/serilog-sinks-azuredocumentdb) 
+ * [Azure Event Hubs](https://github.com/serilog/serilog-sinks-azureeventhub)
+ * [Azure Table Storage](https://github.com/serilog/serilog-sinks-azuretablestorage) 
+ * [CouchDB](https://github.com/serilog/serilog-sinks-couchdb) 
+ * [CouchBase](https://github.com/serilog/serilog-sinks-couchbase)
+ * [DataDog](https://github.com/serilog/serilog-sinks-datadog)
+ * [Elasticsearch](https://github.com/serilog/serilog-sinks-elasticsearch) 
+ * [elmah.io](https://github.com/serilog/serilog-sinks-elmahio) 
+ * [Email](https://github.com/serilog/serilog-sinks-email)
+ * [Exceptionless](https://github.com/serilog/serilog-sinks-exceptionless) 
+ * [Glimpse](https://github.com/serilog/serilog-sinks-glimpse)
+ * [Literate Console](https://github.com/serilog/serilog-sinks-literate)
+ * [log4net](https://github.com/serilog/serilog-sinks-log4net) 
+ * [Logentries](https://github.com/serilog/serilog-sinks-logentries) 
+ * [Loggly](https://github.com/serilog/serilog-sinks-loggly)
+ * [Loggr](https://github.com/serilog/serilog-sinks-loggr) 
+ * [MongoDB](https://github.com/serilog/serilog-sinks-mongodb)
+ * [NLog](https://github.com/serilog/serilog-sinks-nlog)
+ * [Seq](https://github.com/serilog/serilog-sinks-seq) 
+ * [SignalR](https://github.com/serilog/serilog-sinks-signalr) 
+ * [Splunk](https://github.com/serilog/serilog-sinks-splunk)
+ * [SQL Server](https://github.com/serilog/serilog-sinks-mssqlserver)
+ * [RavenDB](https://github.com/serilog/serilog-sinks-ravendb) 
+ * [Raygun](https://github.com/serilog/serilog-sinks-raygun) 
+ * [RethinkDB](https://github.com/serilog/serilog-sinks-rethinkdb)
+ * [Windows Event Log](https://github.com/serilog/serilog-sinks-eventlog) 
+ * [Xamarin](https://github.com/serilog/serilog-sinks-xamarin)
+ * [XSockets.NET](https://github.com/serilog/serilog-sinks-xsockets)
+
+Maintained by the wider Serilog community:
+
+ * [Alternate Rolling File](https://github.com/bedegaming/sinks-rollingfile)
+ * [AWS CloudWatch](https://github.com/Cimpress-MCP/serilog-sinks-awscloudwatch)
+ * [Loggly (Bulk API)](https://github.com/jamesbascle/serilog.LogglyBulkSink)
+ * [NewRelic](https://github.com/Applicita/serilog-sinks-newrelic)
+ * [OrientDB](https://github.com/dev-informatics/Serilog.Sinks.OrientDB)
+ * [RabbitMQ](https://github.com/sonicjolt/serilog-sinks-rabbitmq)
+ * [Slack](https://github.com/marcio-azevedo/serilog-sinks-slack/)
