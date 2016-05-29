@@ -1,3 +1,4 @@
+
 Serilog provides _sinks_ for writing log events to storage in various formats.
  
 ## List of available sinks 
@@ -23,7 +24,7 @@ Serilog provides _sinks_ for writing log events to storage in various formats.
 [Elastic Search](https://github.com/serilog/serilog-sinks-elasticsearch) | `Elasticsearch` | [Serilog.Sinks.ElasticSearch](https://nuget.org/packages/serilog.sinks.elasticsearch) <br/>  ![NuGet Version](http://img.shields.io/nuget/v/serilog.sinks.elasticsearch.svg?style=flat)  |  |
 [Email](https://github.com/serilog/serilog-sinks-email) | `Email` | [Serilog.Sinks.Email](https://nuget.org/packages/serilog.sinks.Email) <br/>  ![NuGet Version](http://img.shields.io/nuget/v/serilog.sinks.Email.svg?style=flat)  |  |
 [Exceptionless](https://github.com/serilog/serilog-sinks-exceptionless) | `Exceptionless` | [Serilog.Sinks.SignalR](https://nuget.org/packages/serilog.sinks.exceptionless) <br/>  ![NuGet Version](http://img.shields.io/nuget/v/serilog.sinks.exceptionless.svg?style=flat)  |  | 
-[File](https://github.com/serilog/serilog-sinks-file) | `File` | [Serilog.Sinks.File](https://nuget.org/packages/serilog.sinks.file) |![NuGet Version](http://img.shields.io/nuget/v/serilog.sinks.file.svg?style=flat) | ✓ |
+[File](https://github.com/serilog/serilog-sinks-file) | `File` | [Serilog.Sinks.File](https://nuget.org/packages/serilog.sinks.file)   <br/> ![NuGet Version](http://img.shields.io/nuget/v/serilog.sinks.file.svg?style=flat) | ✓ |
 [Glimpse](https://github.com/serilog/serilog-sinks-glimpse) | `Glimpse` | [Serilog.Sinks.Glimpse](https://nuget.org/packages/serilog.sinks.glimpse) <br/>  ![NuGet Version](http://img.shields.io/nuget/v/serilog.sinks.glimpse.svg?style=flat)  |  |
 [Literate Console](https://github.com/serilog/serilog-sinks-literate) | `LiterateConsole` | [Serilog.Sinks.Literate](https://nuget.org/packages/serilog.sinks.literate) <br/>  ![NuGet Version](http://img.shields.io/nuget/v/serilog.sinks.literate.svg?style=flat)  | ✓ | 
 [Loggly](https://github.com/serilog/serilog-sinks-loggly) | `Loggly` | [Serilog.Sinks.Loggly](https://nuget.org/packages/serilog.sinks.loggly) <br/>  ![NuGet Version](http://img.shields.io/nuget/v/serilog.sinks.loggly.svg?style=flat)  |  | 
