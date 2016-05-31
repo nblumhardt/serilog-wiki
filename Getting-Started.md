@@ -41,7 +41,7 @@ _Configuring and using the `Log` class is an optional convenience that makes it 
 
 ## Example application
 
-The complete example below shows logging in a simple console application.
+The complete example below shows logging in a simple console application, with events sent to the console as well as a date-stamped rolling log file.
 
 **1. Create a new Console Application project**
 
@@ -52,6 +52,7 @@ In Visual Studio, open the _Package Manager Console_ and type:
 ```powershell
 Install-Package Serilog -Pre
 Install-Package Serilog.Sinks.Literate -Pre
+Install-Package Serilog.Sinks.RollingFile -Pre
 ```
 
 _Serilog **v2.0** is currently a release candidate and is recommended for new projects. To install the older Serilog 1.5 release instead, leave out the `-Pre` flags from the commands above._
@@ -71,6 +72,7 @@ namespace SerilogExample
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Debug()
                 .WriteTo.LiterateConsole()
+                .WriteTo.RollingFile("logs\\myapp-{Date}.txt")
                 .CreateLogger();
 
             Log.Information("Hello, world!");
