@@ -10,7 +10,7 @@
 * [[Structured data | Structured-Data]]
 * [[Writing log events|Writing-Log-Events]]
 * [[Sinks|Provided-Sinks]]
-* [[Enrichers| Provided-Enrichers]]
+* [[Enrichment| Enrichment]]
 * [[App Settings|AppSettings]]
 
 ## Digging deeper
