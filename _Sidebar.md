@@ -2,7 +2,7 @@
 
 * [[Getting started|Getting-Started]]
 * [Setting up a new console app](https://github.com/serilog/serilog/wiki/Getting-Started#example-application)
-* [[Setting up a new web app]]
+* [Setting up a new web app](https://github.com/serilog/serilog-docker/tree/master/web-sample/src)
 
 ## Using Serilog
 
