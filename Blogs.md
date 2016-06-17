@@ -1,7 +1,7 @@
 ## Blogs
 
 * [[nblumhardt.com|http://nblumhardt.com]]
-* [Post Search](https://www.google.com.au/#safe=strict&q=serilog+blog)
+* [LMGTFY](https://www.google.com.au/#safe=strict&q=serilog+blog)
 
 ## Screencasts
 
