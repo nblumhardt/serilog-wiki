@@ -26,7 +26,7 @@
 * [Gitter](https://gitter.im/serilog/serilog)
 * [Google Forum](https://groups.google.com/forum/#!forum/serilog)
 * [[Community projects|Community-Projects]]
-* [[Blogs|Blogs]]
+* [[Blogs & other resources|Blogs]]
 
 ## Releases
 * [NuGet](https://www.nuget.org/packages/Serilog/)
