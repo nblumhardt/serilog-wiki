@@ -15,11 +15,13 @@ Log.Logger = new LoggerConfiguration()
     .CreateLogger();
 
 Log.Information("Hello!");
+
+// Your application runs, then:
+
+Log.CloseAndFlush();
 ```
 
 If you do this, only configure the logger *once* and then use it for the lifetime of the application.
-
-_Serilog 2 only:_ consider calling `Log.CloseAndFlush()` when your app exits. On the full .NET Framework, some sinks will hook `AppDomain.Unloading` and other events to flush themselves, but making this call explicitly will be more reliable.
 
 To create more specialized loggers:
 
@@ -31,18 +33,17 @@ To create more specialized loggers:
 If you do not wish to use the static `Log` class, you will use `LoggerConfiguration` to create an `ILogger`.
 
 ```csharp
-var log = new LoggerConfiguration()
-    .WriteTo.File(@"myapp\log.txt")
-    .CreateLogger();
+using (var log = new LoggerConfiguration()
+        .WriteTo.File(@"myapp\log.txt")
+        .CreateLogger())
+{
+    log.Information("Hello again!");
 
-log.Information("Hello again!");
+    // Your app runs, then disposal of `log` flushes any buffers
+}
 ```
 
-In this case, `Log.CloseAndFlush()` is not used. Instead, when the application no longer needs the logger it may require disposal:
-
-```csharp
-(log as IDisposable)?.Dispose();
-```
+In this case, `Log.CloseAndFlush()` is not used. Instead, when the application no longer needs the logger it is disposed.
 
 Only the root logger created from a `LoggerConfiguration` needs to be treated this way. `ILogger`s returned from `ForContext()` and similar methods don't need any special treatment.
 
