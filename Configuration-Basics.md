@@ -1,6 +1,6 @@
 Serilog uses a simple **C# API** to configure logging. When XML configuration is desirable it can be mixed in sparingly using the [[AppSettings]] package.
 
-## Creating a Logger
+## Creating a logger
 
 Loggers are created using a `LoggerConfiguration` object:
 
@@ -13,15 +13,20 @@ The example above will create a logger that does not record events anywhere. To 
 
 ## Sinks
 
-Log event sinks generally record log events to some external representation, typically the console, a file or data store.
+Log event sinks generally record log events to some external representation, typically the console, a file or data store. Serilog sinks are distributed via NuGet. A [curated list of available sinks](https://github.com/serilog/serilog/wiki/Provided-Sinks) is listed here on the wiki.
 
-> As of Serilog 2.0 it will be necessary to `Install-Package Serilog.Sinks.ColoredConsole` for this example to work.
+This example will use the colored [literate console](https://github.com/serilog/serilog-sinks-literate) package, which pretty-prints log data, and the [rolling file](https://github.com/serilog/serilog-sinks-rollingfile) package, which writes log events to a set of date-stamped text files.
+
+```powershell
+Install-Package Serilog.Sinks.Literate
+Install-Package Serilog.Sinks.RollingFile
+```
 
 Sinks are configured using the `WriteTo` configuration object.
 
 ```csharp
 Log.Logger = new LoggerConfiguration()
-    .WriteTo.ColoredConsole()
+    .WriteTo.LiterateConsole()
     .CreateLogger();
 
 Log.Information("Ah, there you are!");
@@ -31,23 +36,32 @@ Multiple sinks can be active at the same time. Adding additional sinks is a simp
 
 ```csharp
 Log.Logger = new LoggerConfiguration()
-    .WriteTo.ColoredConsole()
-    .WriteTo.RollingFile(@"C:\Log-{Date}.txt")
+    .WriteTo.LiterateConsole()
+    .WriteTo.RollingFile("log-{Date}.txt")
     .CreateLogger();
 ```
 
-### Output Templates
+### Output templates
 
-Each sink is provided with an output template that controls how the sink renders events. This template uses the same format as the message templates that go with log events themselves, and can be specified during configuration.
+Text-based sinks use _output templates_ to control formatting. this can be modified through the `outputTemplate` parameter:
 
-## Minimum Level
+```csharp
+    .WriteTo.RollingFile("log-{Date}.txt",
+        outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level}] {Message}{NewLine}{Exception}")
+```
+
+The default template, shown in the example above, uses built-in properties like `Timestamp` and `Level`. Properties from events, including those attached using [enrichers](https://github.com/serilog/serilog/wiki/Enrichment), can also appear in the output template.
+
+For more compact level names, use a format such as `{Level:u3}` or `{Level:w3}` for three-character upper- or lowercase level names, respectively.
+
+## Minimum level
 
 Serilog implements the common concept of a 'minimum level' for log event processing.
 
 ```csharp
 Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Debug()
-    .WriteTo.ColoredConsole()
+    .WriteTo.LiterateConsole()
     .CreateLogger();
 ```
 
@@ -64,15 +78,15 @@ The `MinimumLevel` configuration object provides for one of the log event levels
 
 **Default Level** - if no `MinimumLevel` is specified, then `Information` level events and higher will be processed.
 
-### Overriding per Sink
+### Overriding per sink
 
 Sometimes it is desirable to write detailed logs to one medium, but less detailed logs to another.
 
 ```csharp
 Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Debug()
-    .WriteTo.RollingFile(@"C:\Logs\myapp-{Date}.txt")
-    .WriteTo.ColoredConsole(restrictedToMinimumLevel: LogEventLevel.Information)
+    .WriteTo.RollingFile("log-{Date}.txt")
+    .WriteTo.LiterateConsole(restrictedToMinimumLevel: LogEventLevel.Information)
     .CreateLogger();
 ```
 
@@ -80,7 +94,7 @@ In this example debug logs will be written to the rolling file, while only `Info
 
 All provided sinks support the `restrictedToMinimumLevel` configuration parameter.
 
-**Logger vs. Sink Minimums** - it is important to realise that the logging level can only be raised for sinks, not lowered. So, if the logger's `MinimumLevel` is set to `Information` then a sink with `Debug` as its specified level will still only see `Information` level events. This is because the logger-level configuration controls which logging statements will result in the creation of events, while the sink-level configuration only filters these. To create a single logger with a more verbose level, use a separate `LoggerConfiguration`.
+**Logger vs. sink minimums** - it is important to realize that the logging level can only be raised for sinks, not lowered. So, if the logger's `MinimumLevel` is set to `Information` then a sink with `Debug` as its specified level will still only see `Information` level events. This is because the logger-level configuration controls which logging statements will result in the creation of events, while the sink-level configuration only filters these. To create a single logger with a more verbose level, use a separate `LoggerConfiguration`.
 
 ## Enrichers
 
@@ -102,7 +116,7 @@ Enrichers are added using the `Enrich` configuration object.
 ```csharp
 Log.Logger = new LoggerConfiguration()
     .Enrich.With(new ThreadIdEnricher())
-    .WriteTo.ColoredConsole(outputTemplate:
+    .WriteTo.LiterateConsole(outputTemplate:
         "{Timestamp:HH:mm} [{Level}] ({ThreadId}) {Message}{NewLine}{Exception}")
     .CreateLogger();
 ```
@@ -114,7 +128,7 @@ If the enriched property value is constant throughout the application run, the s
 ```csharp
 Log.Logger = new LoggerConfiguration()
     .Enrich.WithProperty("Version", "1.0.0")
-    .WriteTo.ColoredConsole()
+    .WriteTo.LiterateConsole()
     .CreateLogger();
 ```
 
@@ -137,10 +151,10 @@ Sometimes a finer level of control over what is seen by a sink is necessary. For
 
 ```csharp
 Log.Logger = new LoggerConfiguration()
-    .WriteTo.ColoredConsole()
+    .WriteTo.LiterateConsole()
     .WriteTo.Logger(lc => lc
         .Filter.ByIncludingOnly(...)
-        .WriteTo.RollingFile(@"C:\Logs\myapp-{Date}.txt"))
+        .WriteTo.RollingFile("log-{Date}.txt"))
     .CreateLogger();
 ```
 
