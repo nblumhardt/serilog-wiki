@@ -1,4 +1,10 @@
-Log events can be _enriched_ with properties in various ways. Configuration for enrichment is done via the `Enrich` configuration property:
+Log events can be _enriched_ with properties in various ways. A number of pre-built enrichers are provided through NuGet:
+
+```powershell
+Install-Package Serilog.Enrichers.Thread
+```
+
+Configuration for enrichment is done via the `Enrich` configuration object:
 
 ```
 var log = new LoggerConfiguration()
@@ -9,7 +15,7 @@ var log = new LoggerConfiguration()
 
 All events written through `log` will carry a property `ThreadId` with the id of the managed thread that wrote them. (By convention, any `.WithXyz()` methods on `Enrich` create properties named `Xyz`.)
 
-## The `LogContext`
+### The `LogContext`
 
 `Serilog.Context.LogContext` can be used to dynamically add and remove properties from the ambient "execution context"; for example, all messages written during a transaction might carry the id of that transaction, and so-on.
 
@@ -43,8 +49,10 @@ Pushing property onto the context will override any existing properties with the
 
 **Important:** properties _must_ be popped from the context in the precise order in which they were added. Behavior otherwise is undefined.
 
-*Packages previously distributed as apart of the Serilog Package*
+### Available enricher packages
 
-- [Environment](https://github.com/serilog/serilog-enrichers-environment)
-- [Process](https://github.com/serilog/serilog-enrichers-process)
-- [Thread](https://github.com/serilog/serilog-enrichers-thread)
+The Serilog project provides:
+
+- [Serilog.Enrichers.Environment](https://github.com/serilog/serilog-enrichers-environment) - `WithMachineName()` and `WithUserName()`
+- [Serilog.Enrichers.Process](https://github.com/serilog/serilog-enrichers-process) - `WithProcessId()`
+- [Serilog.Enrichers.Thread](https://github.com/serilog/serilog-enrichers-thread) - `WithThreadId()`
