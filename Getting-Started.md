@@ -50,12 +50,10 @@ The complete example below shows logging in a simple console application, with e
 In Visual Studio, open the _Package Manager Console_ and type:
 
 ```powershell
-Install-Package Serilog -Pre
-Install-Package Serilog.Sinks.Literate -Pre
-Install-Package Serilog.Sinks.RollingFile -Pre
+Install-Package Serilog
+Install-Package Serilog.Sinks.Literate
+Install-Package Serilog.Sinks.RollingFile
 ```
-
-_Serilog **v2.0** is currently a release candidate and is recommended for new projects. To install the older Serilog 1.5 release instead, leave out the `-Pre` flags from the commands above._
 
 **3. Add the following code to `Program.cs`**
 
