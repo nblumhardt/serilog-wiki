@@ -2,9 +2,13 @@ Serilog supports a simple `<appSettings>`-based configuration syntax in `App.con
 
 Serilog is primarily configured using code, with settings support intended as a supplementary feature. It is not comprehensive but most logger configuration tasks can be achieved using it.
 
-**Note:** in Serilog 2.0 beta, you'll need to install the _Serilog.Settings.AppSettings_ package to use this feature.
+## Enabling `<appSettings>` configuration
 
-## Enabling app settings configuration
+The `<appSettings>` support package needs to be installed from NuGet:
+
+```powershell
+Install-Package Serilog.Settings.AppSettings
+```
 
 To read configuration from `<appSettings>` use the `ReadFrom.AppSettings()` extension method on your `LoggerConfiguration`:
 
@@ -44,24 +48,24 @@ Valid values are those defined in the `LogEventLevel` enumeration: `Verbose`, `D
 Sinks are added with the `serilog:write-to` key. The setting name matches the configuration method name that you'd use in code, so the following are equivalent:
 
 ```csharp
-    .WriteTo.ColoredConsole()
+    .WriteTo.Literate()
 ```
 
 In XML:
 
 ```xml
-    <add key="serilog:write-to:ColoredConsole" />
+    <add key="serilog:write-to:LiterateConsole" />
 ```
 
-**NOTE: When using `serilog:*` keys need to be unique!**
+**NOTE: When using `serilog:*` keys need to be unique.**
 
-**e.g.**
+Sink assemblies must be specified using the `serilog:using` syntax. For example, to configure 
+
 ```csharp
 <add key="serilog:using:Literate" value="Serilog.Sinks.Literate" />
-<add key="serilog:using:Email" value="Serilog.Sinks.Email" />
 <add key="serilog:write-to:LiterateConsole"/>
-<add key="serilog:write-to:Email"/>
 ```
+
 If the sink accepts parameters, these are specified by appending the parameter name to the setting.
 
 ```csharp
@@ -79,7 +83,7 @@ Any environment variables specified in a setting value (e.g. `%TEMP%`) will be e
 
 ### Using sink extensions from additional assemblies
 
-To use sinks from additional assemblies, specify them with the `serilog:using` key.
+To use sinks and enrichers from additional assemblies, specify them with the `serilog:using` key.
 
 For example, to use configuration from the `Serilog.Sinks.EventLog` assembly:
 
