@@ -2,7 +2,31 @@
 
 There are a number of options available to formatting the output of types.  One example is the use of the format provider that is exposed in most sinks. 
 
+For example, it may desirable to override or specify the way a `DateTime` is formatted.  This can be done via the implementation of `IFormatProvider`.
 
+ 
+```csharp
+public class Program
+    {
+        class User
+        {
+            public int Id { get; set; }
+            public string Name { get; set; }
+            public DateTime Created { get; set; }
+        }
+        public static void Main(string[] args)
+        {
+            var log = new LoggerConfiguration()
+                .WriteTo.LiterateConsole()
+                .CreateLogger();
+
+            var exampleUser = new User { Id = 1, Name = "Adam", Created = DateTime.Now };
+            log.Information("Created {@User} on {Created}", exampleUser, DateTime.Now);
+
+            Console.ReadLine();
+        }
+    }
+```
 
 ```csharp
 void Main()
