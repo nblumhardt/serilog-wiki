@@ -1,3 +1,8 @@
+# Format Providers
+
+There are a number of options available to formatting the output of types.  One example is the use of the format provider that is exposed in most sinks. 
+
+
 
 ```csharp
 void Main()
@@ -9,11 +14,11 @@ void Main()
     Console.WriteLine(myDt.ToString(null, myCustomDateTimeFormatter));
         
     var logger = new LoggerConfiguration()
-        .WriteTo.Console(formatProvider: new CultureInfo("en-AU"))
-        .WriteTo.Console(formatProvider: myCustomDateTimeFormatter)
+        .WriteTo.Console(formatProvider: new CultureInfo("en-AU")) //Console1
+        .WriteTo.Console(formatProvider: myCustomDateTimeFormatter) //Console2
         .CreateLogger();
 
-    logger.Information("Created {@User} on {Created}", User.User1, DateTime.Now);
+    logger.Information("Created {@User} on {Created}", User.ExampleUser, DateTime.Now);
     // Console1 = 2016-07-17 11:27:32 [Information] Created User { Id: 1, Name: "Adam", Created: 17/07/2016 11:27:32 AM } on 17/07/2016
     // Console2 = 2016-07-17 11:27:32 [Information] Created User { Id: 1, Name: "Adam", Created: 17-Jul-2016  } on 17-Jul-2016
 }
@@ -38,8 +43,7 @@ class MyCustomDateFormatter : IFormatProvider
 }
 
 class User {
-    public static readonly User User1 = new User { Id=1, Name="Adam", Created=DateTime.Now };
-    
+    public static readonly User ExampleUser = new User { Id=1, Name="Adam", Created=DateTime.Now };
     public int Id { get; private set; }
     public string Name { get; private set; }
     public DateTime Created { get; private set; }
