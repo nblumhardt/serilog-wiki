@@ -1,7 +1,6 @@
 There are a number of options available to formatting the output of types.  One example is the use of the format provider that is exposed in most sinks. 
 
-For example, it may desirable to override or specify the way a `DateTime` is formatted.  This can be done via the implementation of `IFormatProvider`.
-
+Below is a simple console sample using the [Literate Console](https://github.com/serilog/serilog-sinks-literate) sink.  This is using the default behaviour for rendering a date.
  
 ```csharp
 public class Program
@@ -26,11 +25,13 @@ public class Program
     }
 ```
 
-This would provide the following output on the console
+This would provide the following output on the console.
 
 ```
 [07:12:57 INF] Created User {Id=1, Name="Adam", Created=07/18/2016 07:12:57} on 07/18/2016 07:12:57
 ```
+
+There may be scenarios where it is desirable to override or specify the way a `DateTime` is formatted.  This can be done via the implementation of `IFormatProvider`. This strategy applies to any type that you pass to Serilog.
 
 
 ```csharp
@@ -80,4 +81,11 @@ This would provide the following output on the console
             Console.ReadLine();
         }
     }
+```
+
+The following is the output of the above example, with two consoles sinks configured.
+
+```
+[08:04:48 INF] Created User {Id=1, Name="Adam", Created=18/07/2016 8:04:48 AM} on 18/07/2016 8:04:48 AM   //Console1
+[08:04:48 INF] Created User {Id=1, Name="Adam", Created=18-Jul-2016 8:04:48 AM} on 18-Jul-2016 8:04:48 AM //Console2
 ```
