@@ -11,7 +11,9 @@
 * [[Writing log events|Writing-Log-Events]]
 * [[Sinks|Provided-Sinks]]
 * [[Enrichment| Enrichment]]
+* [[Format Providers | FormatProviders]]
 * [[App Settings|AppSettings]]
+
 
 ## Digging deeper
 
