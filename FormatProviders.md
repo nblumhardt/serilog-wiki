@@ -28,6 +28,13 @@ public class Program
     }
 ```
 
+This would provide the following output on the console
+
+```
+[07:12:57 INF] Created User {Id=1, Name="Adam", Created=07/18/2016 07:12:57} on 07/18/2016 07:12:57
+```
+
+
 ```csharp
 void Main()
 {
