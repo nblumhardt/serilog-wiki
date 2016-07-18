@@ -1,6 +1,9 @@
 ##Formatting properties
+_TODO_
 ##Formatting plain text
+_TODO_
 ##Formatting JSON
+_TODO_
 ##Format Providers
 
 There are a number of options available to formatting the output of types.  One example is the use of the format provider that is exposed in most sinks. 
