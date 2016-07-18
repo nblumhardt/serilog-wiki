@@ -1,3 +1,8 @@
+##Formatting properties
+##Formatting plain text
+##Formatting JSON
+##Format Providers
+
 There are a number of options available to formatting the output of types.  One example is the use of the format provider that is exposed in most sinks. 
 
 Below is a simple console sample using the [Literate Console](https://github.com/serilog/serilog-sinks-literate) sink.  This is using the default behaviour for rendering a date.
