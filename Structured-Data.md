@@ -98,7 +98,7 @@ var sensorInput = new { Latitude = 25, Longitude = 134 };
 Log.Information("Processing {@SensorInput}", sensorInput);
 ```
 
-('Destructuring' is a term borrowed from functional programming; it is a style of pattern matching used to pull values out from structured data. The usage is Serilog is only notionally related at the moment, but possible future extensions to this operator could match the FP definition more closely.) 
+('Destructuring' is a term borrowed from various programming languages; it is a style of pattern matching used to pull values out from structured data. The usage is Serilog is only notionally related at the moment, but possible future extensions to this operator could match the broader definition more accurately.) 
 
 ### Customizing the stored data
 
