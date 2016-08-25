@@ -14,7 +14,7 @@ The system console, a file or an in-memory `StringWriter` can all be used to col
 Serilog.Debugging.SelfLog.Enable(Console.Error);
 ```
 
-Serilog never write sits own events to user-defined sinks.
+Serilog never writes its own events to user-defined sinks.
 
 **Warning**: `SelfLog` does not perform any synchronization over the provided `TextWriter`. For most implementations you should use the `TextWriter.Synchronized()` method to ensure the object being passed in can be written from multiple threads:
 
