@@ -48,7 +48,7 @@ Valid values are those defined in the `LogEventLevel` enumeration: `Verbose`, `D
 Sinks are added with the `serilog:write-to` key. The setting name matches the configuration method name that you'd use in code, so the following are equivalent:
 
 ```csharp
-    .WriteTo.Literate()
+    .WriteTo.LiterateConsole()
 ```
 
 In XML:
@@ -62,7 +62,7 @@ In XML:
 Sink assemblies must be specified using the `serilog:using` syntax. For example, to configure 
 
 ```csharp
-<add key="serilog:using:Literate" value="Serilog.Sinks.Literate" />
+<add key="serilog:using:LiterateConsole" value="Serilog.Sinks.Literate" />
 <add key="serilog:write-to:LiterateConsole"/>
 ```
 
