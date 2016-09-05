@@ -9,7 +9,7 @@
 * [[Configuration basics|Configuration-Basics]]
 * [[Structured data | Structured-Data]]
 * [[Writing log events|Writing-Log-Events]]
-* [[Sinks|Provided-Sinks]]
+* [[Available Sinks|Provided-Sinks]]
 * [[Enrichment| Enrichment]]
 * [[Formatting Output| Formatting Output]]
 * [[App Settings|AppSettings]]
