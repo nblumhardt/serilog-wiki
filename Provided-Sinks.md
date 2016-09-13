@@ -8,7 +8,7 @@ Serilog provides _sinks_ for writing log events to storage in various formats.
 
 | Sink Name  | `WriteTo.*` | Package |
 | ------------- | ------------- | ------------- | 
-[Alternate Rolling File *](https://github.com/bedegaming/sinks-rollingfile) | `RollingFileAlternate` | [Serilog.Sinks.RollingFileAlternate.MultiPlatform](https://nuget.org/packages/Serilog.Sinks.RollingFileAlternate.MultiPlatform) <br/> ![NuGet Version](http://img.shields.io/nuget/v/Serilog.Sinks.RollingFileAlternate.MultiPlatform.svg?style=flat) 
+[Alternate Rolling File *](https://github.com/bedegaming/sinks-rollingfile) | `RollingFileAlternate` | [Serilog.Sinks.RollingFileAlternate](https://nuget.org/packages/Serilog.Sinks.RollingFileAlternate) <br/> ![NuGet Version](http://img.shields.io/nuget/v/Serilog.Sinks.RollingFileAlternate.svg?style=flat) 
 [Amazon CloudWatch *](https://github.com/Cimpress-MCP/serilog-sinks-awscloudwatch) | `AmazonCloudWatch` | [Serilog.Sinks.AwsCloudWatch](https://www.nuget.org/packages/Serilog.Sinks.AwsCloudWatch) <br/>  ![NuGet Version](http://img.shields.io/nuget/v/Serilog.Sinks.AwsCloudWatch.svg?style=flat)  |  |
 [Amazon DynamoDB](https://github.com/serilog/serilog-sinks-dynamodb) | `DynamoDB` | [Serilog.Sinks.DynamoDB](https://nuget.org/packages/serilog.sinks.dynamodb) <br/>  ![NuGet Version](http://img.shields.io/nuget/v/serilog.sinks.dynamodb.svg?style=flat)  |  | 
 [Amazon Kinesis](https://github.com/serilog/serilog-sinks-amazonkinesis) | `AmazonKinesis` | [Serilog.Sinks.AmazonKinesis](https://nuget.org/packages/serilog.sinks.amazonkinesis) <br/>  ![NuGet Version](http://img.shields.io/nuget/v/serilog.sinks.amazonkinesis.svg?style=flat)  |  | 
