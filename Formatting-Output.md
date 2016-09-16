@@ -8,8 +8,8 @@ The format of events written by these sinks can be modified using the `outputTem
 
 ```csharp
 Log.Logger = new LoggerConfiguration()
-    .WriteTo.Console(
-        outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss} [{Level}] {Message}{NewLine}{Exception}")
+    .WriteTo.Console(outputTemplate:
+        "{Timestamp:yyyy-MM-dd HH:mm:ss} [{Level}] {Message}{NewLine}{Exception}")
     .CreateLogger();
 ```
 
@@ -78,7 +78,8 @@ public class Program
 This would provide the following output on the console.
 
 ```
-[07:12:57 INF] Created User {Id=1, Name="Adam", Created=07/18/2016 07:12:57} on 07/18/2016 07:12:57
+[07:12:57 INF] Created User {Id=1, Name="Adam", Created=07/18/2016 07:12:57}
+  on 07/18/2016 07:12:57
 ```
 
 There may be scenarios where it is desirable to override or specify the way a `DateTime` is formatted.  This can be done via the implementation of `IFormatProvider`. This strategy applies to any type that you pass to Serilog.
@@ -120,8 +121,8 @@ public class Program
 
         var formatter = new ACustomDateFormatter("dd-MMM-yyyy", new CultureInfo("en-AU"));
         var log = new LoggerConfiguration() 
-            .WriteTo.LiterateConsole(formatProvider: new CultureInfo("en-AU"))  //Console1
-            .WriteTo.LiterateConsole(formatProvider: formatter)                 //Console2
+            .WriteTo.LiterateConsole(formatProvider: new CultureInfo("en-AU")) //Console1
+            .WriteTo.LiterateConsole(formatProvider: formatter)                //Console2
             .CreateLogger();
 
         var exampleUser = new User { Id = 1, Name = "Adam", Created = DateTime.Now };
@@ -135,6 +136,8 @@ public class Program
 The following is the output of the above example, with two consoles sinks configured.
 
 ```
-[08:04:48 INF] Created User {Id=1, Name="Adam", Created=18/07/2016 8:04:48 AM} on 18/07/2016 8:04:48 AM   //Console1
-[08:04:48 INF] Created User {Id=1, Name="Adam", Created=18-Jul-2016 8:04:48 AM} on 18-Jul-2016 8:04:48 AM //Console2
+[08:04:48 INF] Created User {Id=1, Name="Adam", Created=18/07/2016 8:04:48 AM} 
+  on 18/07/2016 8:04:48 AM   //Console1
+[08:04:48 INF] Created User {Id=1, Name="Adam", Created=18-Jul-2016 8:04:48 AM}
+  on 18-Jul-2016 8:04:48 AM //Console2
 ```
