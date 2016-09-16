@@ -92,11 +92,11 @@ class User
     public DateTime Created { get; set; }
 }
 
-class ACustomDateFormatter : IFormatProvider
+class CustomDateFormatter : IFormatProvider
 {
     readonly IFormatProvider basedOn;
     readonly string shortDatePattern;
-    public ACustomDateFormatter(string shortDatePattern, IFormatProvider basedOn)
+    public CustomDateFormatter(string shortDatePattern, IFormatProvider basedOn)
     {
         this.shortDatePattern = shortDatePattern;
         this.basedOn = basedOn;
@@ -105,8 +105,8 @@ class ACustomDateFormatter : IFormatProvider
     {
         if (formatType == typeof(DateTimeFormatInfo))
         {
-            var basedOnDateFormatInfo = (DateTimeFormatInfo)basedOn.GetFormat(formatType);
-            var dateFormatInfo = (DateTimeFormatInfo)basedOnDateFormatInfo.Clone();
+            var basedOnFormatInfo = (DateTimeFormatInfo)basedOn.GetFormat(formatType);
+            var dateFormatInfo = (DateTimeFormatInfo)basedOnFormatInfo.Clone();
             dateFormatInfo.ShortDatePattern = this.shortDatePattern;
             return dateFormatInfo;
         }
@@ -119,7 +119,7 @@ public class Program
     public static void Main(string[] args)
     {
 
-        var formatter = new ACustomDateFormatter("dd-MMM-yyyy", new CultureInfo("en-AU"));
+        var formatter = new CustomDateFormatter("dd-MMM-yyyy", new CultureInfo("en-AU"));
         var log = new LoggerConfiguration() 
             .WriteTo.LiterateConsole(formatProvider: new CultureInfo("en-AU")) //Console1
             .WriteTo.LiterateConsole(formatProvider: formatter)                //Console2
