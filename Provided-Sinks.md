@@ -57,6 +57,9 @@ Serilog provides _sinks_ for writing log events to storage in various formats.
 [Stackify *](https://github.com/jpknoll/Serilog.Sinks.Stackify) | `Stackify` | [Serilog.Sinks.Stackify](https://www.nuget.org/packages/Serilog.Sinks.Stackify/) <br/>  ![NuGet Version](http://img.shields.io/nuget/v/serilog.sinks.stackify.svg?style=flat)  |  |
 [Text Writer](https://github.com/serilog/serilog-sinks-textwriter) | `TextWriter` | [Serilog.Sinks.TextWriter](https://nuget.org/packages/serilog-sinks.textwriter) <br/>  ![NuGet Version](http://img.shields.io/nuget/v/serilog.sinks.textwriter.svg?style=flat)  | ✓ |
 [Trace](https://github.com/serilog/serilog-sinks-trace) | `Trace` | [Serilog.Sinks.Trace](https://nuget.org/packages/serilog.sinks.trace) <br/>  ![NuGet Version](http://img.shields.io/nuget/v/serilog.sinks.trace.svg?style=flat)  | ✓ |
+
+[UDP](https://github.com/FantasticFiasco/serilog-sinks-udp) | `Udp` | [Serilog.Sinks.UDP](https://nuget.org/packages/serilog.sinks.udp) <br/>  ![NuGet Version](http://img.shields.io/nuget/v/serilog.sinks.udp.svg?style=flat)  |  |
+
 [Windows Event Log](https://github.com/serilog/serilog-sinks-eventlog) | `EventLog` | [Serilog.Sinks.EventLog](https://nuget.org/packages/serilog.sinks.eventlog) <br/>  ![NuGet Version](http://img.shields.io/nuget/v/serilog.sinks.eventlog.svg?style=flat)  |  |
 [Xamarin](https://github.com/serilog/serilog-sinks-Xamarin) | `NSLog` `AndroidLog`| [Serilog.Sinks.Xamarin](https://nuget.org/packages/serilog.sinks.Xamarin) <br/>  ![NuGet Version](http://img.shields.io/nuget/v/serilog.sinks.Xamarin.svg?style=flat)  |  |
 [XSockets](https://github.com/serilog/serilog-sinks-xsockets) | `XSockets` | [Serilog.Sinks.XSockets](https://nuget.org/packages/serilog.sinks.xsockets) <br/>  ![NuGet Version](http://img.shields.io/nuget/v/serilog.sinks.xsockets.svg?style=flat)  |  |
