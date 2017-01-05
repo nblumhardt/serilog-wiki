@@ -53,6 +53,6 @@ Pushing property onto the context will override any existing properties with the
 
 The Serilog project provides:
 
-- [Serilog.Enrichers.Environment](https://github.com/serilog/serilog-enrichers-environment) - `WithMachineName()` and `WithUserName()`
+- [Serilog.Enrichers.Environment](https://github.com/serilog/serilog-enrichers-environment) - `WithMachineName()` and `WithEnvironmentUserName()`
 - [Serilog.Enrichers.Process](https://github.com/serilog/serilog-enrichers-process) - `WithProcessId()`
 - [Serilog.Enrichers.Thread](https://github.com/serilog/serilog-enrichers-thread) - `WithThreadId()`
