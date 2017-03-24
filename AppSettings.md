@@ -89,7 +89,7 @@ To use sinks and enrichers from additional assemblies, specify them with the `se
 For example, to use configuration from the `Serilog.Sinks.EventLog` assembly:
 
 ```xml 
-  <add key="serilog:using" value="Serilog.Sinks.EventLog" />
+  <add key="serilog:using:EventLog" value="Serilog.Sinks.EventLog" />
   <add key="serilog:write-to:EventLog.source" value="Serilog Demo" />
 ```
 
