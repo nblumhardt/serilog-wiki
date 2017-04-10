@@ -1,9 +1,10 @@
 ## Installing from NuGet
 
-The core logging package is [Serilog](http://nuget.org/packages/serilog). The supported platforms are .NET 4.5, Windows 8 (WinRT) and Windows Phone 8.
+The core logging package is [Serilog](http://nuget.org/packages/serilog). The supported platforms are .NET 4.5+, Windows (8/WinRT/Universal+) and Windows Phone 8+.
 
 ```
 PM> Install-Package Serilog
+PM> Install-Package Serilog.Sinks.Literate
 ```
 
 Browse the [Serilog tag on NuGet](http://nuget.org/packages?q=Tags%3A%22serilog%22%22) to see the available sinks, extensions and related third-party packages.
@@ -20,7 +21,7 @@ An `ILogger` is created using `LoggerConfiguration`.
 
 ```csharp
 var log = new LoggerConfiguration()
-    .WriteTo.ColoredConsole()
+    .WriteTo.LiterateConsole()
     .CreateLogger();
 ```
 
