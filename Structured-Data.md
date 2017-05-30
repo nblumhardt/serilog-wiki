@@ -106,11 +106,14 @@ Often only a selection of properties on a complex object are of interest. To cus
 
 ```csharp
 Log.Logger = new LoggerConfiguration()
-    .Destructure.ByTransforming<HttpRequest>(r => new { RawUrl = r.RawUrl, Method = r.Method })
+    .Destructure.ByTransforming<HttpRequest>(
+        r => new { RawUrl = r.RawUrl, Method = r.Method })
     .WriteTo...
 ```
 
 This example transforms objects of type `HttpRequest` to preserve only the `RawUrl` and `Method` properties. A number of different strategies for destructuring are available, and custom ones can be created by implementing `IDestructuringPolicy`.
+
+**Note:** the function provided to `Destructure.ByTransforming()` must return a different type from the one passed in, or it will be called recursively. Use a custom `IDestructuringPolicy` instead to implement conditional transformations.
 
 ### Operators vs. Formats
 
