@@ -45,7 +45,7 @@ public class MySink : ILogEventSink
 }
 ```
 ### Extensions for configuration
-A pattern often used when configuring a sink, is to provide an extension method class for the `LoggingConfiguration`.  The following code illustrates this approach by exposing a `MySink` option when configuring Serilog.
+A pattern often used when configuring a sink, is to provide an extension method class for the `LoggerSinkConfiguration`.  The following code illustrates this approach by exposing a `MySink` option when configuring Serilog.
 
 ```
 public static class MySinkExtensions
