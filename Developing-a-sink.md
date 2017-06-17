@@ -64,10 +64,10 @@ public static class MySinkExtensions
 As seen in [Configuration Basics](https://github.com/serilog/serilog/wiki/Configuration-Basics) the new sink can be configured as follows.
 
 ```
-           var log = new LoggerConfiguration()
-                .MinimumLevel.Information()
-                .WriteTo.MySink()
-                .CreateLogger();
+var log = new LoggerConfiguration()
+    .MinimumLevel.Information()
+    .WriteTo.MySink()
+    .CreateLogger();
 ```
 
 ## Full Sample
