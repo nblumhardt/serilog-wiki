@@ -15,7 +15,7 @@ dotnet add package serilog
 ```
 ## Building a Simple Sink
 
-* Include the following `using` statements.  These are used by the sink class and also the configuring Serilog.  
+Include the following `using` statements.  These are used by the sink class and also the configuring Serilog.  
 ```
 using Serilog;
 using Serilog.Core;
