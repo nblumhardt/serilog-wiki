@@ -1,6 +1,7 @@
 The following example uses the `dotnet` command to create a project.
 
 ## Create the project
+
 ```
 mkdir SimpleSink
 cd SimpleSink
@@ -8,6 +9,7 @@ dotnet new console
 ```
 
 ### Add Dependencies
+
 * Add the Serilog Package from NuGet
 
 ```
@@ -15,8 +17,9 @@ dotnet add package serilog
 ```
 ## Building a Simple Sink
 
-Include the following `using` statements.  These are used by the sink class and also the configuring Serilog.  
-```
+Include the following `using` statements.  These are used by the sink class and also the configuring Serilog.
+
+```csharp
 using Serilog;
 using Serilog.Core;
 using Serilog.Events;
@@ -25,9 +28,10 @@ using Serilog.Configuration;
 ```
 
 ### Create the Sink
+
 A sink is simply a class that implements the `ILogEventSink` interface.  The following example renders every message regardless of log level to the console.
 
-```
+```csharp
 public class MySink : ILogEventSink
 {
     private readonly IFormatProvider _formatProvider;
@@ -44,10 +48,12 @@ public class MySink : ILogEventSink
     }
 }
 ```
+
 ### Extensions for configuration
+
 A pattern often used when configuring a sink, is to provide an extension method class for the `LoggerSinkConfiguration`.  The following code illustrates this approach by exposing a `MySink` option when configuring Serilog.
 
-```
+```csharp
 public static class MySinkExtensions
 {
     public static LoggerConfiguration MySink(
@@ -63,7 +69,7 @@ public static class MySinkExtensions
 
 As seen in [Configuration Basics](https://github.com/serilog/serilog/wiki/Configuration-Basics) the new sink can be configured as follows.
 
-```
+```csharp
 var log = new LoggerConfiguration()
     .MinimumLevel.Information()
     .WriteTo.MySink()
@@ -74,7 +80,7 @@ var log = new LoggerConfiguration()
 
 Below is the full example code as a console app.
 
-```
+```csharp
 using System;
 using Serilog;
 using Serilog.Core;
