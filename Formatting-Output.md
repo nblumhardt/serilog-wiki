@@ -19,6 +19,7 @@ A number of built-in properties can appear in output templates:
  * `Level` - The log event level, formatted as the full level name. For more compact level names, use a format such as `{Level:u3}` or `{Level:w3}` for three-character upper- or lowercase level names, respectively.
  * `Message` - The log event's message, rendered as plain text.
  * `NewLine` - A property with the value of `System.Environment.NewLine`.
+ * `Properties` - All event property values that don't appear elsewhere in the output.
  * `Timestamp` - The event's timestamp, as a `DateTimeOffset`.
 
 Properties from events, including those attached using enrichers, can also appear in the output template.
