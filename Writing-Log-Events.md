@@ -10,7 +10,7 @@ The warning event created from this log method will have two associated properti
 Disk quota 1024 MB exceeded by "nblumhardt"
 ```
 
-(Serilog renders `string` values in double quotes to more transparently indicate the underlying data type, and to make the property value stand out from the surrounding message text. To omit the quotes, use the `:l` literal format specifier on the property, e.g. `{User:l}`.)
+(Serilog renders `string` values in double quotes to more transparently indicate the underlying data type, and to make the property value stand out from the surrounding message text.)
 
 ### Message Template Syntax
 
