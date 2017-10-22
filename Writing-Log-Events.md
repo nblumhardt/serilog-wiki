@@ -142,3 +142,5 @@ jobLog.Information("Finished");
 ```
 
 Here both of the log events will carry the `JobId` property including the job identifier.
+
+**Tip:** when logging to sinks that use a text format, such as _Serilog.Sinks.Console_, you can include `{Properties}` in the output template to print out all contextual properties not otherwise included.
