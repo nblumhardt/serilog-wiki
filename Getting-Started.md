@@ -4,7 +4,7 @@ The core logging package is [Serilog](http://nuget.org/packages/serilog). The su
 
 ```
 PM> Install-Package Serilog
-PM> Install-Package Serilog.Sinks.Literate
+PM> Install-Package Serilog.Sinks.Console
 ```
 
 Browse the [Serilog tag on NuGet](http://nuget.org/packages?q=Tags%3A%22serilog%22%22) to see the available sinks, extensions and related third-party packages.
@@ -21,7 +21,7 @@ An `ILogger` is created using `LoggerConfiguration`.
 
 ```csharp
 var log = new LoggerConfiguration()
-    .WriteTo.LiterateConsole()
+    .WriteTo.Console()
     .CreateLogger();
 ```
 
@@ -52,8 +52,8 @@ In Visual Studio, open the _Package Manager Console_ and type:
 
 ```powershell
 Install-Package Serilog
-Install-Package Serilog.Sinks.Literate
-Install-Package Serilog.Sinks.RollingFile
+Install-Package Serilog.Sinks.Console
+Install-Package Serilog.Sinks.File
 ```
 
 **3. Add the following code to `Program.cs`**
@@ -70,8 +70,8 @@ namespace SerilogExample
         {
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Debug()
-                .WriteTo.LiterateConsole()
-                .WriteTo.RollingFile("logs\\myapp-{Date}.txt")
+                .WriteTo.Console()
+                .WriteTo.File("logs\\myapp.txt", rollingInterval: RollingInterval.Day)
                 .CreateLogger();
 
             Log.Information("Hello, world!");
