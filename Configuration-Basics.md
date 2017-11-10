@@ -1,4 +1,4 @@
-Serilog uses a simple **C# API** to configure logging. When XML configuration is desirable it can be mixed in sparingly using the [[AppSettings]] package.
+Serilog uses a simple **C# API** to configure logging. When XML configuration is desirable it can be mixed in sparingly using the [Serilog.Settings.AppSettings](https://github.com/serilog/serilog-settings-appsettings) package (.NET Framework) or [Serilog.Settings.Configuration](https://github.com/serilog/serilog-settings-configuration) package (.NET Core).
 
 ## Creating a logger
 
