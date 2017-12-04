@@ -46,7 +46,7 @@ The complete example below shows logging in a simple console application, with e
 
 **1. Create a new Console Application project**
 
-**2. Install the core Serilog package and the [literate console sink](https://github.com/serilog/serilog-sinks-literate)**
+**2. Install the core Serilog package and the [console sink](https://github.com/serilog/serilog-sinks-console)**
 
 In Visual Studio, open the _Package Manager Console_ and type:
 
