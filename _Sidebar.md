@@ -24,7 +24,7 @@
 
 ## The community
 
-* [[Contributing|Contributing]]
+* [[https://github.com/serilog/serilog/blob/dev/CONTRIBUTING.md|Contributing]]
 * [Gitter](https://gitter.im/serilog/serilog)
 * [Google Forum](https://groups.google.com/forum/#!forum/serilog)
 * [[Community projects|Community-Projects]]
