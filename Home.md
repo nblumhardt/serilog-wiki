@@ -1,4 +1,4 @@
-> Maintaining good quality documentation is a priority for Serilog. If you find missing or inaccurate content, please let us know via the issue tracker. If you'd like to extend the wiki with a topic or tutorial please email the discussion forum linked in the Resources section below. Thanks!
+> Maintaining good quality documentation is a priority for Serilog. If you find missing or inaccurate content, or if you'd like to extend the wiki with a topic or tutorial, please let us know via the issue tracker.
 
 ## Why Serilog?
 
@@ -31,21 +31,3 @@ The `:000` segment following `TimeMS` is a standard .NET format string that affe
 ```
 09:14:22 [Information] Processed { Latitude: 25, Longitude: 134 } in 034 ms. 
 ```
-
-## Documentation
-
-* [[Getting Started|Getting-Started]]
-* [[Configuration Basics|Configuration-Basics]]
-* [[Writing Log Events|Writing-Log-Events]]
-* [[Structured Data|Structured-Data]]
-* [[Provided Sinks|Provided-Sinks]]
-* [[Enrichment and Contextual Properties|Enrichment]]
-* [[Debugging and Diagnostics|Debugging-and-Diagnostics]]
-* [[Community Projects|Community-Projects]]
-
-## Resources
-
-* [[Discussion forum|https://groups.google.com/group/serilog]]
-* [[Blog posts at nblumhardt.com|http://nblumhardt.com]]
-* [[Project homepage|http://serilog.net]]
-* [[Packages on NuGet|https://nuget.org/packages?q=Tags%3A%22serilog%22]]
