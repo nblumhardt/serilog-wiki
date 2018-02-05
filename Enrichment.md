@@ -56,3 +56,9 @@ The Serilog project provides:
 - [Serilog.Enrichers.Environment](https://github.com/serilog/serilog-enrichers-environment) - `WithMachineName()` and `WithEnvironmentUserName()`
 - [Serilog.Enrichers.Process](https://github.com/serilog/serilog-enrichers-process) - `WithProcessId()`
 - [Serilog.Enrichers.Thread](https://github.com/serilog/serilog-enrichers-thread) - `WithThreadId()`
+
+Other interesting enrichers:
+
+ - [Serilog.Web.Classic](https://github.com/serilog-web/classic) - `WithHttpRequestId()` and many other enrichers useful in classic ASP.NET applications
+ - [Serilog.Exceptions](https://github.com/RehanSaeed/Serilog.Exceptions) - `WithExceptionDetails()` adds additional structured properties from exceptions
+ - [Serilog.Enrichers.Demystify](https://github.com/nblumhardt/serilog-enrichers-demystify) - `WithDemystifiedStackTraces()`
