@@ -9,7 +9,7 @@ The format of events written by these sinks can be modified using the `outputTem
 ```csharp
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console(outputTemplate:
-        "{Timestamp:yyyy-MM-dd HH:mm:ss} [{Level}] {Message}{NewLine}{Exception}")
+        "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}")
     .CreateLogger();
 ```
 
@@ -17,20 +17,20 @@ A number of built-in properties can appear in output templates:
 
  * `Exception` - The full exception message and stack trace, formatted across multiple lines. Empty if no exception is associated with the event.
  * `Level` - The log event level, formatted as the full level name. For more compact level names, use a format such as `{Level:u3}` or `{Level:w3}` for three-character upper- or lowercase level names, respectively.
- * `Message` - The log event's message, rendered as plain text.
+ * `Message` - The log event's message, rendered as plain text. The `:l` format specifier switches of quoting of strings, and `:j` uses JSON-style rendering for any embedded structured data.
  * `NewLine` - A property with the value of `System.Environment.NewLine`.
- * `Properties` - All event property values that don't appear elsewhere in the output.
+ * `Properties` - All event property values that don't appear elsewhere in the output. Use the `:j` format to use JSON rendering.
  * `Timestamp` - The event's timestamp, as a `DateTimeOffset`.
 
 Properties from events, including those attached using enrichers, can also appear in the output template.
 
 ## Formatting JSON
 
-Many sinks record log events as JSON, or can be configured to do so. To emit JSON, rather than plain text, a `formatter` can be specified. This example configures the [file sink](https://github.com/serilog/serilog-sinks-file).
+Many sinks record log events as JSON, or can be configured to do so. To emit JSON, rather than plain text, a `formatter` can be specified. This example configures the [file sink](https://github.com/serilog/serilog-sinks-file) using the formatter from [_Serilog.Formatting.Compact_](https://github.com/serilog/serilog-formatting-compact).
 
 ```csharp
 Log.Logger = new LoggerConfiguration()
-    .WriteTo.File(new JsonFormatter(), "log.txt")
+    .WriteTo.File(new CompactJsonFormatter(), "log.txt")
     .CreateLogger();
 ```
 
@@ -50,7 +50,7 @@ Both plain text and JSON formatting are implemented using the `ITextFormatter` i
 
 There are a number of options available to formatting the output of individual types like dates. One example is the use of the format provider that is accepted by most sinks. 
 
-Below is a simple console sample using the [Literate Console](https://github.com/serilog/serilog-sinks-literate) sink.  This is using the default behaviour for rendering a date.
+Below is a simple console sample using the [_Serilog.Sinks.Console_](https://github.com/serilog/serilog-sinks-literate) sink. This is using the default behavior for rendering a date.
  
 ```csharp
 class User
@@ -64,19 +64,19 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        var log = new LoggerConfiguration()
-            .WriteTo.LiterateConsole()
+        Log.Logger = new LoggerConfiguration()
+            .WriteTo.Console()
             .CreateLogger();
 
         var exampleUser = new User { Id = 1, Name = "Adam", Created = DateTime.Now };
-        log.Information("Created {@User} on {Created}", exampleUser, DateTime.Now);
+        Log.Information("Created {@User} on {Created}", exampleUser, DateTime.Now);
 
-        Console.ReadLine();
+        Log.CloseAndFlush();
     }
 }
 ```
 
-This would provide the following output on the console.
+This writes the following output to the console.
 
 ```
 [07:12:57 INF] Created User {Id=1, Name="Adam", Created=07/18/2016 07:12:57}
@@ -121,15 +121,15 @@ public class Program
     {
 
         var formatter = new CustomDateFormatter("dd-MMM-yyyy", new CultureInfo("en-AU"));
-        var log = new LoggerConfiguration() 
-            .WriteTo.LiterateConsole(formatProvider: new CultureInfo("en-AU")) //Console1
-            .WriteTo.LiterateConsole(formatProvider: formatter)                //Console2
+        Log.Logger = new LoggerConfiguration() 
+            .WriteTo.Console(formatProvider: new CultureInfo("en-AU")) //Console1
+            .WriteTo.Console(formatProvider: formatter)                //Console2
             .CreateLogger();
 
         var exampleUser = new User { Id = 1, Name = "Adam", Created = DateTime.Now };
-        log.Information("Created {@User} on {Created}", exampleUser, DateTime.Now);
+        Log.Information("Created {@User} on {Created}", exampleUser, DateTime.Now);
 
-        Console.ReadLine();
+        Log.CloseAndFlush();
     }
 }
 ```
