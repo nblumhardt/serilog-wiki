@@ -8,7 +8,7 @@ Projects are named via the following conventions:
 
 Folders 
 * `src` - Location of the source files
-* `test` - Location of testing resources
+* `test` - Location of testing resources.  XUnit is the current testing framework.
 * `assets` - Location of shared resources such as `.snk`, package logos.
 
 ## Builds
@@ -30,3 +30,4 @@ AppVeyor build definitions are entirely configured via the `.yml` file.  Key are
 * Setup uses [standard Travis images](https://github.com/serilog/serilog/blob/dev/.travis.yml#L2)
 
 ### `build.sh`
+* Script executes builds and tests for relevant TFMs.
