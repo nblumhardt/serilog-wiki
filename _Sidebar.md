@@ -34,4 +34,4 @@
 * [NuGet](https://www.nuget.org/packages/Serilog/)
 * [[2.x Upgrade Guide|2.x-Upgrade-Guide]]
 * [Changelog](https://github.com/serilog/serilog/blob/master/CHANGES.md)
-* [Repository Structure](Repository Structure)
+* [Repository Structure](https://github.com/serilog/serilog/wiki/Repository-Structure)
