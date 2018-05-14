@@ -19,7 +19,7 @@ Serilog projects use [AppVeyor](https://ci.appveyor.com/project/serilog/serilog)
 
 ### `build.ps1`
 * A PowerShell build script is included in all projects that allows execution locally & on the AppVeyor build system.
-* Version of the library is set via the [VersionPrefix](https://github.com/serilog/serilog/blob/dev/src/Serilog/Serilog.csproj#L5) and the 
+* Version of the library is set via the [VersionPrefix](https://github.com/serilog/serilog/blob/dev/src/Serilog/Serilog.csproj#L5) with the suffix derived via branch, build number and git commit hash. [See example.](https://github.com/serilog/serilog/blob/dev/Build.ps1#L12)
 
 ### `.appveyor.yml`
 AppVeyor build definitions are entirely configured via the `.yml` file.  Key areas of the AppVeyor setup include:
