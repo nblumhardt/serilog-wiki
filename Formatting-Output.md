@@ -50,7 +50,7 @@ Both plain text and JSON formatting are implemented using the `ITextFormatter` i
 
 There are a number of options available to formatting the output of individual types like dates. One example is the use of the format provider that is accepted by most sinks. 
 
-Below is a simple console sample using the [_Serilog.Sinks.Console_](https://github.com/serilog/serilog-sinks-literate) sink. This is using the default behavior for rendering a date.
+Below is a simple console sample using the [_Serilog.Sinks.Console_](https://github.com/serilog/serilog-sinks-console) sink. This is using the default behavior for rendering a date.
  
 ```csharp
 class User
@@ -79,8 +79,7 @@ public class Program
 This writes the following output to the console.
 
 ```
-[07:12:57 INF] Created User {Id=1, Name="Adam", Created=07/18/2016 07:12:57}
-  on 07/18/2016 07:12:57
+[07:12:57 INF] [18:46:45 INF] Created {"Id": 1, "Name": "Adam", "Created": "2018-05-17T18:46:45.9064879+10:00", "$type": "User"} on 05/17/2018 18:46:45
 ```
 
 There may be scenarios where it is desirable to override or specify the way a `DateTime` is formatted.  This can be done via the implementation of `IFormatProvider`. This strategy applies to any type that you pass to Serilog.
@@ -109,7 +108,7 @@ class CustomDateFormatter : IFormatProvider
             var basedOnFormatInfo = (DateTimeFormatInfo)basedOn.GetFormat(formatType);
             var dateFormatInfo = (DateTimeFormatInfo)basedOnFormatInfo.Clone();
             dateFormatInfo.ShortDatePattern = this.shortDatePattern;
-            return dateFormatInfo;
+            return dateFormatInfo.GetFormat(formatType);
         }
         return this.basedOn;
     }
@@ -119,7 +118,6 @@ public class Program
 {
     public static void Main(string[] args)
     {
-
         var formatter = new CustomDateFormatter("dd-MMM-yyyy", new CultureInfo("en-AU"));
         Log.Logger = new LoggerConfiguration() 
             .WriteTo.Console(formatProvider: new CultureInfo("en-AU")) //Console1
@@ -137,8 +135,6 @@ public class Program
 The following is the output of the above example, with two consoles sinks configured.
 
 ```
-[08:04:48 INF] Created User {Id=1, Name="Adam", Created=18/07/2016 8:04:48 AM} 
-  on 18/07/2016 8:04:48 AM   //Console1
-[08:04:48 INF] Created User {Id=1, Name="Adam", Created=18-Jul-2016 8:04:48 AM}
-  on 18-Jul-2016 8:04:48 AM //Console2
+Created User {Id=1, Name="Adam", Created=17/05/2018 7:08:44 PM} on 17/05/2018 7:08:44 PM // Console1
+Created {"Id": 1, "Name": "Adam", "Created": "2018-05-17T19:08:44.0500574+10:00", "$type": "User"} on 17-May-2018 7:08:44 PM // Console2
 ```
