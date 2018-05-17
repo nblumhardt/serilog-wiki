@@ -108,9 +108,9 @@ class CustomDateFormatter : IFormatProvider
             var basedOnFormatInfo = (DateTimeFormatInfo)basedOn.GetFormat(formatType);
             var dateFormatInfo = (DateTimeFormatInfo)basedOnFormatInfo.Clone();
             dateFormatInfo.ShortDatePattern = this.shortDatePattern;
-            return dateFormatInfo.GetFormat(formatType);
+            return dateFormatInfo;
         }
-        return this.basedOn;
+        return this.basedOn.GetFormat(formatType);
     }
 }
 
