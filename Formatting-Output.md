@@ -79,7 +79,7 @@ public class Program
 This writes the following output to the console.
 
 ```
-[07:12:57 INF] [18:46:45 INF] Created {"Id": 1, "Name": "Adam", "Created": "2018-05-17T18:46:45.9064879+10:00", "$type": "User"} on 05/17/2018 18:46:45
+[18:46:45 INF] Created {"Id": 1, "Name": "Adam", "Created": "2018-05-17T18:46:45.9064879+10:00", "$type": "User"} on 05/17/2018 18:46:45
 ```
 
 There may be scenarios where it is desirable to override or specify the way a `DateTime` is formatted.  This can be done via the implementation of `IFormatProvider`. This strategy applies to any type that you pass to Serilog.
