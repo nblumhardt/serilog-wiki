@@ -17,6 +17,7 @@ Disk quota 1024 MB exceeded by "nblumhardt"
 The string above `"Disk quota {Quota} exceeded by {User}"` is a Serilog _message template_. Message templates are a superset of standard .NET format strings, so any format string acceptable to `string.Format()` will also be correctly processed by Serilog.
 
 * Property names are written between `{` and `}` brackets
+* Property names must be valid C# identifiers, for example `FooBar`, but **not** `Foo.Bar` or `Foo-Bar`
 * Brackets can be escaped by doubling them, e.g. `{{` will be rendered as `{`
 * Formats that use numeric property names, like `{0}` and `{1}` exclusively, will be matched with the log method's parameters by treating the property names as indexes; this is identical to `string.Format()`'s behaviour
 * If any of the property names are non-numeric, then all property names will be matched from left-to-right with the log method's parameters
