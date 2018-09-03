@@ -12,6 +12,7 @@ Community projects extend Serilog with new features and integrate it with other 
 | ![SerilogMetrics](https://raw.githubusercontent.com/serilog-metrics/serilog-metrics/master/assets/serilog-metrics-128.png) | [SerilogMetrics](https://github.com/serilog-metrics/serilog-metrics)  | _SerilogMetrics_ extends the logging framework with measure capabilities like counters, timers, meters and gauges. | 
 | ![SerilogWeb](http://serilog-web.github.io/pages/images/serilog-web.png) | [SerilogWeb](https://github.com/serilog-web) | Integrates Serilog request logging into popular .NET web app frameworks including ASP.NET and OWIN. |
 | | [Suave.SerilogExtensions](https://github.com/Zaid-Ajaj/Suave.SerilogExtensions) | Suave (F# web framework) logging integration. |
+| | [Serilog.Settings.Delegates](https://github.com/MV10/serilog-settings-delegates) | Configuration extensions using delegates |
 
 ## Can I list my project?
 
