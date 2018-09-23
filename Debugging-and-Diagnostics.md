@@ -26,3 +26,7 @@ Serilog.Debugging.SelfLog.Enable(TextWriter.Synchronized(file));
 ## Debug Symbols
 
 Most Serilog packages include debug symbols (_.PDB) on http://symbolsource.org - adding it as a symbol server in Visual Studio can help when determining the cause of an exception from a sink.
+
+## Serilog Analyzer
+
+A Roslyn-based analysis for code using the Serilog logging library. Checks for common mistakes and usage problems. You can find more information [here](https://github.com/Suchiman/SerilogAnalyzer).
