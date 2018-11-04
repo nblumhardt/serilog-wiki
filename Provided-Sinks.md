@@ -1,5 +1,7 @@
 
 Serilog provides _sinks_ for writing log events to storage in various formats. Many of the sinks listed below are developed and supported by the wider Serilog community; please direct questions and issues to the relevant repository.
+
+More sinks can be found by searching within the [`serilog` tag on NuGet](https://www.nuget.org/packages?q=Tags%3A%22serilog%22).
  
 ## List of available sinks   
 
