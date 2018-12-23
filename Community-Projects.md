@@ -14,6 +14,7 @@ Community projects extend Serilog with new features and integrate it with other 
 | | [Suave.SerilogExtensions](https://github.com/Zaid-Ajaj/Suave.SerilogExtensions) | Suave (F# web framework) logging integration. |
 | | [Serilog.Settings.Delegates](https://github.com/MV10/serilog-settings-delegates) | Configuration extensions using delegates |
 | | [Giraffe.SerilogExtensions](https://github.com/Zaid-Ajaj/Giraffe.SerilogExtensions) | Dead simple library to integrate Serilog within Giraffe or Saturn apps with F# |
+| | [Serilog.Enrichers.ExcelDna](https://github.com/caioproiete/serilog-enrichers-exceldna/) |Enriches Serilog events with information from your Excel-DNA Add-in.|
 
 ## Can I list my project?
 
