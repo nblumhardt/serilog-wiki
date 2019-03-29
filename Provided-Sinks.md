@@ -56,7 +56,7 @@ More sinks can be found by searching within the [`serilog` tag on NuGet](https:/
 [Microsoft Teams](https://github.com/DixonDs/serilog-sinks-teams) | `MicrosoftTeams` | [Serilog.Sinks.MicrosoftTeams](https://www.nuget.org/packages/Serilog.Sinks.MicrosoftTeams/) <br/> ![NuGet Version](https://buildstats.info/nuget/Serilog.Sinks.MicrosoftTeams) |
 [MongoDB](https://github.com/serilog/serilog-sinks-mongodb) | `MongoDB` | [Serilog.Sinks.MongoDB](https://nuget.org/packages/serilog.sinks.mongodb) <br/>  ![NuGet Version](https://buildstats.info/nuget/serilog.sinks.mongodb)  |
 [Nats](https://github.com/daghb/serilog.sinks.nats)| `Nats` | [Serilog.Sinks.Nats](https://www.nuget.org/packages/Serilog.Sinks.Nats)  <br/>  ![NuGet Version](https://buildstats.info/nuget/serilog.sinks.nats) |
-[NewRelic](https://github.com/Applicita/serilog-sinks-newrelic) | `NewRelic` | |
+[NewRelic](https://github.com/Mimeo/serilog-sinks-newrelic) | `NewRelic` | |
 [Network](https://github.com/pauldambra/Serilog.Sinks.Network) | `TCP or UDP` | [Serilog.Sinks.Network](https://www.nuget.org/packages/serilog.sinks.network) <br/>  ![NuGet Version](https://buildstats.info/nuget/serilog.sinks.network)  |
 [NLog](https://github.com/serilog/serilog-sinks-nlog) | `NLog` | [Serilog.Sinks.NLog](https://nuget.org/packages/serilog.sinks.nlog) <br/>  ![NuGet Version](https://buildstats.info/nuget/serilog.sinks.nlog)  |
 [Observable](https://github.com/serilog/serilog-sinks-observable)| `Observers` | [Serilog.Sinks.Observable](https://nuget.org/packages/serilog.sinks.observable) <br/>  ![NuGet Version](https://buildstats.info/nuget/serilog.sinks.observable)  |
